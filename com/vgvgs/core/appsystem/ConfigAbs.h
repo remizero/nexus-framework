@@ -1,5 +1,5 @@
-#ifndef APPUTILS_H
-#define APPUTILS_H
+#ifndef CONFIGABS_H
+#define CONFIGABS_H
 
 // Librerías Internas
 // Internal Libraries
@@ -15,7 +15,7 @@
 // Librerías Qt
 // Qt Libraries
 #include <QDebug>
-#include <QDir>
+#include <QSettings>
 
 // Librerías C++
 // C++ Libraries
@@ -27,15 +27,19 @@ namespace NAMESPACE_LEVEL_1 {
 
     namespace NAMESPACE_CORE {
 
-        class CORE_EXPORT AppUtils {
+      class CORE_EXPORT ConfigAbs {
 
         public :
-          static QString normalizePath ( QString path );
-          static QString pathTo ( QString path );
-          static QString relativePath ( QString rootPath, QString path );
+          ConfigAbs ();
+
+          QSettings *getSettings () const;
+
+        protected :
+          QSettings::Format configFormat;
+                  QSettings *settings;
       };
     }
   }
 }
 
-#endif // APPUTILS_H
+#endif // CONFIGABS_H

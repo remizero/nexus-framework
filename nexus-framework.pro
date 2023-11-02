@@ -32,8 +32,8 @@ examples.depends = shadow com
 include (qmakeBuilders/deploymentRulesBin.prf)
 
 DISTFILES += \
+  Acknowledgment.txt \
   Doxyfile \
-  Agradecimientos.txt \
   qmakeBuilders/buildConfiguration.prf \
   qmakeBuilders/buildPaths.prf \
   qmakeBuilders/copyBinaries.prf \

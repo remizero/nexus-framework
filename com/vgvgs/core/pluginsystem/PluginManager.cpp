@@ -11,7 +11,7 @@ PluginManager::PluginManager ( QObject *parent ) : QObject ( parent ) {
 
 void PluginManager::initialize () {
 
-  QDir path = QDir ( NAMESPACE_LIBRARY_APP::AppPaths::getInstance ().getApplicationPluginsPath () );
+  QDir path = QDir ( AppPaths::getInstance ()->getApplicationPluginsPath () );
   foreach ( QFileInfo info, path.entryInfoList ( QDir::Files | QDir::NoDotAndDotDot ) ) {
 
     this->load ( info.absoluteFilePath () );
@@ -115,7 +115,7 @@ bool PluginManager::validateLibraryDependencies ( QJsonObject object ) {
       if ( jsonValue.isObject () ) {
 
         QJsonObject index = jsonValue.toObject ();
-        QString libraryPath ( NAMESPACE_LIBRARY_APP::AppPaths::getInstance ().getApplicationLibrariesPath () + index.value ( "name" ).toString () );
+        QString libraryPath ( AppPaths::getInstance ()->getApplicationLibrariesPath () + index.value ( "name" ).toString () );
         if ( QFile::exists ( libraryPath ) ) {
 
           if ( QLibrary::isLibrary ( libraryPath ) ) {
@@ -181,7 +181,7 @@ bool PluginManager::validatePluginDependencies ( QJsonObject object ) {
       if ( jsonValue.isObject () ) {
 
         QJsonObject index = jsonValue.toObject ();
-        QString libraryPath ( NAMESPACE_LIBRARY_APP::AppPaths::getInstance ().getApplicationLibrariesPath () + index.value ( "name" ).toString () );
+        QString libraryPath ( AppPaths::getInstance ()->getApplicationLibrariesPath () + index.value ( "name" ).toString () );
         if ( QFile::exists ( libraryPath ) ) {
 
           if ( QLibrary::isLibrary ( libraryPath ) ) {

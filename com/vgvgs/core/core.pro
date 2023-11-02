@@ -28,11 +28,18 @@ SOURCES += \
   actionsystem/ActionAbs.cpp \
   actionsystem/ActionManager.cpp \
   appsystem/App.cpp \
+  appsystem/AppConfig.cpp \
+  appsystem/AppExit.cpp \
   appsystem/AppInit.cpp \
   appsystem/AppManager.cpp \
   appsystem/AppPaths.cpp \
+  appsystem/AppSettingManager.cpp \
   appsystem/AppSettings.cpp \
   appsystem/AppUtils.cpp \
+  appsystem/ConfigAbs.cpp \
+  appsystem/UserConfig.cpp \
+  commandsystem/CommandManager.cpp \
+  loggersystem/Logger.cpp \
   menusystem/MenuManager.cpp \
   pluginsystem/PluginAbs.cpp \
   pluginsystem/PluginActionInfo.cpp \
@@ -43,7 +50,9 @@ SOURCES += \
   pluginsystem/PluginManager.cpp
 
 HEADERS += \
-  appsystem/AppManager.h \
+  MainWindowInterface.h \
+  appsystem/ConfigAbs.h \
+  commandsystem/CommandManager.h \
   core_global.h \
   Core.h \
   Exception.h \
@@ -52,10 +61,16 @@ HEADERS += \
   actionsystem/ActionInterface.h \
   actionsystem/ActionManager.h \
   appsystem/App.h \
+  appsystem/AppConfig.h \
+  appsystem/AppExit.h \
   appsystem/AppInit.h \
+  appsystem/AppManager.h \
   appsystem/AppPaths.h \
+  appsystem/AppSettingManager.h \
   appsystem/AppSettings.h \
   appsystem/AppUtils.h \
+  appsystem/UserConfig.h \
+  loggersystem/Logger.h \
   menusystem/MenuManager.h \
   pluginsystem/PluginAbs.h \
   pluginsystem/PluginActionInfo.h \
@@ -68,26 +83,31 @@ HEADERS += \
 
 win32:CONFIG(release, debug|release): LIBS += \
   -L$$LIB_PATH/ -lMacros \
-#  -L$$LIB_PATH/ -lApp \
   -L$$LIB_PATH/ -lPatternify
 else:win32:CONFIG(debug, debug|release): LIBS += \
   -L$$LIB_PATH/ -lMacros \
-#  -L$$LIB_PATH/ -lApp \
   -L$$LIB_PATH/ -lPatternify
 else:unix: LIBS += \
   -L$$LIB_PATH/ -lMacros \
-#  -L$$LIB_PATH/ -lApp \
   -L$$LIB_PATH/ -lPatternify
 
 INCLUDEPATH += \
   $$PWD/../macros \
-#  $$PWD/../app \
   $$PWD/../patternify
 
 DEPENDPATH += \
   $$PWD/../macros \
-#  $$PWD/../app \
   $$PWD/../patternify
+
+DEF_FILE += \
+  export.def
+
+DISTFILES += \
+  export.def \
+  resources/PluginJsonStructure.json
+
+RESOURCES += \
+  coreResources.qrc
 
 # Se copia la librería en la ruta destino del proyecto final.
 # The library is copied to the destination path of the final project.
@@ -96,6 +116,3 @@ include (../../../qmakeBuilders/copyLibraries.prf)
 # Se definen las reglas y rutas de instalación del proyecto para las diferentes plataformas.
 # The rules and installation paths of the project are defined for the different platforms.
 include (../../../qmakeBuilders/deploymentRulesLib.prf)
-
-DISTFILES += \
-  pluginsystem/PluginJsonStructure.json

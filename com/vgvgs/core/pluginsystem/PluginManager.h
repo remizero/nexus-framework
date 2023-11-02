@@ -5,6 +5,7 @@
 // Internal Libraries
 #include "core_global.h"
 #include "actionsystem/ActionManager.h"
+#include "appsystem/AppPaths.h"
 #include "pluginsystem/PluginAbs.h"
 #include "pluginsystem/PluginActionInfo.h"
 #include "pluginsystem/PluginActionLocationInfo.h"
@@ -15,7 +16,6 @@
 // Librerías Externas
 // External Libraries
 #include "macros_global.h"
-#include "AppPaths.h"
 #include "creational/Singleton.h"
 
 // Librerías de terceros

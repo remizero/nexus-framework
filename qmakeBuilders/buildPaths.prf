@@ -7,7 +7,7 @@ CURRENT_PROJECT_PATH = $$OUT_PWD
 
 # Se obtiene la ruta de origen del proyecto principal contenedor de todos los subproyectos.
 # Get the source path of the main project containing all subprojects.
-MAIN_PROJECT_ROOT_PATH = $$replace(PWD, /qmakeSupportFiles, )
+MAIN_PROJECT_ROOT_PATH = $$replace(PWD, /qmakeBuilders, )
 
 # Se elimina la ruta de origen del proyecto principal de la ruta de salida del proyecto actual.
 # The parent project's source path is removed from the current project's output path.

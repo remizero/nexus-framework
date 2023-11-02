@@ -40,6 +40,7 @@ namespace NAMESPACE_LEVEL_1 {
           QString getApplicationTempPath () const;
           QString getApplicationWorkspacePath () const;
           QString getXsdPath () const;
+          void initialize ();
 
         private :
           QString applicationConfigPath;

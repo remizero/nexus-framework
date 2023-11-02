@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/coreResources">
+        <file>resources/PluginJsonStructure.json</file>
+    </qresource>
+</RCC>

@@ -4,7 +4,7 @@
 // Librerías Internas
 // Internal Libraries
 #include "core_global.h"
-#include "app/AppInit.h"
+#include "appsystem/AppInit.h"
 
 // Librerías Externas
 // External Libraries
@@ -35,11 +35,7 @@ namespace NAMESPACE_LEVEL_1 {
 
           static int const EXIT_CODE_REBOOT = -123456789;
 
-          QCoreApplication *getApplication ();
           bool notify ( QObject *receiver, QEvent *event ) Q_DECL_OVERRIDE;
-
-        private :
-          QCoreApplication *application = nullptr;
       };
     }
   }

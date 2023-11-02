@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/home/remizero/Proyectos/Desarrollo/Qt/qtrcp/com/ecosoftware/resources/xsd/config.xsd">
+  <app>
+    <applicationdisplayname>Nexus Framework</applicationdisplayname>
+    <applicationhashkey>BF2918A1453E2E1F7077A3317F7C1C80</applicationhashkey>
+    <applicationname>Nexus</applicationname>
+    <applicationversion>1.0</applicationversion>
+    <applicationdescription>Nexus-Framework is a lightweight framework designed to quickly develop applications for the Nexus-Desktop system.</applicationdescription>
+    <organizationname>Vgvgs, C.A.</organizationname>
+    <organizationdomain>https://www.vgvgs.com</organizationdomain>
+    <showsplash>1</showsplash>
+    <showtryicon>0</showtryicon>
+    <standalone>0</standalone>
+    <iconimage>icono.png</iconimage>
+    <mayorversion>5</mayorversion>
+    <minorversion>0</minorversion>
+    <pathversion>0</pathversion>
+    <typeApp>core</typeApp>
+    <userConfigFormat>xml</userConfigFormat>
+  </app>
+  <commands>
+    <command>
+      <name>info</name>
+      <description>Información de la aplicacion.</description>
+      <arguments>
+        <argument>
+          <name>arg1</name>
+          <description>Descripción del argumento 1</description>
+          <type>string</type> <!-- Puedes usar tipos como string, int, bool, etc. -->
+        </argument>
+        <!-- Agregar más argumentos según sea necesario -->
+      </arguments>
+    </command>
+    <!-- Agregar más comandos definidos por los desarrolladores -->
+  </commands>
+  <logger>
+    <sender></sender>
+    <sendername></sendername>
+    <addressee></addressee>
+    <addresseename></addresseename>
+    <subject></subject>
+    <smtpserver></smtpserver>
+    <port></port>
+    <user></user>
+    <password></password>
+  </logger>
+  <systemtrayicon>
+    <systrayicon>icono.png</systrayicon>
+    <systraytooltip>Ecomoditor</systraytooltip>
+    <systrayduration>10</systrayduration>
+    <systraydefaultmessagetype>Information</systraydefaultmessagetype>
+    <systraymessagetitle>Ecomoditor</systraymessagetitle>
+    <systraymessagebody>Aplicación con SystemTrayIcon</systraymessagebody>
+    <showsystemtrayicon>1</showsystemtrayicon>
+    <minimizetosystemtrayicon>1</minimizetosystemtrayicon>
+  </systemtrayicon>
+  <splashscreen>
+    <imagesplash>splash.png</imagesplash><!--Aquí coloque el nombre de la imagen que usará para este lanzador de aplicaciones. Puede utilizar imagenes de tipo GIF, JPG, BMP, PNG.-->
+    <messagebox>
+      <x>10</x>
+      <y>253</y>
+      <w>800</w>
+      <h>14</h>
+      <alignment>1</alignment>
+    </messagebox>
+    <font>
+      <family>monospace</family>
+      <bold>1</bold>
+      <size>9</size>
+      <stretch>125</stretch>
+      <color>2a5c7e</color>
+    </font>
+    <progressbar>
+      <textvisible>0</textvisible><!-- Indica si el texto interno de la barra de progreso será visible -->
+      <textalignment>center</textalignment><!-- Puede ser top | bottom | left | right | center -->
+      <invertedappearance>0</invertedappearance><!-- This property holds whether or not a progress bar shows its progress inverted (e.g. from right to left). -->
+      <x>0</x><!-- Pocisión en el eje X de la barra de progreso -->
+      <y>270</y><!-- Pocisión en el eje Y de la barra de progreso -->
+      <w>800</w><!-- Ancho de la barra de progreso -->
+      <h>3</h><!-- Altura de la barra de progreso -->
+      <orientation>H</orientation><!-- This property holds the orientation of the progress bar. The orientation must be Qt::Horizontal (the default) or Qt::Vertical. -->
+      <textdirection>0</textdirection><!-- This property holds the reading direction of the text for vertical progress bars. -->
+      <format>%p%</format><!-- %p% - is replaced by the percentage completed. %v% - is replaced by the current value. %m% - is replaced by the total number of steps. -->
+      <max>100</max><!-- Valor máximo que puede aceptar la barra de progreso -->
+      <min>0</min><!-- Valor mínimo que puede aceptar la barra de progreso -->
+      <backgroundcolor>2a5c7e</backgroundcolor><!-- Color a ser mostrado en la barra de progreso -->
+    </progressbar>
+  </splashscreen>
+</settings>

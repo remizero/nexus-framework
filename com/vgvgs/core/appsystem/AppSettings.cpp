@@ -1,21 +1,40 @@
 #include "AppSettings.h"
 
 
-using namespace NAMESPACE_LIBRARY_APP;
+using namespace NAMESPACE_LIBRARY_CORE;
 
 
-/*QSettings AppSettings::loadSettingsXML ( QString fileName ) {
-  
-  const QSettings::Format XmlFormat = QSettings::registerFormat ( "xml", ( QSettings::ReadFunc ) AppSettings::readXmlFile, ( QSettings::WriteFunc ) AppSettings::writeXmlFile );
-  QSettings settings ( AppPaths::getInstance ().getApplicationDataPath () + fileName, XmlFormat );
+void AppSettings::parseJsonObject ( QJsonObject &json, QString prefix, QMap<QString, QVariant> &map ) {
 
-  return settings;
-}*/
+  QJsonValue value;
+  QJsonObject obj;
 
-QSettings::Format AppSettings::getXmlFormat () {
+  QStringList keys = json.keys ();
+  for ( int i = 0; i < keys.size (); i++ ) {
 
-  const QSettings::Format XmlFormat = QSettings::registerFormat ( "xml", ( QSettings::ReadFunc ) AppSettings::readXmlFile, ( QSettings::WriteFunc ) AppSettings::writeXmlFile );
-  return XmlFormat;
+    value = json.value ( keys [ i ] );
+    if ( value.isObject () ) {
+
+      obj = value.toObject();
+      parseJsonObject ( obj, prefix + keys [ i ] + "/", map );
+
+    } else {
+
+      map.insert ( prefix + keys [ i ], value.toVariant () );
+    }
+  }
+}
+
+bool AppSettings::readJsonFile ( QIODevice &device, QMap<QString, QVariant> &map ) {
+
+  QJsonParseError jsonError;
+  QJsonObject json = QJsonDocument::fromJson ( device.readAll (), &jsonError ).object ();
+  if ( jsonError.error != QJsonParseError::NoError ) {
+
+    return false;
+  }
+  parseJsonObject ( json, QString ( "" ), map );
+  return true;
 }
 
 bool AppSettings::readXmlFile ( QIODevice &device, QSettings::SettingsMap &map ) {
@@ -57,10 +76,65 @@ bool AppSettings::readXmlFile ( QIODevice &device, QSettings::SettingsMap &map )
   return true;
 }
 
+QJsonObject AppSettings::restoreJsonObject ( QMap<QString, QVariant> &map ) {
+
+  QJsonObject obj;
+  QStringList keys = map.keys ();
+
+  for ( int i = 0; i < keys.size (); i++ ) {
+
+    QString key = keys.at ( i );
+    QVariant value = map.value ( key );
+    QStringList sections = key.split ( '/' );
+    if ( sections.size () > 1 ) {
+
+      continue;
+
+    } else {
+
+      map.remove ( key );
+      obj.insert ( key, QJsonValue::fromVariant ( value ) );
+    }
+  }
+  QList<QMap<QString, QVariant>> subMaps;
+  keys = map.keys ();
+  for ( int i = 0; i < keys.size (); i++ ) {
+
+    bool found = false;
+    QString key = keys [ i ];
+    for ( int j = 0; j < subMaps.size (); j++ ) {
+
+      QString subKey = subMaps [ j ].key ( QString ( "__key__" ) );
+      if ( subKey.contains ( key.section ( '/', 0, 0 ) ) ) {
+
+        subMaps [ j ].insert ( key.section ( '/', 1 ), map.value ( key ) );
+        found = true;
+        break;
+      }
+    }
+    if ( !found ) {
+
+      QMap<QString, QVariant> tmp;
+      tmp.insert ( key.section ( '/', 0, 0 ), QString ( "__key__" ) );
+      tmp.insert ( key.section ( '/', 1 ), map.value ( key  ) );
+      subMaps.append ( tmp );
+    }
+  }
+  for ( int i = 0; i < subMaps.size (); i++ ) {
+
+    QString key = subMaps [ i ].key ( QString ( "__key__" ) );
+    subMaps [ i ].remove ( key );
+
+    QJsonObject tmp = restoreJsonObject ( subMaps [ i ] );
+    obj.insert ( key, tmp );
+  }
+  return obj;
+}
+
 void AppSettings::saveRecent ( const QString &recentGroup, int maxItemsRecentGroup, const QString &key, const QString &value ) {
 
   const QSettings::Format XmlFormat = QSettings::registerFormat ( "xml", ( QSettings::ReadFunc ) AppSettings::readXmlFile, ( QSettings::WriteFunc ) AppSettings::writeXmlFile );
-  QSettings settings ( NAMESPACE_LIBRARY_APP::AppPaths::getInstance ().getApplicationConfigPath () + "config.xml", XmlFormat );
+  QSettings settings ( AppPaths::getInstance ()->getApplicationConfigPath () + "config.xml", XmlFormat );
 
   settings.beginGroup ( recentGroup );
   QStringList recentListKeys = settings.childKeys ();
@@ -104,6 +178,14 @@ void AppSettings::saveRecentFile ( const QString &value ) {
 void AppSettings::saveRecentProject ( const QString &value ) {
 
   AppSettings::saveRecent ( "recentProjects", 10, "project", value );
+}
+
+bool AppSettings::writeJsonFile ( QIODevice &device, const QMap<QString, QVariant> &map ) {
+
+  QMap<QString, QVariant> tmp_map = map;
+  QJsonObject buffer = restoreJsonObject ( tmp_map );
+  device.write ( QJsonDocument ( buffer ).toJson () );
+  return true;
 }
 
 bool AppSettings::writeXmlFile ( QIODevice &device, const QSettings::SettingsMap &map ) {

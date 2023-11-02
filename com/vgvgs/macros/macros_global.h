@@ -52,7 +52,7 @@
 
 // Se definen las macros con los nombres completos para todos los espacios de nombre de las librerías.
 // Macros with fully qualified names are defined for all library namespaces.
-#define NAMESPACE_LIBRARY_APP            Com::Vgvgs::App
+// #define NAMESPACE_LIBRARY_APP            Com::Vgvgs::App
 #define NAMESPACE_LIBRARY_CONSOLE        Com::Vgvgs::Console
 #define NAMESPACE_LIBRARY_CORE           Com::Vgvgs::Core
 #define NAMESPACE_LIBRARY_XSD            Com::Vgvgs::Engines::Xsd

@@ -3,7 +3,7 @@
 
 // Librerías Internas
 // Internal Libraries
-#include "app_global.h"
+#include "core_global.h"
 
 // Librerías Qt
 // Qt Libraries

@@ -6,65 +6,92 @@ using namespace NAMESPACE_LIBRARY_CORE;
 
 AppInit::AppInit ( QObject *parent ) : QObject ( parent ) {
 
-  this->loadSettings ();
+  this->initialized = false;
 }
 
 bool AppInit::checkVersion () {
 
   bool checkVersion = false;
-  if ( ( checkVersion = ( QT_VERSION < QT_VERSION_CHECK ( this->settings->value ( "app/mayorversion" ).toInt (), this->settings->value ( "app/minorversion" ).toInt (), this->settings->value ( "app/pathversion" ).toInt () ) ) ) ) {
+  if ( this->initialized ) {
 
-    QMessageBox msgBox (
-          QMessageBox::Warning,
-          this->settings->value ( "app/applicationdisplayname" ).toString (),
-          "Debe tener instalada una versión de Qt igual o superior " + this->settings->value ( "app/mayorversion" ).toString () + "." + this->settings->value ( "app/minorversion" ).toString () + "." + this->settings->value ( "app/pathversion" ).toString () + ".",
-          QMessageBox::Ok );
-    msgBox.exec ();
+//            checkVersion = ( QT_VERSION >= QT_VERSION_CHECK ( this->appConfig->getSettings ()->value ( "app/mayorversion" ).toInt (), this->appConfig->getSettings ()->value ( "app/minorversion" ).toInt (), this->appConfig->getSettings ()->value ( "app/pathversion" ).toInt () ) );
+    if ( ( checkVersion = ( QT_VERSION >= QT_VERSION_CHECK ( this->appConfig->getSettings ()->value ( "app/mayorversion" ).toInt (), this->appConfig->getSettings ()->value ( "app/minorversion" ).toInt (), this->appConfig->getSettings ()->value ( "app/pathversion" ).toInt () ) ) ) ) {
+
+      if ( this->appConfig->getSettings ()->value ( "app/typeApp" ).toString () == "gui" ) {
+
+        QMessageBox msgBox (
+              QMessageBox::Warning,
+              this->appConfig->getSettings ()->value ( "app/applicationdisplayname" ).toString (),
+              "Debe tener instalada una versión de Qt igual o superior " + this->appConfig->getSettings ()->value ( "app/mayorversion" ).toString () + "." + this->appConfig->getSettings ()->value ( "app/minorversion" ).toString () + "." + this->appConfig->getSettings ()->value ( "app/pathversion" ).toString () + ".",
+              QMessageBox::Ok );
+        msgBox.exec ();
+
+      } else {
+
+        // TODO Como mostrar el mensaje por consola.
+        qDebug () << this->appConfig->getSettings ()->value ( "app/applicationdisplayname" ).toString () <<  "Debe tener instalada una versión de Qt igual o superior " + this->appConfig->getSettings ()->value ( "app/mayorversion" ).toString () + "." + this->appConfig->getSettings ()->value ( "app/minorversion" ).toString () + "." + this->appConfig->getSettings ()->value ( "app/pathversion" ).toString () + ".";
+      }
+    }
+  } else {
+
+    qDebug () << "La clase AppInit no ha sido inicializa correctamente.";
   }
   return checkVersion;
 }
 
-QSettings *AppInit::getSettings () const {
+AppConfig *AppInit::getAppConfig () const {
 
-  return this->settings;
+  return this->appConfig;
 }
 
-void AppInit::loadSettings () {
+UserConfig *AppInit::getUserConfig () const {
 
-  const QSettings::Format XmlFormat = AppSettings::getXmlFormat ();
-  this->settings = new QSettings ( AppPaths::getInstance ().getApplicationConfigPath () + "config.xml", XmlFormat );
+  return this->userConfig;
+}
+
+void AppInit::initialize ( AppConfig *appConfig, UserConfig *userConfig ) {
+
+  this->appConfig = appConfig;
+  this->userConfig = userConfig;
+  this->initialized = true;
 }
 
 bool AppInit::restoreDockWidget ( QMainWindow *parent , QDockWidget *dockWidget ) {
 
-  //QSettings settings ( "./ecosoftware/ecomodeditor/data/rockolaSettings.ini", QSettings::IniFormat );
-  return parent->restoreDockWidget ( dockWidget );
+  if ( this->initialized ) {
+
+    // TODO Como obtener los valores del dockwidget.
+    return parent->restoreDockWidget ( dockWidget );
+
+  } else {
+
+    qDebug () << "La clase AppInit no ha sido inicializa correctamente.";
+    return false;
+  }
 }
 
 bool AppInit::restoreGeometry ( QMainWindow *parent ) {
 
-  QSettings settings ( "./ecosoftware/ecomodeditor/data/rockolaSettings.ini", QSettings::IniFormat );
-  return parent->restoreGeometry ( settings.value ( "geometry" ).toByteArray () );
+  if ( this->initialized ) {
+
+    return parent->restoreGeometry ( this->userConfig->getSettings ()->value ( "geometry" ).toByteArray () );
+
+  } else {
+
+    qDebug () << "La clase AppInit no ha sido inicializa correctamente.";
+    return false;
+  }
 }
 
 bool AppInit::restoreState ( QMainWindow *parent ) {
 
-  QSettings settings ( "./ecosoftware/ecomodeditor/data/rockolaSettings.ini", QSettings::IniFormat );
-  return parent->restoreState ( settings.value ( "windowState" ).toByteArray () );
-}
+  if ( this->initialized ) {
 
-void AppInit::saveSettings () {
+    return parent->restoreState ( this->userConfig->getSettings ()->value ( "windowState" ).toByteArray () );
 
-  /**
-   * TODO
-   * Qué hacer aquí?
-   */
-}
+  } else {
 
-void AppInit::saveState ( QMainWindow *parent ) {
-
-    QSettings settings ( "./ecosoftware/ecomodeditor/data/rockolaSettings.ini", QSettings::IniFormat );
-    //settings.setValue ( "dockWidget", parent->saveState () );
-    settings.setValue ( "geometry", parent->saveGeometry () );
-    settings.setValue ( "windowState", parent->saveState () );
+    qDebug () << "La clase AppInit no ha sido inicializa correctamente.";
+    return false;
+  }
 }

@@ -34,7 +34,7 @@ namespace NAMESPACE_LEVEL_1 {
           explicit ActionAbs ( QString title, QWidget *parent = nullptr );
 
         public slots :
-          virtual void execAct () override = 0;
+          virtual void execAct () Q_DECL_OVERRIDE = 0;
 
         protected :
           QWidget *myParent;

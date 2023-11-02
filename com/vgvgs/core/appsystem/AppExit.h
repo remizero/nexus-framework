@@ -1,5 +1,5 @@
-#ifndef APPINIT_H
-#define APPINIT_H
+#ifndef APPEXIT_H
+#define APPEXIT_H
 
 // Librerías Internas
 // Internal Libraries
@@ -35,27 +35,22 @@ namespace NAMESPACE_LEVEL_1 {
 
     namespace NAMESPACE_CORE {
 
-      class CORE_EXPORT AppInit : public QObject, public NAMESPACE_LIBRARY_PATTERNIFY::Singleton<AppInit> {
+      class CORE_EXPORT AppExit : public QObject, public NAMESPACE_LIBRARY_PATTERNIFY::Singleton<AppExit> {
 
         public :
-          bool checkVersion ();
-          AppConfig *getAppConfig () const;
-          UserConfig *getUserConfig () const;
           void initialize ( AppConfig *appConfig, UserConfig *userConfig );
-          bool restoreDockWidget ( QMainWindow *parent, QDockWidget *dockWidget );
-          bool restoreGeometry ( QMainWindow *parent );
-          bool restoreState ( QMainWindow *parent );
+          void saveSettings ();
+          void saveState ( QMainWindow *parent );
 
         private :
                 bool initialized;
            AppConfig *appConfig = nullptr;
           UserConfig *userConfig = nullptr;
-          AppInit ( QObject *parent = nullptr );
-          friend class NAMESPACE_LIBRARY_PATTERNIFY::Singleton<AppInit>;
-
+          AppExit ( QObject *parent = nullptr );
+          friend class NAMESPACE_LIBRARY_PATTERNIFY::Singleton<AppExit>;
       };
     }
   }
 }
 
-#endif // APPINIT_H
+#endif // APPEXIT_H

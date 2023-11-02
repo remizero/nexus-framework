@@ -19,6 +19,7 @@ QMAKE_CXXFLAGS += -J4
 # Indicar al vinculador incluir la función de exportación para cada función.
 # Tell the linker to include the export function for each function.
 QMAKE_LFLAGS += -rdynamic
+QMAKE_LFLAGS += -Wl,-rpath,$$LIB_PATH -Wl,-rpath-link,$$LIB_PATH
 
 # Permite obtener información mas precisa del error y excepción generados.
 # Allows obtaining more precise information about the error and exception generated.

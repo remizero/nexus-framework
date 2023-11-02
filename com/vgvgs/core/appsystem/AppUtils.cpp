@@ -1,7 +1,7 @@
 #include "AppUtils.h"
 
 
-using namespace NAMESPACE_LIBRARY_APP;
+using namespace NAMESPACE_LIBRARY_CORE;
 
 
 QString AppUtils::normalizePath ( QString path ) {

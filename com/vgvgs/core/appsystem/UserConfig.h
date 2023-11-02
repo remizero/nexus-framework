@@ -1,9 +1,12 @@
-#ifndef APPUTILS_H
-#define APPUTILS_H
+#ifndef USERCONFIG_H
+#define USERCONFIG_H
 
 // Librerías Internas
 // Internal Libraries
 #include "core_global.h"
+#include "appsystem/AppPaths.h"
+#include "appsystem/AppSettings.h"
+#include "appsystem/ConfigAbs.h"
 
 // Librerías Externas
 // External Libraries
@@ -15,7 +18,6 @@
 // Librerías Qt
 // Qt Libraries
 #include <QDebug>
-#include <QDir>
 
 // Librerías C++
 // C++ Libraries
@@ -27,15 +29,13 @@ namespace NAMESPACE_LEVEL_1 {
 
     namespace NAMESPACE_CORE {
 
-        class CORE_EXPORT AppUtils {
+      class CORE_EXPORT UserConfig : public ConfigAbs {
 
         public :
-          static QString normalizePath ( QString path );
-          static QString pathTo ( QString path );
-          static QString relativePath ( QString rootPath, QString path );
+          UserConfig ( const QString userConfigFormat );
       };
     }
   }
 }
 
-#endif // APPUTILS_H
+#endif // USERCONFIG_H
