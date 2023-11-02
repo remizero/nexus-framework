@@ -27,6 +27,17 @@ int main ( int argc, char *argv [] ) {
 
   NAMESPACE_LIBRARY_CORE::AppManager::getInstance ()->create ( argc, argv );
   NAMESPACE_LIBRARY_CORE::AppManager::getInstance ()->initialize ();
-  MainWindow w; // TODO Aquí está el error. Como crear esta instancia dentro del método execute?
-  return NAMESPACE_LIBRARY_CORE::AppManager::getInstance ()->execute ( argc, argv, &w );
+  qDebug () << "INICIALIZÓ";
+  if ( NAMESPACE_LIBRARY_CORE::AppManager::getInstance ()->isGuiApp () ) {
+
+    MainWindow w; // TODO Aquí está el error. Como crear esta instancia dentro del método execute?
+    qDebug () << "SE CREÓ LA VENTANA PRINCIPAL";
+    return NAMESPACE_LIBRARY_CORE::AppManager::getInstance ()->execute ( argc, argv, &w );
+
+  } else {
+
+    return NAMESPACE_LIBRARY_CORE::AppManager::getInstance ()->execute ( argc, argv );
+  }
+
+
 }

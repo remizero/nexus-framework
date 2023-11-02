@@ -12,52 +12,30 @@ AppManager::AppManager ( QObject *parent ) : QObject ( parent ) {
 
 QCoreApplication *AppManager::create ( int &argc, char *argv [] ) {
 
-//  qDebug ()  << "Entrando el método CREATE";
-//  if ( this->initialized ) {
+  for ( int i = 1; i < argc; ++i ) {
 
-//    qDebug ()  << this->appConfig->getSettings ()->value ( "app/typeApp" ).toString ();
-//    if ( this->appConfig->getSettings ()->value ( "app/typeApp" ).toString () == "core" ) {
+    if ( qstrcmp ( argv [ i ], "-no-gui" ) ) {
 
-      for ( int i = 1; i < argc; ++i ) {
+      this->application = new QCoreApplication ( argc, argv );
+    }
+  }
+  if ( this->application == nullptr ) {
 
-        if ( qstrcmp ( argv [ i ], "-no-gui" ) ) {
-
-          qDebug () << "De tipo consola";
-          // return new QCoreApplication ( argc, argv );
-          this->application = new QCoreApplication ( argc, argv );
-        }
-      }
-      this->application = new App ( argc, argv );
-//    } else {
-
-//      qDebug () << "De tipo GUI";
-//      // return new App ( argc, argv );
-//      this->application = new App ( argc, argv );
-//    }
-    return this->application;
-
-//  } else {
-
-//    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 36.";
-//    return nullptr;
-//  }
+    this->application = new App ( argc, argv );
+  }
+  return this->application;
 }
 
 int AppManager::execute ( int &argc, char *argv [], QMainWindow *mainWindow ) {
 
-  qDebug ()  << "Entrando el método EXECUTE";
   if ( this->initialized ) {
 
-    qDebug ()  << "Previo a crear la instancia appInstance";
-    // QScopedPointer<QCoreApplication> appInstance ( this->create ( argc, argv ) );
     QScopedPointer<QCoreApplication> appInstance ( this->application );
     Logger::getInstance ();
-    qDebug ()  << "Luego de crear la instancia appInstance";
 
     this->setAppInfo ( appInstance.data () );
     if ( qobject_cast<QApplication *> ( appInstance.data () ) ) {
       // start GUI version...
-      qDebug () << "Se ejecuta el MODO GUI.";
       qDebug () << QCoreApplication::libraryPaths ();
       appInstance.data ()->addLibraryPath ( AppPaths::getInstance ()->getApplicationPluginsPath () );
       appInstance.data ()->addLibraryPath ( AppPaths::getInstance ()->getApplicationLibrariesPath () );
@@ -68,7 +46,6 @@ int AppManager::execute ( int &argc, char *argv [], QMainWindow *mainWindow ) {
 
     } else {
       // start non-GUI version...
-      qDebug () << "Se ejecuta el MODO CONSOLA.";
       CommandManager::getInstance ()->setCustomCommands ( this->appConfig );
       CommandManager::getInstance ()->executeCommand ( appInstance.data (), argc, argv );
     }
@@ -76,7 +53,7 @@ int AppManager::execute ( int &argc, char *argv [], QMainWindow *mainWindow ) {
 
   } else {
 
-    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 63.";
+    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 56.";
     return 0;
   }
 }
@@ -89,7 +66,7 @@ AppConfig *AppManager::getAppConfig () const {
 
   } else {
 
-    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 76.";
+    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 69.";
     return nullptr;
   }
 }
@@ -102,7 +79,7 @@ UserConfig *AppManager::getUserConfig () const {
 
   } else {
 
-    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 89.";
+    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 82.";
     return nullptr;
   }
 }
@@ -114,6 +91,19 @@ void AppManager::initialize () {
   this->userConfig = new UserConfig ( this->appConfig->getSettings ()->value ( "app/userConfigFormat" ).toString () );
   CommandManager::getInstance ()->initialize ( this->appConfig );
   this->initialized = true;
+  }
+
+bool AppManager::isGuiApp () {
+
+    if ( this->initialized ) {
+
+      return ( qobject_cast<QApplication *> ( this->application ) ) ? true : false;
+
+    } else {
+
+      qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 104.";
+      return false;
+    }
 }
 
 void AppManager::setAppInfo ( QCoreApplication *application ) {

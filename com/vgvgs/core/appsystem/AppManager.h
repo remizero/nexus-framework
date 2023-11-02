@@ -46,10 +46,11 @@ namespace NAMESPACE_LEVEL_1 {
 
         public :
           QCoreApplication *create ( int &argc, char *argv [] );
-          int execute ( int &argc, char *argv [], QMainWindow *mainWindow );
+          int execute ( int &argc, char *argv [], QMainWindow *mainWindow = nullptr );
           AppConfig *getAppConfig () const;
           UserConfig *getUserConfig () const;
           void initialize ();
+          bool isGuiApp ();
 
         private :
                         bool initialized;
