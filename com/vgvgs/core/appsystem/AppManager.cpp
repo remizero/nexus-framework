@@ -10,20 +10,43 @@ AppManager::AppManager ( QObject *parent ) : QObject ( parent ) {
   this->initialized = false;
 }
 
-QCoreApplication *AppManager::create ( int &argc, char *argv [] ) {
+void AppManager::cleanArg ( int &argc, char *argv [] ) {
+
+  const char *toRemove = "-no-gui";
+  int index = 1;
+  while ( index < argc ) {
+
+    if ( strcmp ( argv [ index ], toRemove ) == 0 ) {
+
+      for ( int i = index; i < argc - 1; i++ ) {
+
+        argv [ i ] = argv [ i + 1 ];
+      }
+      argc--;
+    } else {
+
+      index++;
+    }
+  }
+}
+
+void AppManager::create ( int &argc, char *argv [] ) {
 
   for ( int i = 1; i < argc; ++i ) {
 
+    qDebug () << "ARGV: " << argv [ i ];
     if ( qstrcmp ( argv [ i ], "-no-gui" ) ) {
 
+      this->cleanArg ( argc, argv );
+      qDebug () << "ARGV: " << argv [ i ];
       this->application = new QCoreApplication ( argc, argv );
+      break;
     }
   }
   if ( this->application == nullptr ) {
 
     this->application = new App ( argc, argv );
   }
-  return this->application;
 }
 
 int AppManager::execute ( int &argc, char *argv [], QMainWindow *mainWindow ) {
@@ -36,10 +59,8 @@ int AppManager::execute ( int &argc, char *argv [], QMainWindow *mainWindow ) {
     this->setAppInfo ( appInstance.data () );
     if ( qobject_cast<QApplication *> ( appInstance.data () ) ) {
       // start GUI version...
-      qDebug () << QCoreApplication::libraryPaths ();
       appInstance.data ()->addLibraryPath ( AppPaths::getInstance ()->getApplicationPluginsPath () );
       appInstance.data ()->addLibraryPath ( AppPaths::getInstance ()->getApplicationLibrariesPath () );
-      qDebug () << QCoreApplication::libraryPaths ();
       AppInit::getInstance ()->initialize ( this->appConfig, this->userConfig );
       AppExit::getInstance ()->initialize ( this->appConfig, this->userConfig );
       mainWindow->show ();
@@ -48,12 +69,13 @@ int AppManager::execute ( int &argc, char *argv [], QMainWindow *mainWindow ) {
       // start non-GUI version...
       CommandManager::getInstance ()->setCustomCommands ( this->appConfig );
       CommandManager::getInstance ()->executeCommand ( appInstance.data (), argc, argv );
+      QTimer::singleShot ( 1000, appInstance.data (), SLOT ( quit () ) );
     }
     return appInstance.data ()->exec ();
 
   } else {
 
-    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 56.";
+    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 53.";
     return 0;
   }
 }
@@ -91,27 +113,27 @@ void AppManager::initialize () {
   this->userConfig = new UserConfig ( this->appConfig->getSettings ()->value ( "app/userConfigFormat" ).toString () );
   CommandManager::getInstance ()->initialize ( this->appConfig );
   this->initialized = true;
-  }
+}
 
 bool AppManager::isGuiApp () {
 
-    if ( this->initialized ) {
+  if ( this->initialized ) {
 
-      return ( qobject_cast<QApplication *> ( this->application ) ) ? true : false;
+    return ( qobject_cast<QApplication *> ( this->application ) ) ? true : false;
 
-    } else {
+  } else {
 
-      qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 104.";
-      return false;
-    }
+    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 104.";
+    return false;
+  }
 }
 
 void AppManager::setAppInfo ( QCoreApplication *application ) {
 
-  application->setApplicationName ( this->appConfig->getSettings ()->value ( "app/applicationname" ).toString () );
+  application->setApplicationName    ( this->appConfig->getSettings ()->value ( "app/applicationname"    ).toString () );
   application->setApplicationVersion ( this->appConfig->getSettings ()->value ( "app/applicationversion" ).toString () );
   application->setOrganizationDomain ( this->appConfig->getSettings ()->value ( "app/organizationdomain" ).toString () );
-  application->setOrganizationName ( this->appConfig->getSettings ()->value ( "app/organizationname" ).toString () );
+  application->setOrganizationName   ( this->appConfig->getSettings ()->value ( "app/organizationname"   ).toString () );
   if ( QApplication *guiApp = qobject_cast<QApplication *> ( application ) ) {
 
     guiApp->setApplicationDisplayName ( this->appConfig->getSettings ()->value ( "app/applicationdisplayname" ).toString () );

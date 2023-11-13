@@ -19,19 +19,7 @@
     <userConfigFormat>xml</userConfigFormat>
   </app>
   <commands>
-    <command>
-      <name>info</name>
-      <description>Información de la aplicacion.</description>
-      <arguments>
-        <argument>
-          <name>arg1</name>
-          <description>Descripción del argumento 1</description>
-          <type>string</type> <!-- Puedes usar tipos como string, int, bool, etc. -->
-        </argument>
-        <!-- Agregar más argumentos según sea necesario -->
-      </arguments>
-    </command>
-    <!-- Agregar más comandos definidos por los desarrolladores -->
+    <command1>InfoCmd</command1>
   </commands>
   <logger>
     <sender></sender>

@@ -6,7 +6,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = maincoreapp
+TARGET = nameAppProject
 
 # Normalización del nombre de proyecto.
 # Project name normalization.
@@ -22,15 +22,11 @@ include (../../qmakeBuilders/projectBinConfiguration.prf)
 include(../../qmakeBuilders/buildConfiguration.prf)
 
 SOURCES += \
-  RegisterCommand.cpp \
-  commands/InfoCmd.cpp \
   main.cpp \
   MainWindow.cpp
 
 HEADERS += \
-  MainWindow.h \
-  RegisterCommand.h \
-  commands/InfoCmd.h
+  MainWindow.h
 
 RESOURCES += \
   resources.qrc

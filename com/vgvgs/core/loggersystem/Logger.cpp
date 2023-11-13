@@ -216,6 +216,12 @@ void Logger::open () {
   }
 }
 
+void Logger::reinstallMessageHandler () {
+
+  this->configMessagePatternOutput ();
+  this->installMessageHandler ();
+}
+
 void Logger::sendEmail ( QString message ) {
 
 //  MimeMessage mimeMessage;
@@ -266,6 +272,12 @@ void Logger::sendEmail ( QString message ) {
 //  }
 
 //  smtp.quit ();
+}
+
+void Logger::uninstallMessageHandler () {
+
+  qSetMessagePattern ( "%{message}" );
+  qInstallMessageHandler ( 0 );
 }
 
 void Logger::writeToLog ( const QString &message ) {

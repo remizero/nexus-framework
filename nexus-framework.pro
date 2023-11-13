@@ -13,6 +13,7 @@ include(qmakeBuilders/buildConfiguration.prf)
 TEMPLATE = subdirs
 
 SUBDIRS += \
+  binaries \
   shadow \
   com \
   examples
@@ -24,6 +25,8 @@ com.subdir = com
 com.depends = shadow
 examples.subdir = examples
 examples.depends = shadow com
+binaries.subdir = binaries
+binaries.depends = shadow com
 
 # CONFIG += ordered
 

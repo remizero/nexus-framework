@@ -29,6 +29,7 @@
 #include <QDebug>
 #include <QMainWindow>
 #include <QObject>
+#include <QTimer>
 
 // Librerías C++
 // C++ Libraries
@@ -45,7 +46,7 @@ namespace NAMESPACE_LEVEL_1 {
           Q_OBJECT
 
         public :
-          QCoreApplication *create ( int &argc, char *argv [] );
+          void create ( int &argc, char *argv [] );
           int execute ( int &argc, char *argv [], QMainWindow *mainWindow = nullptr );
           AppConfig *getAppConfig () const;
           UserConfig *getUserConfig () const;
@@ -53,11 +54,11 @@ namespace NAMESPACE_LEVEL_1 {
           bool isGuiApp ();
 
         private :
-                        bool initialized;
-                   AppConfig *appConfig = nullptr;
-                  UserConfig *userConfig = nullptr;
-            QCoreApplication *application;
-          // QCoreApplication *create ( int &argc, char *argv [] );
+                      bool initialized;
+                 AppConfig *appConfig = nullptr;
+                UserConfig *userConfig = nullptr;
+          QCoreApplication *application;
+          void cleanArg ( int &argc, char *argv [] );
           void setAppInfo ( QCoreApplication *application );
           AppManager ( QObject *parent = nullptr );
           friend class NAMESPACE_LIBRARY_PATTERNIFY::Singleton<AppManager>;

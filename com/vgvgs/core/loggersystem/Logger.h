@@ -54,6 +54,9 @@ namespace NAMESPACE_LEVEL_1 {
           virtual ~Logger ();
           void exception ( const Exception &exception );
           void init ( Logger::LogOutput output = File, QString outputFormat = STR(FILE_OUTPUT_QT_MESSAGE_PATTERN) );
+          void installMessageHandler ();
+          void reinstallMessageHandler ();
+          void uninstallMessageHandler ();
 
         private :
                            QString filePath;
@@ -68,7 +71,6 @@ namespace NAMESPACE_LEVEL_1 {
           void close ();
           void configMessagePatternOutput ();
           void handleMessage ( QtMsgType type, const QMessageLogContext &context, const QString &msg );
-          void installMessageHandler ();
           static void messageHandler ( QtMsgType type, const QMessageLogContext &context, const QString &msg );
           void open ();
           void sendEmail ( QString message );

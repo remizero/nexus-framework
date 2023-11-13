@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/home/remizero/Proyectos/Desarrollo/Qt/qtrcp/com/ecosoftware/resources/xsd/config.xsd">
+  <applicationdisplayname>applicationdisplayname</applicationdisplayname>
+  <applicationhashkey>applicationhashkey</applicationhashkey>
+  <applicationname>applicationname</applicationname>
+  <applicationversion>applicationversion</applicationversion>
+  <applicationdescription>applicationdescription</applicationdescription>
+  <organizationname>organizationname</organizationname>
+  <organizationdomain>organizationdomain</organizationdomain>
+  <showsplash>showsplash</showsplash>
+  <showtryicon>showtryicon</showtryicon>
+  <standalone>standalone</standalone>
+  <iconimage>iconimage</iconimage>
+  <mayorversion>mayorversion</mayorversion>
+  <minorversion>minorversion</minorversion>
+  <pathversion>pathversion</pathversion>
+  <typeApp>typeApp</typeApp>
+  <userConfigFormat>userConfigFormat</userConfigFormat>
+</app>

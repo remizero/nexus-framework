@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<logger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/home/remizero/Proyectos/Desarrollo/Qt/qtrcp/com/ecosoftware/resources/xsd/config.xsd">
+  <sender></sender>
+  <sendername></sendername>
+  <addressee></addressee>
+  <addresseename></addresseename>
+  <subject></subject>
+  <smtpserver></smtpserver>
+  <port></port>
+  <user></user>
+  <password></password>
+</logger>

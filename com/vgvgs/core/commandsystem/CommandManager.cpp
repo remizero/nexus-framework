@@ -21,63 +21,92 @@ void CommandManager::executeCommand ( QCoreApplication *application, int &argc, 
 
   if ( this->initialized ) {
 
-    // Parsea los argumentos de la línea de comandos.
     parser.process ( *application );
+    const QStringList optionList = parser.optionNames ();
 
-    // Verifica los argumentos comportamentales.
-    if ( parser.isSet ( "debug" ) ) {
-      // Activa el modo de depuración.
-    }
+    for ( const QString &option : optionList ) {
 
-    if ( parser.isSet ( "version" ) ) {
-      // Muestra la versión de la aplicación.
+      if ( parser.isSet ( option ) ) {
+
+        // TODO Como procesar modificadores para tareas de comandos?
+        // Almacena los comandos de primer nivel
+//        QStringList primaryCommands;
+        // Analizar el nombre del comando para determinar el nivel
+//        if ( option.contains ( "-" ) ) {
+
+//            // Comando de segundo nivel
+//            // Puedes almacenar o procesar de acuerdo a tu lógica específica
+
+//          } else {
+
+//            // Comando de primer nivel
+//            primaryCommands << option;
+//          }
+//        processPrimaryCommands ( primaryCommands );
+        CommandInterface *command = commandMap.value ( option );
+        if ( command ) {
+
+          Logger::getInstance ()->uninstallMessageHandler ();
+          command->execute ();
+          Logger::getInstance ()->reinstallMessageHandler ();
+
+        } else {
+
+          qDebug () << "Comando no encontrado para la opción:" << option;
+        }
+      }
     }
   } else {
 
     qDebug () << "La clase CommandManager no ha sido inicializa correctamente.";
   }
+}
 
+void CommandManager::processPrimaryCommands ( const QStringList &commands ) {
 
-  /**
-   * FORMA 2
-   */
-//  QCommandLineParser parser;
-//  parser.addOption(QCommandLineOption("input", "Archivo de entrada.", "archivo"));
-//  parser.addPositionalArgument("comando", "Comando a ejecutar (por ejemplo, 'mi_comando').");
-//  parser.process(app);
+  // Lógica para procesar los comandos de primer nivel
+  for ( const QString &primaryCommand : commands ) {
 
-//  const QString inputFile = parser.value("input");
-//  const QStringList positionalArguments = parser.positionalArguments();
+    if ( primaryCommand == "tarea_a_realizar" ) {
 
-//  if (positionalArguments.isEmpty()) {
-//      qDebug() << "Debe proporcionar un comando.";
-//      return 1;
-//  }
+      qDebug () << "Realizando tarea_a_realizar...";
 
-//  const QString comando = positionalArguments.at(0);
+    } else {
 
-//  if (comando == "mi_comando") {
-//      // Ejecuta tu comando personalizado aquí.
-//      qDebug() << "Ejecutando 'mi_comando'...";
-//  } else {
-//      qDebug() << "Comando desconocido: " << comando;
-//      return 1;
-//  }
+      qDebug () << "Comando de primer nivel no reconocido:" << primaryCommand;
+    }
+  }
 }
 
 void CommandManager::setCustomCommands ( AppConfig *appConfig ) {
 
   if ( this->initialized ) {
 
-    int size = appConfig->getSettings ()->beginReadArray ( "logins" );
-    for ( int i = 0; i < size; ++i ) {
+    appConfig->getSettings ()->beginGroup ( "commands" );
+    QStringList commandNames = appConfig->getSettings ()->allKeys ();
 
-      appConfig->getSettings ()->setArrayIndex ( i );
-      parser.addOption ( QCommandLineOption (
-                           appConfig->getSettings ()->value ( "command/name" ).toString (),
-                           appConfig->getSettings ()->value ( "command/description" ).toString () ) );
+    for ( const QString &commandName : commandNames ) {
+
+      QString className = appConfig->getSettings ()->value ( commandName ).toString ();
+      QMetaType typeId = QMetaType::fromName ( className.toUtf8 () );
+      if ( typeId.isValid () ) {
+
+        CommandInterface *command = static_cast<CommandInterface *> ( typeId.create () );
+        if ( command ) {
+
+          parser.addOption ( command->commandOption () );
+          commandMap.insert ( command->name (), command );
+
+        } else {
+
+          qDebug () << "Error al crear el comando para" << commandName;
+        }
+      } else {
+
+        qDebug () << "Nombre de clase desconocido:" << className;
+      }
     }
-    appConfig->getSettings ()->endArray ();
+    appConfig->getSettings ()->endGroup ();
 
   } else {
 

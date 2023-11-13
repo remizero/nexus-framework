@@ -37,7 +37,6 @@ namespace NAMESPACE_LEVEL_1 {
 
         public :
           void initialize ();
-
           const QSettings::Format &getUserConfigFormat () const;
           void setUserConfigFormat ( const QSettings::Format &newUserConfigFormat );
 

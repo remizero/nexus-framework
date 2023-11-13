@@ -32,14 +32,14 @@ namespace NAMESPACE_LEVEL_1 {
         public :
           Exception ( QString const &text, const QString &file, int line, const QString &function ) noexcept;
           Exception ( const Exception &exception );
-          ~Exception () Q_DECL_OVERRIDE;
+          ~Exception () override;
 
-          Exception *clone () const Q_DECL_OVERRIDE;
+          Exception *clone () const override;
           QString getFile () const;
           int getLine () const;
           QString getFunction () const;
-          void raise () const Q_DECL_OVERRIDE;
-          const char *what () const noexcept Q_DECL_OVERRIDE;
+          void raise () const override;
+          const char *what () const noexcept override;
 
         private :
           QString message;

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<systemtrayicon xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/home/remizero/Proyectos/Desarrollo/Qt/qtrcp/com/ecosoftware/resources/xsd/config.xsd">
+  <systrayicon>icono.png</systrayicon>
+  <systraytooltip>Systemtray Icon Tooltip</systraytooltip>
+  <systrayduration>10</systrayduration>
+  <systraydefaultmessagetype>Systemtray Icon Default Message Type</systraydefaultmessagetype>
+  <systraymessagetitle>Systemtray Icon Message Title</systraymessagetitle>
+  <systraymessagebody>Systemtray Icon Message Body</systraymessagebody>
+  <showsystemtrayicon>1</showsystemtrayicon>
+  <minimizetosystemtrayicon>1</minimizetosystemtrayicon>
+</systemtrayicon>

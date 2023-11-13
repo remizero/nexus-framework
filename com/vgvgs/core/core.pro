@@ -29,6 +29,7 @@ SOURCES += \
   actionsystem/ActionManager.cpp \
   appsystem/App.cpp \
   appsystem/AppConfig.cpp \
+  appsystem/AppCreator.cpp \
   appsystem/AppExit.cpp \
   appsystem/AppInit.cpp \
   appsystem/AppManager.cpp \
@@ -51,8 +52,11 @@ SOURCES += \
 
 HEADERS += \
   MainWindowInterface.h \
+  appsystem/AppCreator.h \
   appsystem/ConfigAbs.h \
+  commandsystem/CommandInterface.h \
   commandsystem/CommandManager.h \
+  commandsystem/RegisterCommandInterface.h \
   core_global.h \
   Core.h \
   Exception.h \
