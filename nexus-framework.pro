@@ -23,10 +23,10 @@ SUBDIRS += \
 shadow.subdir = shadow
 com.subdir = com
 com.depends = shadow
-examples.subdir = examples
-examples.depends = shadow com
 binaries.subdir = binaries
 binaries.depends = shadow com
+examples.subdir = examples
+examples.depends = shadow com binaries
 
 # CONFIG += ordered
 

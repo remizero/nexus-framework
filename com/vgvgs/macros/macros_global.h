@@ -16,6 +16,8 @@
 #define DEFAULT_QT_MESSAGE_PATTERN \033[0;34m[ %{time yyyy-MM-ddThh:mm:ss t} ] \033[1;31m[ %{if-critical}CRITICAL%{endif}%{if-debug}DEBUG%{endif}%{if-fatal}FATAL%{endif}%{if-info}INFO%{endif}%{if-warning}WARNING%{endif} ] \033[1;36m[ PID - %{pid} ] [ THREAD_ID - %{threadid} ] [ QT_THREAD_PTR - %{qthreadptr} ] \033[1;33m[ APPNAME - %{appname} ] [ FILE - %{file} ] [ FUNCTION - %{function} ] [ LINE - %{line} ] [ MESSAGE_ERROR - %{message} ] \033[1;37m[ BACKTRACE - %{backtrace depth=10} ] \033[0m
 #define FILE_OUTPUT_QT_MESSAGE_PATTERN [ %{time yyyy-MM-ddThh:mm:ss t} ] [ %{if-critical}CRITICAL%{endif}%{if-debug}DEBUG%{endif}%{if-fatal}FATAL%{endif}%{if-info}INFO%{endif}%{if-warning}WARNING%{endif} ] [ PID - %{pid} ] [ THREAD_ID - %{threadid} ] [ QT_THREAD_PTR - %{qthreadptr} ] [ APPNAME - %{appname} ] [ FILE - %{file} ] [ FUNCTION - %{function} ] [ LINE - %{line} ] [ MESSAGE_ERROR - %{message} ] [ BACKTRACE - %{backtrace depth=10} ]
 
+#define notImplemented() static_assert(false, "Método no implementado.");
+
 
 // Se definen las macros comunes para todos los espacios de nombre de las librerías.
 // Common macros are defined for all library namespaces.
@@ -34,6 +36,7 @@
 #define NAMESPACE_XSDFORM        XsdForm
 #define NAMESPACE_LOGGER         Logger
 #define NAMESPACE_MACROS         Macros
+#define NAMESPACE_NEXUSBUILDER   NexusBuilder
 #define NAMESPACE_PATTERNIFY     Patternify
 #define NAMESPACE_RESOURCES      Resources
 #define NAMESPACE_SINGLEINSTANCE SingleInstance
@@ -58,6 +61,7 @@
 #define NAMESPACE_LIBRARY_XSD            Com::Vgvgs::Engines::Xsd
 #define NAMESPACE_LIBRARY_LOGGER         Com::Vgvgs::Logger
 #define NAMESPACE_LIBRARY_MACROS         Com::Vgvgs::Macros
+#define NAMESPACE_LIBRARY_NEXUSBUILDER   Com::Vgvgs::NexusBuilder
 #define NAMESPACE_LIBRARY_PATTERNIFY     Com::Vgvgs::Patternify
 #define NAMESPACE_LIBRARY_RESOURCES      Com::Vgvgs::Resources
 #define NAMESPACE_LIBRARY_SINGLEINSTANCE Com::Vgvgs::SingleInstance

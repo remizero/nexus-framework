@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/mainapp">
+        <file>resources/config.xml</file>
+    </qresource>
+</RCC>

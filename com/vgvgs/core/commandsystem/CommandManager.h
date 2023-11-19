@@ -6,6 +6,8 @@
 #include "core_global.h"
 #include "appsystem/AppConfig.h"
 #include "commandsystem/CommandInterface.h"
+#include "commandsystem/CommandProcessorInterface.h"
+#include "commandsystem/VerboseCmd.h"
 #include "loggersystem/Logger.h"
 
 // Librerías Externas
@@ -40,15 +42,16 @@ namespace NAMESPACE_LEVEL_1 {
           Q_OBJECT
 
         public :
-          void executeCommand ( QCoreApplication *application, int &argc, char *argv [] );
+          void executeCommand ( QCoreApplication *application );
           void initialize ( AppConfig *appConfig );
-          void processPrimaryCommands ( const QStringList &commands );
           void setCustomCommands ( AppConfig *appConfig );
 
         private :
                                        bool initialized;
           QMap<QString, CommandInterface *> commandMap;
           QCommandLineParser parser;
+          void setupBasicCommands ();
+          void showAppInfo ( QCoreApplication *application );
           CommandManager ( QObject *parent = nullptr );
           friend class NAMESPACE_LIBRARY_PATTERNIFY::Singleton<CommandManager>;
       };

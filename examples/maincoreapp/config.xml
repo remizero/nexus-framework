@@ -20,6 +20,7 @@
   </app>
   <commands>
     <command1>InfoCmd</command1>
+    <command2>TypeCmd</command2>
   </commands>
   <logger>
     <sender></sender>

@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/mainapp">
+        <file>resources/config.xml</file>
+    </qresource>
+    <qresource prefix="/appprojects">
+        <file>resources/application/CommandProcessor.cpp</file>
+        <file>resources/application/CommandProcessor.h</file>
+        <file>resources/application/export.def</file>
+        <file>resources/application/main.cpp</file>
+        <file>resources/application/MainWindow.cpp</file>
+        <file>resources/application/MainWindow.h</file>
+        <file>resources/application/MainWindow.ui</file>
+        <file>resources/application/RegisterClasses.cpp</file>
+        <file>resources/application/RegisterClasses.h</file>
+        <file>resources/application/resources.qrc</file>
+        <file>resources/application/projectNameIdentifier.pro</file>
+        <file>resources/application/commands/cmdNameIdentifier.cpp</file>
+        <file>resources/application/commands/cmdNameIdentifier.h</file>
+        <file>resources/application/resources/config.xml</file>
+    </qresource>
+</RCC>

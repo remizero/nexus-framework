@@ -22,15 +22,19 @@ include (../../qmakeBuilders/projectBinConfiguration.prf)
 include(../../qmakeBuilders/buildConfiguration.prf)
 
 SOURCES += \
-  RegisterCommand.cpp \
+  CommandProcessor.cpp \
+  RegisterClasses.cpp \
   commands/InfoCmd.cpp \
+  commands/TypeCmd.cpp \
   main.cpp \
   MainWindow.cpp
 
 HEADERS += \
+  CommandProcessor.h \
   MainWindow.h \
-  RegisterCommand.h \
-  commands/InfoCmd.h
+  RegisterClasses.h \
+  commands/InfoCmd.h \
+  commands/TypeCmd.h
 
 RESOURCES += \
   resources.qrc

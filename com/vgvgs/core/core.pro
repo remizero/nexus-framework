@@ -29,7 +29,6 @@ SOURCES += \
   actionsystem/ActionManager.cpp \
   appsystem/App.cpp \
   appsystem/AppConfig.cpp \
-  appsystem/AppCreator.cpp \
   appsystem/AppExit.cpp \
   appsystem/AppInit.cpp \
   appsystem/AppManager.cpp \
@@ -40,6 +39,7 @@ SOURCES += \
   appsystem/ConfigAbs.cpp \
   appsystem/UserConfig.cpp \
   commandsystem/CommandManager.cpp \
+  commandsystem/VerboseCmd.cpp \
   loggersystem/Logger.cpp \
   menusystem/MenuManager.cpp \
   pluginsystem/PluginAbs.cpp \
@@ -52,11 +52,12 @@ SOURCES += \
 
 HEADERS += \
   MainWindowInterface.h \
-  appsystem/AppCreator.h \
   appsystem/ConfigAbs.h \
   commandsystem/CommandInterface.h \
   commandsystem/CommandManager.h \
+  commandsystem/CommandProcessorInterface.h \
   commandsystem/RegisterCommandInterface.h \
+  commandsystem/VerboseCmd.h \
   core_global.h \
   Core.h \
   Exception.h \
@@ -83,7 +84,8 @@ HEADERS += \
   pluginsystem/PluginDependenciesInfo.h \
   pluginsystem/PluginInfo.h \
   pluginsystem/PluginInterface.h \
-  pluginsystem/PluginManager.h
+  pluginsystem/PluginManager.h \
+  reflectionsystem/RegisterClassInterface.h
 
 win32:CONFIG(release, debug|release): LIBS += \
   -L$$LIB_PATH/ -lMacros \

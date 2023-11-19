@@ -6,6 +6,7 @@ using namespace NAMESPACE_LIBRARY_CORE;
 
 CommandManager::CommandManager ( QObject *parent ) : QObject ( parent ) {
 
+  qRegisterMetaType<VerboseCmd>( "VerboseCmd" );
   this->initialized = false;
 }
 
@@ -15,66 +16,36 @@ void CommandManager::initialize ( AppConfig *appConfig ) {
   parser.addHelpOption ();
   parser.addVersionOption ();
   this->initialized = true;
+  this->setupBasicCommands ();
 }
 
-void CommandManager::executeCommand ( QCoreApplication *application, int &argc, char *argv [] ) {
+void CommandManager::executeCommand ( QCoreApplication *application ) {
 
   if ( this->initialized ) {
 
     parser.process ( *application );
-    const QStringList optionList = parser.optionNames ();
+    QMetaType typeId = QMetaType::fromName ( "CommandProcessor" );
+    if ( typeId.isValid () ) {
 
-    for ( const QString &option : optionList ) {
+      CommandProcessorInterface *commandProcessor = static_cast<CommandProcessorInterface *> ( typeId.create () );
+      if ( commandProcessor ) {
 
-      if ( parser.isSet ( option ) ) {
+        Logger::getInstance ()->uninstallMessageHandler ();
+        this->showAppInfo ( application );
+        commandProcessor->processCommands ( parser, commandMap );
+        Logger::getInstance ()->reinstallMessageHandler ();
 
-        // TODO Como procesar modificadores para tareas de comandos?
-        // Almacena los comandos de primer nivel
-//        QStringList primaryCommands;
-        // Analizar el nombre del comando para determinar el nivel
-//        if ( option.contains ( "-" ) ) {
+      } else {
 
-//            // Comando de segundo nivel
-//            // Puedes almacenar o procesar de acuerdo a tu lógica específica
-
-//          } else {
-
-//            // Comando de primer nivel
-//            primaryCommands << option;
-//          }
-//        processPrimaryCommands ( primaryCommands );
-        CommandInterface *command = commandMap.value ( option );
-        if ( command ) {
-
-          Logger::getInstance ()->uninstallMessageHandler ();
-          command->execute ();
-          Logger::getInstance ()->reinstallMessageHandler ();
-
-        } else {
-
-          qDebug () << "Comando no encontrado para la opción:" << option;
-        }
+        qDebug () << "Error al crear el procesador de comandos.";
       }
+    } else {
+
+      qDebug () << "Nombre de clase desconocida.";
     }
   } else {
 
     qDebug () << "La clase CommandManager no ha sido inicializa correctamente.";
-  }
-}
-
-void CommandManager::processPrimaryCommands ( const QStringList &commands ) {
-
-  // Lógica para procesar los comandos de primer nivel
-  for ( const QString &primaryCommand : commands ) {
-
-    if ( primaryCommand == "tarea_a_realizar" ) {
-
-      qDebug () << "Realizando tarea_a_realizar...";
-
-    } else {
-
-      qDebug () << "Comando de primer nivel no reconocido:" << primaryCommand;
-    }
   }
 }
 
@@ -94,9 +65,13 @@ void CommandManager::setCustomCommands ( AppConfig *appConfig ) {
         CommandInterface *command = static_cast<CommandInterface *> ( typeId.create () );
         if ( command ) {
 
-          parser.addOption ( command->commandOption () );
-          commandMap.insert ( command->name (), command );
+          QCommandLineOption option = command->commandOption ();
+          parser.addOption ( option );
+          QStringList optionNames = option.names ();
+          for ( const QString &name : optionNames ) {
 
+            commandMap.insert ( name, command );
+          }
         } else {
 
           qDebug () << "Error al crear el comando para" << commandName;
@@ -112,4 +87,44 @@ void CommandManager::setCustomCommands ( AppConfig *appConfig ) {
 
     qDebug () << "La clase AppManager no ha sido inicializa correctamente.";
   }
+}
+
+void CommandManager::setupBasicCommands () {
+
+  // TODO crear estos comandos básicos de forma dinámica desde un archivo de configuración interno de esta librería.
+  if ( this->initialized ) {
+
+    QMetaType typeId = QMetaType::fromName ( "VerboseCmd" );
+    if ( typeId.isValid () ) {
+
+      CommandInterface *command = static_cast<CommandInterface *> ( typeId.create () );
+      if ( command ) {
+
+        QCommandLineOption option = command->commandOption ();
+        parser.addOption ( option );
+        QStringList optionNames = option.names ();
+        for ( const QString &name : optionNames ) {
+
+          commandMap.insert ( name, command );
+        }
+      } else {
+
+        qDebug () << "Error al crear el comando para" << "VerboseCmd";
+      }
+    } else {
+
+      qDebug () << "Nombre de clase desconocido:" << "VerboseCmd";
+    }
+  }
+}
+
+void CommandManager::showAppInfo ( QCoreApplication *application ) {
+
+  qDebug () << " ";
+  qDebug () << "Nombre de la aplicación: " << application->applicationName ();
+  qDebug () << "Versión de la aplicación: " << application->applicationVersion ();
+  qDebug () << "Nombre del fabricante: " << application->organizationName ();
+  qDebug () << "Website  del fabricante: " << application->organizationDomain ();
+  qDebug () << " ";
+  qDebug () << " ";
 }

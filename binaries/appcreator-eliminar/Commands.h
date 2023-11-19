@@ -1,9 +1,9 @@
-#ifndef REGISTERCOMMAND_H
-#define REGISTERCOMMAND_H
+#ifndef COMMANDS_H
+#define COMMANDS_H
 
 // Librerías Internas
 // Internal Libraries
-#include "commands/InfoCmd.h"
+#include "commands/VerboseCmd.h"
 
 // Librerías Externas
 // External Libraries
@@ -22,17 +22,17 @@
 // Librerías C++
 // C++ Libraries
 
-class RegisterCommand: public NAMESPACE_LIBRARY_CORE::RegisterCommandInterface, public NAMESPACE_LIBRARY_PATTERNIFY::Singleton<RegisterCommand> {
+class Commands: public NAMESPACE_LIBRARY_CORE::RegisterCommandInterface, public NAMESPACE_LIBRARY_PATTERNIFY::Singleton<Commands> {
 
     Q_INTERFACES ( NAMESPACE_LIBRARY_CORE::RegisterCommandInterface )
 
   public:
-    ~RegisterCommand () override {}
+    ~Commands () override {}
     void addTypeCommand () override;
 
   private :
-    RegisterCommand ();
-    friend class NAMESPACE_LIBRARY_PATTERNIFY::Singleton<RegisterCommand>;
-  };
+    Commands ();
+    friend class NAMESPACE_LIBRARY_PATTERNIFY::Singleton<Commands>;
+};
 
-#endif // REGISTERCOMMAND_H
+#endif // COMMANDS_H

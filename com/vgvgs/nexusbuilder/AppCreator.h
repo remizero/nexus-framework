@@ -45,7 +45,11 @@ namespace NAMESPACE_LEVEL_1 {
 //          void create ();
 
         private :
-          const QString path;
+          QString path;
+          QString projectName;
+          QString projectPath;
+          QString projecType;
+          bool verboseMode;
         };
       }
     }

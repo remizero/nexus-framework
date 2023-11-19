@@ -34,11 +34,9 @@ void AppManager::create ( int &argc, char *argv [] ) {
 
   for ( int i = 1; i < argc; ++i ) {
 
-    qDebug () << "ARGV: " << argv [ i ];
     if ( qstrcmp ( argv [ i ], "-no-gui" ) ) {
 
       this->cleanArg ( argc, argv );
-      qDebug () << "ARGV: " << argv [ i ];
       this->application = new QCoreApplication ( argc, argv );
       break;
     }
@@ -49,7 +47,7 @@ void AppManager::create ( int &argc, char *argv [] ) {
   }
 }
 
-int AppManager::execute ( int &argc, char *argv [], QMainWindow *mainWindow ) {
+int AppManager::execute ( QMainWindow *mainWindow ) {
 
   if ( this->initialized ) {
 
@@ -68,14 +66,14 @@ int AppManager::execute ( int &argc, char *argv [], QMainWindow *mainWindow ) {
     } else {
       // start non-GUI version...
       CommandManager::getInstance ()->setCustomCommands ( this->appConfig );
-      CommandManager::getInstance ()->executeCommand ( appInstance.data (), argc, argv );
+      CommandManager::getInstance ()->executeCommand ( appInstance.data () );
       QTimer::singleShot ( 1000, appInstance.data (), SLOT ( quit () ) );
     }
     return appInstance.data ()->exec ();
 
   } else {
 
-    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 53.";
+    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 76.";
     return 0;
   }
 }
@@ -88,7 +86,7 @@ AppConfig *AppManager::getAppConfig () const {
 
   } else {
 
-    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 69.";
+    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 89.";
     return nullptr;
   }
 }
@@ -101,7 +99,7 @@ UserConfig *AppManager::getUserConfig () const {
 
   } else {
 
-    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 82.";
+    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 102.";
     return nullptr;
   }
 }
@@ -123,7 +121,7 @@ bool AppManager::isGuiApp () {
 
   } else {
 
-    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 104.";
+    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 124.";
     return false;
   }
 }
