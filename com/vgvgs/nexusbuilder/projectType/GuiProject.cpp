@@ -1,20 +1,10 @@
 #include "GuiProject.h"
 
 
-using namespace NAMESPACE_LIBRARY_NEXUSBUILDER;
+using namespace NSLIB_NEXUSBUILDER;
 
 
-//GuiProject::GuiProject ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) :
-//  AppProject ( projectName, projectPath, projecType, verboseMode ) {
-
-//  this->resource = ":/projects/resources/app/gui/";
-//}
 GuiProject::GuiProject () {}
-
-bool GuiProject::create () {
-
-  return AppProject::create ();
-}
 
 void GuiProject::init ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) {
 
@@ -24,5 +14,14 @@ void GuiProject::init ( QString projectName, QString projectPath, QString projec
 
 bool GuiProject::createProjectFiles () {
 
-  return AppProject::createProjectFiles ();
+  bool done = AppProject::createProjectFiles ();
+  if ( done ) {
+
+    done = this->copyFiles ( {
+                                "MainWindow.h",
+                                "MainWindow.cpp",
+                                "MainWindow.ui"
+                              }, this->resource );
+  }
+  return done;
 }

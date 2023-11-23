@@ -1,20 +1,10 @@
 #include "PluginProject.h"
 
 
-using namespace NAMESPACE_LIBRARY_NEXUSBUILDER;
+using namespace NSLIB_NEXUSBUILDER;
 
 
-//PluginProject::PluginProject ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) :
-//  LibraryProject ( projectName, projectPath, projecType, verboseMode ) {
-
-//  this->resource = ":/projects/resources/library/plugin/";
-//}
 PluginProject::PluginProject () {}
-
-bool PluginProject::create () {
-
-  return LibraryProject::create ();
-}
 
 void PluginProject::init ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) {
 
@@ -24,5 +14,15 @@ void PluginProject::init ( QString projectName, QString projectPath, QString pro
 
 bool PluginProject::createProjectFiles () {
 
-  return LibraryProject::createProjectFiles ();
+  bool done = LibraryProject::createProjectFiles ();
+  if ( done ) {
+
+    done = this->copyFiles ( {
+                               "Plugin.h",
+                               "Plugin.cpp",
+                               "Plugin.json",
+                               "Plugin_global.h"
+                             }, this->resource );
+  }
+  return done;
 }

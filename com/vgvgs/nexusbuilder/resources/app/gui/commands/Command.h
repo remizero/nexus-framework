@@ -24,9 +24,9 @@
 // C++ Libraries
 
 
-class {{Command}} : public NAMESPACE_LIBRARY_CORE::CommandInterface {
+class {{Command}} : public NSLIB_CORE::CommandInterface {
 
-    Q_INTERFACES ( NAMESPACE_LIBRARY_CORE::CommandInterface )
+    Q_INTERFACES ( NSLIB_CORE::CommandInterface )
 
   public :
     {{Command}} ();

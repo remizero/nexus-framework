@@ -1,7 +1,7 @@
 #include "PluginInfo.h"
 
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 
 const QString &PluginInfo::getNameToShow () const {

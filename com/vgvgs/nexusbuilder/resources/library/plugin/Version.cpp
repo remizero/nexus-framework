@@ -1,7 +1,7 @@
 #include "Version.h"
 
 
-extern "C" NEXUSBUILDER_EXPORT QString version () {
+extern "C" CLASSDEFINITION_EXPORT QString version () {
 
-  return "0.0.2";
+  return "0.0.1";
 }

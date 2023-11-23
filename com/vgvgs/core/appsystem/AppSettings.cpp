@@ -1,7 +1,7 @@
 #include "AppSettings.h"
 
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 
 void AppSettings::parseJsonObject ( QJsonObject &json, QString prefix, QMap<QString, QVariant> &map ) {

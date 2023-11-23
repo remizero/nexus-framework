@@ -1,20 +1,10 @@
 #include "NexusProject.h"
 
 
-using namespace NAMESPACE_LIBRARY_NEXUSBUILDER;
+using namespace NSLIB_NEXUSBUILDER;
 
 
-//NexusProject::NexusProject ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) :
-//  AppProject ( projectName, projectPath, projecType, verboseMode ) {
-
-//  this->resource = ":/projects/resources/app/nexus/";
-//}
 NexusProject::NexusProject () {}
-
-bool NexusProject::create () {
-
-  return AppProject::create ();
-}
 
 void NexusProject::init ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) {
 
@@ -24,5 +14,34 @@ void NexusProject::init ( QString projectName, QString projectPath, QString proj
 
 bool NexusProject::createProjectFiles () {
 
-  return AppProject::createProjectFiles ();
+  bool done = AppProject::createProjectFiles ();
+  if ( done ) {
+
+    if ( ( done = this->copyFiles ( {
+                                      "CommandProcessor.h",
+                                      "CommandProcessor.cpp",
+                                      "MainWindow.h",
+                                      "MainWindow.cpp",
+                                      "MainWindow.ui",
+                                      "RegisterClasses.h",
+                                      "RegisterClasses.cpp"
+                                    }, this->resource ) ) ) {
+
+      done = this->copyFiles ( {
+                                 "Command.h",
+                                 "Command.cpp"
+                               }, this->resource + "commands/", "commands" );
+    }
+  }
+  return done;
+}
+
+bool NexusProject::createDirStruct () {
+
+  bool done = AppProject::createDirStruct ();
+  if ( done ) {
+
+    done = this->createDir ( { "commands" } );
+  }
+  return done;
 }

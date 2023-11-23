@@ -1,20 +1,10 @@
 #include "ShareLibraryProject.h"
 
 
-using namespace NAMESPACE_LIBRARY_NEXUSBUILDER;
+using namespace NSLIB_NEXUSBUILDER;
 
 
-//ShareLibraryProject::ShareLibraryProject ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) :
-//  LibraryProject ( projectName, projectPath, projecType, verboseMode ) {
-
-//  this->resource = ":/projects/resources/library/share/";
-//}
 ShareLibraryProject::ShareLibraryProject () {}
-
-bool ShareLibraryProject::create () {
-
-  return LibraryProject::create ();
-}
 
 void ShareLibraryProject::init ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) {
 
@@ -24,5 +14,12 @@ void ShareLibraryProject::init ( QString projectName, QString projectPath, QStri
 
 bool ShareLibraryProject::createProjectFiles () {
 
-  return LibraryProject::createProjectFiles ();
+  bool done = LibraryProject::createProjectFiles ();
+  if ( done ) {
+
+    done = this->copyFiles ( {
+                               "Share_global.h"
+                             }, this->resource );
+  }
+  return done;
 }

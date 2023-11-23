@@ -21,19 +21,19 @@
 // C++ Libraries
 
 
-namespace NAMESPACE_LEVEL_1 {
+namespace NS_LEVEL_1 {
 
-  namespace NAMESPACE_LEVEL_2 {
+  namespace NS_LEVEL_2 {
 
-    namespace NAMESPACE_CORE {
+    namespace NS_CORE {
 
-      class CORE_EXPORT PluginCreator : public NAMESPACE_LIBRARY_PATTERNIFY::Singleton<PluginCreator> {
+      class CORE_EXPORT PluginCreator : public NSLIB_PATTERNIFY::Singleton<PluginCreator> {
 
         public :
 
         private :
           PluginCreator ();
-          friend class NAMESPACE_LIBRARY_PATTERNIFY::Singleton<PluginCreator>;
+          friend class NSLIB_PATTERNIFY::Singleton<PluginCreator>;
       };
     }
   }

@@ -30,16 +30,16 @@ int main ( int argc, char *argv [] ) {
   // configuración o vía programación.
   // 6-. Agregar el sistema DOXYGEN y ver como enlazarlo con la wiki de github.
 
-  NAMESPACE_LIBRARY_CORE::AppManager::getInstance ()->create ( argc, argv );
-  NAMESPACE_LIBRARY_CORE::AppManager::getInstance ()->initialize ();
+  NSLIB_CORE::AppManager::getInstance ()->create ( argc, argv );
+  NSLIB_CORE::AppManager::getInstance ()->initialize ();
   RegisterClasses::getInstance ()->addTypeClass ();
-  if ( NAMESPACE_LIBRARY_CORE::AppManager::getInstance ()->isGuiApp () ) {
+  if ( NSLIB_CORE::AppManager::getInstance ()->isGuiApp () ) {
 
     MainWindow w;
-    return NAMESPACE_LIBRARY_CORE::AppManager::getInstance ()->execute ( &w );
+    return NSLIB_CORE::AppManager::getInstance ()->execute ( &w );
 
   } else {
 
-    return NAMESPACE_LIBRARY_CORE::AppManager::getInstance ()->execute ();
+    return NSLIB_CORE::AppManager::getInstance ()->execute ();
   }
 }

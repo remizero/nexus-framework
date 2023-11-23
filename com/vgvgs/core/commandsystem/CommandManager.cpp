@@ -1,7 +1,7 @@
 #include "CommandManager.h"
 
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 
 CommandManager::CommandManager ( QObject *parent ) : QObject ( parent ) {

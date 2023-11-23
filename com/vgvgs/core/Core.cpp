@@ -1,5 +1,5 @@
 #include "Core.h"
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 Core::Core () {}

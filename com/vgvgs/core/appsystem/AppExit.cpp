@@ -1,7 +1,7 @@
 #include "AppExit.h"
 
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 
 AppExit::AppExit ( QObject *parent ) : QObject ( parent ) {

@@ -1,7 +1,7 @@
 #include "PluginDependenciesInfo.h"
 
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 
 const QString &PluginDependenciesInfo::getName () const {

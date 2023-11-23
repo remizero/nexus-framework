@@ -1,7 +1,7 @@
 #include "Patternify.h"
 
 
-using namespace NAMESPACE_LIBRARY_PATTERNIFY;
+using namespace NSLIB_PATTERNIFY;
 
 
 Patternify::Patternify () {}

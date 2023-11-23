@@ -21,24 +21,19 @@
 // C++ Libraries
 
 
-namespace NAMESPACE_LEVEL_1 {
+namespace NS_LEVEL_1 {
 
-  namespace NAMESPACE_LEVEL_2 {
+  namespace NS_LEVEL_2 {
 
-    namespace NAMESPACE_NEXUSBUILDER {
+    namespace NS_NEXUSBUILDER {
 
       class NEXUSBUILDER_EXPORT ConsoleProject : public AppProject {
 
         public :
-          // ConsoleProject ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false );
           ConsoleProject ();
-          bool create () override;
           void init ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false ) override;
-
-        protected :
+          bool createDirStruct () override;
           bool createProjectFiles () override;
-          bool createStructDir () override { return true; }
-          bool createResourceFiles () override { return true; }
       };
     }
   }

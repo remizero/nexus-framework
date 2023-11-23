@@ -3,7 +3,7 @@
 const qint64 MAX_LOG_SIZE = 1024 * 1024;  // 1MB
 
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 
 Logger::Logger () {

@@ -1,6 +1,6 @@
 {
-  "nameToShow" : "Plugin 1",
-  "logicalName" : "Plugin_1",
+  "nameToShow" : "CLASSNAME",
+  "logicalName" : "CLASSNAME",
   "version" : "0.0.1",
   "compatVersion" : "0.0.1",
   "vendor" : "MyCompany",
@@ -9,12 +9,10 @@
   "description" : "Put a short description of your plugin here",
   "url" : "https://www.mycompany.com",
   "lib_dependencies" : [
-    { "name" : "libApp.so", "version" : "0.0.2" },
-    { "name" : "libActions.so", "version" : "2.1.0" }
+    { "name" : "lib.so", "version" : "0.0.1" }
   ],
   "plugin_dependencies" : [
-    { "name" : "Plugin_2", "version" : "0.0.2" },
-    { "name" : "OtroPlugin", "version" : "1.0.0" }
+    { "name" : "PluginName", "version" : "0.0.1" }
   ],
   "actions" : [
     {

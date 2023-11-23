@@ -1,7 +1,7 @@
 #include "NexusBuilder.h"
 
 
-using namespace NAMESPACE_LIBRARY_NEXUSBUILDER;
+using namespace NSLIB_NEXUSBUILDER;
 
 
 NexusBuilder::NexusBuilder () {
@@ -32,9 +32,9 @@ const char *NexusBuilder::getProjectClassName ( ProjectId projectId ) {
     "ConsoleProject",
     "GuiProject",
     "NexusProject",
-    "PluginProject"
-    "ShareProject",
-    "StaticProject"
+    "PluginProject",
+    "ShareLibraryProject",
+    "StaticLibraryProject"
   };
   return projectClassNames [ projectId ];
 }

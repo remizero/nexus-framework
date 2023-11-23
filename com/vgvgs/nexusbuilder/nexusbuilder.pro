@@ -22,11 +22,12 @@ include (../../../qmakeBuilders/projectLibConfiguration.prf)
 include(../../../qmakeBuilders/buildConfiguration.prf)
 
 SOURCES += \
-  AppCreator.cpp \
   AppProject.cpp \
   LibraryProject.cpp \
   NexusBuilder.cpp \
+  NexusBuilderManager.cpp \
   ProjectAbs.cpp \
+  ProjectDirector.cpp \
   Version.cpp \
   projectType/ConsoleProject.cpp \
   projectType/GuiProject.cpp \
@@ -36,9 +37,10 @@ SOURCES += \
   projectType/StaticLibraryProject.cpp
 
 HEADERS += \
-  AppCreator.h \
   AppProject.h \
   LibraryProject.h \
+  NexusBuilderManager.h \
+  ProjectDirector.h \
   nexusbuilder_global.h \
   NexusBuilder.h \
   ProjectAbs.h \
@@ -87,7 +89,7 @@ DISTFILES += \
 #  resources/PluginJsonStructure.json
 
 RESOURCES += \
-  resources.qrc
+  nexusbuilderresources.qrc
 
 # Se copia la librería en la ruta destino del proyecto final.
 # The library is copied to the destination path of the final project.

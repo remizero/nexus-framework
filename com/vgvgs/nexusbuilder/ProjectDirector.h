@@ -1,9 +1,10 @@
-#ifndef ACTIONINTERFACE_H
-#define ACTIONINTERFACE_H
+#ifndef PROJECTDIRECTOR_H
+#define PROJECTDIRECTOR_H
 
 // Librerías Internas
 // Internal Libraries
-#include "core_global.h"
+#include "nexusbuilder_global.h"
+#include "ProjectInterface.h"
 
 // Librerías Externas
 // External Libraries
@@ -24,17 +25,18 @@ namespace NS_LEVEL_1 {
 
   namespace NS_LEVEL_2 {
 
-    namespace NS_CORE {
+    namespace NS_NEXUSBUILDER {
 
-      class CORE_EXPORT ActionInterface {
+      class NEXUSBUILDER_EXPORT ProjectDirector {
 
-        public slots :
-          virtual void execAct () = 0;
+        public :
+          ProjectDirector ();
+
+          bool create ( ProjectInterface *project );
+
       };
     }
   }
 }
 
-Q_DECLARE_INTERFACE ( NSLIB_CORE::ActionInterface, "com.vgvgs.core.ActionInterface" )
-
-#endif // ACTIONINTERFACE_H
+#endif // PROJECTDIRECTOR_H

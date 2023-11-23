@@ -3,7 +3,7 @@
 
 CommandProcessor::CommandProcessor () {}
 
-void CommandProcessor::processCommands ( QCommandLineParser &parser, QMap<QString, NAMESPACE_LIBRARY_CORE::CommandInterface *> commandMap ) {
+void CommandProcessor::processCommands ( QCommandLineParser &parser, QMap<QString, NSLIB_CORE::CommandInterface *> commandMap ) {
 
   parser.addPositionalArgument ( "projectName", QCoreApplication::translate ( "main", "Project Name." ) );
   parser.addPositionalArgument ( "destination", QCoreApplication::translate ( "main", "Destination directory." ) );
@@ -30,7 +30,7 @@ void CommandProcessor::processCommands ( QCommandLineParser &parser, QMap<QStrin
         qDebug () << "\n";
       }
 
-      NAMESPACE_LIBRARY_CORE::CommandInterface *command = commandMap.value ( option );
+      NSLIB_CORE::CommandInterface *command = commandMap.value ( option );
       if ( command ) {
 
         // TODO Analizar para que sirve exactamente esto?
@@ -45,11 +45,11 @@ void CommandProcessor::processCommands ( QCommandLineParser &parser, QMap<QStrin
   QStringList positionalArguments = parser.positionalArguments ();
   if ( !positionalArguments.isEmpty () ) {
 
-    // this->createProject ( positionalArguments.value ( 0 ), positionalArguments.value ( 1 ), projecType, verboseMode );
-    NAMESPACE_LIBRARY_NEXUSBUILDER::NexusBuilder *nexusBuilder = new NAMESPACE_LIBRARY_NEXUSBUILDER::NexusBuilder ();
-    NAMESPACE_LIBRARY_NEXUSBUILDER::ProjectInterface *project = nexusBuilder->create ( NAMESPACE_LIBRARY_NEXUSBUILDER::NexusBuilder::stringToProjectId ( projecType ) );
-    project->init ( positionalArguments.value ( 0 ), positionalArguments.value ( 1 ), projecType, verboseMode );
-    project->create ();
+//    NSLIB_NEXUSBUILDER::NexusBuilder *nexusBuilder = new NSLIB_NEXUSBUILDER::NexusBuilder ();
+//    NSLIB_NEXUSBUILDER::ProjectInterface *project = nexusBuilder->create ( NSLIB_NEXUSBUILDER::NexusBuilder::stringToProjectId ( projecType ) );
+//    project->init ( positionalArguments.value ( 0 ), positionalArguments.value ( 1 ), projecType, verboseMode );
+//    project->create ();
+    NSLIB_NEXUSBUILDER::NexusBuilderManager::getInstance ()->createProject ( positionalArguments.value ( 0 ), positionalArguments.value ( 1 ), projecType, verboseMode );
 
   } else {
 

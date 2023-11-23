@@ -22,59 +22,59 @@
 // Se definen las macros comunes para todos los espacios de nombre de las librerías.
 // Common macros are defined for all library namespaces.
 #define TOKEN_SEPARATOR   ::
-#define NAMESPACE_LEVEL_1 Com
-#define NAMESPACE_LEVEL_2 Vgvgs
+#define NS_LEVEL_1 Com
+#define NS_LEVEL_2 Vgvgs
 
 
 // Se definen las macros particulares para todos los espacios de nombre de las librerías.
 // Particular macros are defined for all library namespaces.
-#define NAMESPACE_APP            App
-#define NAMESPACE_CONSOLE        Console
-#define NAMESPACE_CORE           Core
-#define NAMESPACE_ENGINES        Engines
-#define NAMESPACE_XSD            Xsd
-#define NAMESPACE_XSDFORM        XsdForm
-#define NAMESPACE_LOGGER         Logger
-#define NAMESPACE_MACROS         Macros
-#define NAMESPACE_NEXUSBUILDER   NexusBuilder
-#define NAMESPACE_PATTERNIFY     Patternify
-#define NAMESPACE_RESOURCES      Resources
-#define NAMESPACE_SINGLEINSTANCE SingleInstance
-#define NAMESPACE_SPLASHSCREEN   SplashScreen
-#define NAMESPACE_UTILS          Utils
-#define NAMESPACE_WINDOW         Window
-#define NAMESPACE_COMPONENTS     Components
-#define NAMESPACE_ACTIONS        Actions
-#define NAMESPACE_COLORBOX       ColorBox
-#define NAMESPACE_COLORPICKER    ColorPicker
-#define NAMESPACE_MENUBAR        MenuBar
-#define NAMESPACE_STATUSBAR      StatusBar
-#define NAMESPACE_SYSTEMTRAYICON SystemTrayIcon
-#define NAMESPACE_MAINWINDOW     MainWindow
+#define NS_APP            App
+#define NS_CONSOLE        Console
+#define NS_CORE           Core
+#define NS_ENGINES        Engines
+#define NS_XSD            Xsd
+#define NS_XSDFORM        XsdForm
+#define NS_LOGGER         Logger
+#define NS_MACROS         Macros
+#define NS_NEXUSBUILDER   NexusBuilder
+#define NS_PATTERNIFY     Patternify
+#define NS_RESOURCES      Resources
+#define NS_SINGLEINSTANCE SingleInstance
+#define NS_SPLASHSCREEN   SplashScreen
+#define NS_UTILS          Utils
+#define NS_WINDOW         Window
+#define NS_COMPONENTS     Components
+#define NS_ACTIONS        Actions
+#define NS_COLORBOX       ColorBox
+#define NS_COLORPICKER    ColorPicker
+#define NS_MENUBAR        MenuBar
+#define NS_STATUSBAR      StatusBar
+#define NS_SYSTEMTRAYICON SystemTrayIcon
+#define NS_MAINWINDOW     MainWindow
 
 
 // Se definen las macros con los nombres completos para todos los espacios de nombre de las librerías.
 // Macros with fully qualified names are defined for all library namespaces.
-// #define NAMESPACE_LIBRARY_APP            Com::Vgvgs::App
-#define NAMESPACE_LIBRARY_CONSOLE        Com::Vgvgs::Console
-#define NAMESPACE_LIBRARY_CORE           Com::Vgvgs::Core
-#define NAMESPACE_LIBRARY_XSD            Com::Vgvgs::Engines::Xsd
-#define NAMESPACE_LIBRARY_LOGGER         Com::Vgvgs::Logger
-#define NAMESPACE_LIBRARY_MACROS         Com::Vgvgs::Macros
-#define NAMESPACE_LIBRARY_NEXUSBUILDER   Com::Vgvgs::NexusBuilder
-#define NAMESPACE_LIBRARY_PATTERNIFY     Com::Vgvgs::Patternify
-#define NAMESPACE_LIBRARY_RESOURCES      Com::Vgvgs::Resources
-#define NAMESPACE_LIBRARY_SINGLEINSTANCE Com::Vgvgs::SingleInstance
-#define NAMESPACE_LIBRARY_SPLASHSCREEN   Com::Vgvgs::SplashScreen
-#define NAMESPACE_LIBRARY_UTILS          Com::Vgvgs::Utils
-#define NAMESPACE_LIBRARY_ACTONS         Com::Vgvgs::Window::Components::Actions
-#define NAMESPACE_LIBRARY_COLORBOX       Com::Vgvgs::Window::Components::ColorBox
-#define NAMESPACE_LIBRARY_COLORPICKER    Com::Vgvgs::Window::Components::ColorPicker
-#define NAMESPACE_LIBRARY_MENUBAR        Com::Vgvgs::Window::Components::MenuBar
-#define NAMESPACE_LIBRARY_STATUSBAR      Com::Vgvgs::Window::Components::StatusBar
-#define NAMESPACE_LIBRARY_SYSTEMTRAYICON Com::Vgvgs::Window::Components::SystemTrayIcon
-#define NAMESPACE_LIBRARY_XSDFORM        Com::Vgvgs::Window::Components::XsdForm
-#define NAMESPACE_LIBRARY_MAINWINDOW     Com::Vgvgs::Window::MainWindow
+// #define NSLIB_APP            Com::Vgvgs::App
+#define NSLIB_CONSOLE        Com::Vgvgs::Console
+#define NSLIB_CORE           Com::Vgvgs::Core
+#define NSLIB_XSD            Com::Vgvgs::Engines::Xsd
+#define NSLIB_LOGGER         Com::Vgvgs::Logger
+#define NSLIB_MACROS         Com::Vgvgs::Macros
+#define NSLIB_NEXUSBUILDER   Com::Vgvgs::NexusBuilder
+#define NSLIB_PATTERNIFY     Com::Vgvgs::Patternify
+#define NSLIB_RESOURCES      Com::Vgvgs::Resources
+#define NSLIB_SINGLEINSTANCE Com::Vgvgs::SingleInstance
+#define NSLIB_SPLASHSCREEN   Com::Vgvgs::SplashScreen
+#define NSLIB_UTILS          Com::Vgvgs::Utils
+#define NSLIB_ACTONS         Com::Vgvgs::Window::Components::Actions
+#define NSLIB_COLORBOX       Com::Vgvgs::Window::Components::ColorBox
+#define NSLIB_COLORPICKER    Com::Vgvgs::Window::Components::ColorPicker
+#define NSLIB_MENUBAR        Com::Vgvgs::Window::Components::MenuBar
+#define NSLIB_STATUSBAR      Com::Vgvgs::Window::Components::StatusBar
+#define NSLIB_SYSTEMTRAYICON Com::Vgvgs::Window::Components::SystemTrayIcon
+#define NSLIB_XSDFORM        Com::Vgvgs::Window::Components::XsdForm
+#define NSLIB_MAINWINDOW     Com::Vgvgs::Window::MainWindow
 
 
 #endif // MACROS_GLOBAL_H

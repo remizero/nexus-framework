@@ -41,13 +41,13 @@
 #include <exception>
 
 
-namespace NAMESPACE_LEVEL_1 {
+namespace NS_LEVEL_1 {
 
-  namespace NAMESPACE_LEVEL_2 {
+  namespace NS_LEVEL_2 {
 
-    namespace NAMESPACE_CORE {
+    namespace NS_CORE {
 
-      class CORE_EXPORT PluginManager : public QObject, public NAMESPACE_LIBRARY_PATTERNIFY::Singleton<PluginManager> {
+      class CORE_EXPORT PluginManager : public QObject, public NSLIB_PATTERNIFY::Singleton<PluginManager> {
 
           Q_OBJECT
 
@@ -69,7 +69,7 @@ namespace NAMESPACE_LEVEL_1 {
           QHash<QString, QPluginLoader *> loaders;
           //static bool initialized;
           PluginManager ( QObject *parent = nullptr );
-          friend class NAMESPACE_LIBRARY_PATTERNIFY::Singleton<PluginManager>;
+          friend class NSLIB_PATTERNIFY::Singleton<PluginManager>;
       };
     }
   }

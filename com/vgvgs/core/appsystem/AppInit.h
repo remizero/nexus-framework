@@ -29,13 +29,13 @@
 // C++ Libraries
 
 
-namespace NAMESPACE_LEVEL_1 {
+namespace NS_LEVEL_1 {
 
-  namespace NAMESPACE_LEVEL_2 {
+  namespace NS_LEVEL_2 {
 
-    namespace NAMESPACE_CORE {
+    namespace NS_CORE {
 
-      class CORE_EXPORT AppInit : public QObject, public NAMESPACE_LIBRARY_PATTERNIFY::Singleton<AppInit> {
+      class CORE_EXPORT AppInit : public QObject, public NSLIB_PATTERNIFY::Singleton<AppInit> {
 
         public :
           bool checkVersion ();
@@ -51,7 +51,7 @@ namespace NAMESPACE_LEVEL_1 {
            AppConfig *appConfig = nullptr;
           UserConfig *userConfig = nullptr;
           AppInit ( QObject *parent = nullptr );
-          friend class NAMESPACE_LIBRARY_PATTERNIFY::Singleton<AppInit>;
+          friend class NSLIB_PATTERNIFY::Singleton<AppInit>;
 
       };
     }

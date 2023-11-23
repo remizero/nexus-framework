@@ -23,13 +23,13 @@
 // C++ Libraries
 
 
-class CommandProcessor : public NAMESPACE_LIBRARY_CORE::CommandProcessorInterface {
+class CommandProcessor : public NSLIB_CORE::CommandProcessorInterface {
 
   public :
     CommandProcessor ();
     ~CommandProcessor () override {}
 
-    void processCommands ( QCommandLineParser &parser, QMap<QString, NAMESPACE_LIBRARY_CORE::CommandInterface *> commandMap ) override;
+    void processCommands ( QCommandLineParser &parser, QMap<QString, NSLIB_CORE::CommandInterface *> commandMap ) override;
     // TODO Puede agregar nuevos métodos para ser llamados dentro del método "processCommands".
 };
 

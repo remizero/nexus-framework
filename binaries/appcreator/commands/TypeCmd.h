@@ -24,9 +24,9 @@
 // C++ Libraries
 
 
-class TypeCmd : public NAMESPACE_LIBRARY_CORE::CommandInterface {
+class TypeCmd : public NSLIB_CORE::CommandInterface {
 
-    Q_INTERFACES ( NAMESPACE_LIBRARY_CORE::CommandInterface )
+    Q_INTERFACES ( NSLIB_CORE::CommandInterface )
 
   public :
     TypeCmd ();

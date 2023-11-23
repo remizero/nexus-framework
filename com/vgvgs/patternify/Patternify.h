@@ -17,11 +17,11 @@
 // C++ Libraries
 
 
-namespace NAMESPACE_LEVEL_1 {
+namespace NS_LEVEL_1 {
 
-  namespace NAMESPACE_LEVEL_2 {
+  namespace NS_LEVEL_2 {
 
-    namespace NAMESPACE_PATTERNIFY {
+    namespace NS_PATTERNIFY {
 
       class PATTERNIFY_EXPORT Patternify {
 

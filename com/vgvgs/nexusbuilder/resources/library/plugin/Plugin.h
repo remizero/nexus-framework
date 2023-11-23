@@ -1,9 +1,9 @@
-#ifndef PLUGIN_1_H
-#define PLUGIN_1_H
+#ifndef CLASSDEFINITION_H
+#define CLASSDEFINITION_H
 
 // Librerías Internas
 // Internal Libraries
-#include "plugin_1_global.h"
+#include "CLASSNAME_global.h"
 
 // Librerías Externas
 // External Libraries
@@ -23,33 +23,24 @@
 // C++ Libraries
 
 
-namespace NAMESPACE_LEVEL_1 {
+class CLASSDEFINITION_EXPORT CLASSNAME : public NSLIB_CORE::PluginInterface {
 
-  namespace NAMESPACE_LEVEL_2 {
+    Q_INTERFACES ( NSLIB_CORE::PluginInterface )
+    Q_OBJECT
+    Q_PLUGIN_METADATA ( IID "com.vgvgs.CLASSNAME" FILE "CLASSNAME.json" )
 
-    namespace NAMESPACE_PLUGIN_1 {
+  public :
+    CLASSNAME ();
+    ~CLASSNAME () override;
 
-      class PLUGIN_1_EXPORT Plugin_1 : public NAMESPACE_LIBRARY_CORE::PluginInterface {
+    void initialize ( QJsonObject object ) override;
+    void finalize () override;
+    QAction menuAction () const override;
+    QList<QAction *> actions () const override;
+    NSLIB_CORE::PluginInfo *getPluginInfo () override;
 
-          Q_INTERFACES ( NAMESPACE_LIBRARY_CORE::PluginInterface )
-          Q_OBJECT
-          Q_PLUGIN_METADATA ( IID "com.vgvgs.Plugin_1" FILE "Plugin_1.json" )
+  private :
+    NSLIB_CORE::PluginInfo *pluginInfo;
+};
 
-        public :
-          Plugin_1 ();
-          ~Plugin_1 () override;
-
-          void initialize ( QJsonObject object ) override;
-          void finalize () override;
-          QAction menuAction () const override;
-          QList<QAction *> actions () const override;
-          NAMESPACE_LIBRARY_CORE::PluginInfo *getPluginInfo () override;
-
-        private :
-          NAMESPACE_LIBRARY_CORE::PluginInfo *pluginInfo;
-      };
-    }
-  }
-}
-
-#endif // PLUGIN_1_H
+#endif // CLASSDEFINITION_H

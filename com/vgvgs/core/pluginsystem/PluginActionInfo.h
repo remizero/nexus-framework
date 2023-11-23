@@ -26,11 +26,11 @@
 // C++ Libraries
 
 
-namespace NAMESPACE_LEVEL_1 {
+namespace NS_LEVEL_1 {
 
-  namespace NAMESPACE_LEVEL_2 {
+  namespace NS_LEVEL_2 {
 
-    namespace NAMESPACE_CORE {
+    namespace NS_CORE {
 
       class CORE_EXPORT PluginActionInfo {
 

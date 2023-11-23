@@ -1,7 +1,7 @@
 #include "AppPaths.h"
 
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 
 AppPaths::AppPaths ( QObject *parent ) : QObject ( parent ) {}

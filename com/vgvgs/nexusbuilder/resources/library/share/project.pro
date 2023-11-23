@@ -25,7 +25,7 @@ SOURCES += \
   Version.cpp
 
 HEADERS += \
-  Share_global.h \
+  CLASSNAME_global.h \
   Version.h
 
 win32:CONFIG(release, debug|release): LIBS += \

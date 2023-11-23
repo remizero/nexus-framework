@@ -3,7 +3,7 @@
 
 // Librerías Internas
 // Internal Libraries
-#include "nexusbuilder_global.h"
+#include "CLASSNAME_global.h"
 
 // Librerías Qt
 // Qt Libraries

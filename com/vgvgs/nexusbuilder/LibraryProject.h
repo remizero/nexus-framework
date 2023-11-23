@@ -21,24 +21,19 @@
 // C++ Libraries
 
 
-namespace NAMESPACE_LEVEL_1 {
+namespace NS_LEVEL_1 {
 
-  namespace NAMESPACE_LEVEL_2 {
+  namespace NS_LEVEL_2 {
 
-    namespace NAMESPACE_NEXUSBUILDER {
+    namespace NS_NEXUSBUILDER {
 
       class NEXUSBUILDER_EXPORT LibraryProject : public ProjectAbs {
 
         public :
-          // LibraryProject ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false );
           LibraryProject ();
-          virtual bool create () override;
           virtual void init ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false ) override;
-
-        protected :
+          virtual bool createDirStruct () override { return true; }
           virtual bool createProjectFiles () override;
-          virtual bool createStructDir () override { return true; }
-          virtual bool createResourceFiles () override { return true; }
       };
     }
   }

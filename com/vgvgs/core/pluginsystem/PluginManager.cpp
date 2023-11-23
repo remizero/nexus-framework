@@ -1,7 +1,7 @@
 #include "PluginManager.h"
 
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 
 PluginManager::PluginManager ( QObject *parent ) : QObject ( parent ) {

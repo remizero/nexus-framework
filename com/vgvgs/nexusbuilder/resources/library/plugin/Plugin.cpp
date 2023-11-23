@@ -1,29 +1,29 @@
-#include "Plugin_1.h"
+#include "CLASSNAME.h"
 
-using namespace NAMESPACE_LIBRARY_PLUGIN_1;
 
-Q_PLUGIN_METADATA ( IID "com.vgvgs.Plugin_1" )
+Q_PLUGIN_METADATA ( IID "com.vgvgs.CLASSNAME" )
 
-Plugin_1::Plugin_1 () {
 
-  this->pluginInfo = new NAMESPACE_LIBRARY_CORE::PluginInfo ();
+CLASSNAME::CLASSNAME () {
+
+  this->pluginInfo = new NSLIB_CORE::PluginInfo ();
 }
 
-Plugin_1::~Plugin_1 () {}
+CLASSNAME::~CLASSNAME () {}
 
-void Plugin_1::initialize ( QJsonObject object ) {
+void CLASSNAME::initialize ( QJsonObject object ) {
 
-  NAMESPACE_LIBRARY_CORE::PluginAbs::initializeMetadata ( this->pluginInfo, object );
-  qDebug () << "PLUGIN INICIALIZADO";
+  NSLIB_CORE::PluginAbs::initializeMetadata ( this->pluginInfo, object );
+  notImplemented();
 }
 
-void Plugin_1::finalize () {}
+void CLASSNAME::finalize () {}
 
-QAction Plugin_1::menuAction () const {}
+QAction CLASSNAME::menuAction () const {}
 
-QList<QAction *> Plugin_1::actions () const {}
+QList<QAction *> CLASSNAME::actions () const {}
 
-NAMESPACE_LIBRARY_CORE::PluginInfo *Plugin_1::getPluginInfo () {
+NSLIB_CORE::PluginInfo *CLASSNAME::getPluginInfo () {
 
   return this->pluginInfo;
 }

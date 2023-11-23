@@ -24,11 +24,11 @@
 // C++ Libraries
 
 
-namespace NAMESPACE_LEVEL_1 {
+namespace NS_LEVEL_1 {
 
-  namespace NAMESPACE_LEVEL_2 {
+  namespace NS_LEVEL_2 {
 
-    namespace NAMESPACE_CORE {
+    namespace NS_CORE {
 
       class CORE_EXPORT VerboseCmd : public CommandInterface {
 
@@ -46,6 +46,6 @@ namespace NAMESPACE_LEVEL_1 {
   }
 }
 
-Q_DECLARE_METATYPE ( NAMESPACE_LIBRARY_CORE::VerboseCmd )
+Q_DECLARE_METATYPE ( NSLIB_CORE::VerboseCmd )
 
 #endif // VERBOSECMD_H

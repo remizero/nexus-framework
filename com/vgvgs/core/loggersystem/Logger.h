@@ -35,13 +35,13 @@
 // C++ Libraries
 
 
-namespace NAMESPACE_LEVEL_1 {
+namespace NS_LEVEL_1 {
 
-  namespace NAMESPACE_LEVEL_2 {
+  namespace NS_LEVEL_2 {
 
-    namespace NAMESPACE_CORE {
+    namespace NS_CORE {
 
-      class CORE_EXPORT Logger : public NAMESPACE_LIBRARY_PATTERNIFY::Singleton<Logger> {
+      class CORE_EXPORT Logger : public NSLIB_PATTERNIFY::Singleton<Logger> {
 
         public :
 
@@ -66,7 +66,7 @@ namespace NAMESPACE_LEVEL_1 {
           QScopedPointer < QFile > logFile;
 
           Logger ();
-          friend class NAMESPACE_LIBRARY_PATTERNIFY::Singleton<Logger>;
+          friend class NSLIB_PATTERNIFY::Singleton<Logger>;
           void checkAndRotateLog ();
           void close ();
           void configMessagePatternOutput ();

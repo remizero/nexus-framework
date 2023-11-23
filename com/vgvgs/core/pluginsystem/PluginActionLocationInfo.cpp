@@ -1,7 +1,7 @@
 #include "PluginActionLocationInfo.h"
 
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 
 const QString &PluginActionLocationInfo::getContextual () const {

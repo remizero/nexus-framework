@@ -1,7 +1,7 @@
 #include "VerboseCmd.h"
 
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 
 VerboseCmd::VerboseCmd () {}

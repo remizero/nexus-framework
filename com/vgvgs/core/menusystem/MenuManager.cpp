@@ -1,7 +1,7 @@
 #include "MenuManager.h"
 
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 
 MenuManager::MenuManager ( QObject *parent ) : QObject ( parent ) {

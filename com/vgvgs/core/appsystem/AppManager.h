@@ -35,13 +35,13 @@
 // C++ Libraries
 
 
-namespace NAMESPACE_LEVEL_1 {
+namespace NS_LEVEL_1 {
 
-  namespace NAMESPACE_LEVEL_2 {
+  namespace NS_LEVEL_2 {
 
-    namespace NAMESPACE_CORE {
+    namespace NS_CORE {
 
-      class CORE_EXPORT AppManager : public QObject, public NAMESPACE_LIBRARY_PATTERNIFY::Singleton<AppManager> {
+      class CORE_EXPORT AppManager : public QObject, public NSLIB_PATTERNIFY::Singleton<AppManager> {
 
           Q_OBJECT
 
@@ -61,7 +61,7 @@ namespace NAMESPACE_LEVEL_1 {
           void cleanArg ( int &argc, char *argv [] );
           void setAppInfo ( QCoreApplication *application );
           AppManager ( QObject *parent = nullptr );
-          friend class NAMESPACE_LIBRARY_PATTERNIFY::Singleton<AppManager>;
+          friend class NSLIB_PATTERNIFY::Singleton<AppManager>;
       };
     }
   }

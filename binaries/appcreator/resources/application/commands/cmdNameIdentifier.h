@@ -24,9 +24,9 @@
 // C++ Libraries
 
 
-class cmdNameIdentifier : public NAMESPACE_LIBRARY_CORE::CommandInterface {
+class cmdNameIdentifier : public NSLIB_CORE::CommandInterface {
 
-    Q_INTERFACES ( NAMESPACE_LIBRARY_CORE::CommandInterface )
+    Q_INTERFACES ( NSLIB_CORE::CommandInterface )
 
   public :
     cmdNameIdentifier ();

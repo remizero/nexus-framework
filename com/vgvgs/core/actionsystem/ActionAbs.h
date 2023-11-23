@@ -19,16 +19,16 @@
 #include <QMetaType>
 
 
-namespace NAMESPACE_LEVEL_1 {
+namespace NS_LEVEL_1 {
 
-  namespace NAMESPACE_LEVEL_2 {
+  namespace NS_LEVEL_2 {
 
-    namespace NAMESPACE_CORE {
+    namespace NS_CORE {
 
       class CORE_EXPORT ActionAbs : public QAction, public ActionInterface {
 
           Q_OBJECT
-          Q_INTERFACES ( NAMESPACE_LIBRARY_CORE::ActionInterface )
+          Q_INTERFACES ( NSLIB_CORE::ActionInterface )
 
         public :
           explicit ActionAbs ( QString title, QWidget *parent = nullptr );
@@ -43,6 +43,6 @@ namespace NAMESPACE_LEVEL_1 {
   }
 }
 
-Q_DECLARE_METATYPE ( NAMESPACE_LIBRARY_CORE::ActionAbs * )
+Q_DECLARE_METATYPE ( NSLIB_CORE::ActionAbs * )
 
 #endif // ACTIONABS_H

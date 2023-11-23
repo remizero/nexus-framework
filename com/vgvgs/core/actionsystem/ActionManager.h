@@ -41,13 +41,13 @@
 #include <exception>
 
 
-namespace NAMESPACE_LEVEL_1 {
+namespace NS_LEVEL_1 {
 
-  namespace NAMESPACE_LEVEL_2 {
+  namespace NS_LEVEL_2 {
 
-    namespace NAMESPACE_CORE {
+    namespace NS_CORE {
 
-      class CORE_EXPORT ActionManager : public QObject, public NAMESPACE_LIBRARY_PATTERNIFY::Singleton<ActionManager> {
+      class CORE_EXPORT ActionManager : public QObject, public NSLIB_PATTERNIFY::Singleton<ActionManager> {
 
           Q_OBJECT
 
@@ -60,7 +60,7 @@ namespace NAMESPACE_LEVEL_1 {
         private :
           QList < QAction * > actionList;
           ActionManager ();
-          friend class NAMESPACE_LIBRARY_PATTERNIFY::Singleton<ActionManager>;
+          friend class NSLIB_PATTERNIFY::Singleton<ActionManager>;
       };
     }
   }

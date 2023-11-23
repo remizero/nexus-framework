@@ -29,11 +29,11 @@
 // C++ Libraries
 
 
-namespace NAMESPACE_LEVEL_1 {
+namespace NS_LEVEL_1 {
 
-  namespace NAMESPACE_LEVEL_2 {
+  namespace NS_LEVEL_2 {
 
-    namespace NAMESPACE_NEXUSBUILDER {
+    namespace NS_NEXUSBUILDER {
 
       class NEXUSBUILDER_EXPORT NexusBuilder : public QObject {
 

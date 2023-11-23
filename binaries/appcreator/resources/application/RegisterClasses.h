@@ -23,9 +23,9 @@
 // C++ Libraries
 
 
-class RegisterClasses : public NAMESPACE_LIBRARY_CORE::RegisterClassInterface, public NAMESPACE_LIBRARY_PATTERNIFY::Singleton<RegisterClasses> {
+class RegisterClasses : public NSLIB_CORE::RegisterClassInterface, public NSLIB_PATTERNIFY::Singleton<RegisterClasses> {
 
-    Q_INTERFACES ( NAMESPACE_LIBRARY_CORE::RegisterClassInterface )
+    Q_INTERFACES ( NSLIB_CORE::RegisterClassInterface )
 
   public:
     ~RegisterClasses () override {}
@@ -33,7 +33,7 @@ class RegisterClasses : public NAMESPACE_LIBRARY_CORE::RegisterClassInterface, p
 
   private :
     RegisterClasses ();
-    friend class NAMESPACE_LIBRARY_PATTERNIFY::Singleton<RegisterClasses>;
+    friend class NSLIB_PATTERNIFY::Singleton<RegisterClasses>;
 };
 
 #endif // REGISTERCLASSES_H

@@ -29,13 +29,13 @@
 // C++ Libraries
 
 
-namespace NAMESPACE_LEVEL_1 {
+namespace NS_LEVEL_1 {
 
-  namespace NAMESPACE_LEVEL_2 {
+  namespace NS_LEVEL_2 {
 
-    namespace NAMESPACE_CORE {
+    namespace NS_CORE {
 
-      class CORE_EXPORT AppExit : public QObject, public NAMESPACE_LIBRARY_PATTERNIFY::Singleton<AppExit> {
+      class CORE_EXPORT AppExit : public QObject, public NSLIB_PATTERNIFY::Singleton<AppExit> {
 
         public :
           void initialize ( AppConfig *appConfig, UserConfig *userConfig );
@@ -47,7 +47,7 @@ namespace NAMESPACE_LEVEL_1 {
            AppConfig *appConfig = nullptr;
           UserConfig *userConfig = nullptr;
           AppExit ( QObject *parent = nullptr );
-          friend class NAMESPACE_LIBRARY_PATTERNIFY::Singleton<AppExit>;
+          friend class NSLIB_PATTERNIFY::Singleton<AppExit>;
       };
     }
   }

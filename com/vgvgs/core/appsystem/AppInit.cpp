@@ -1,7 +1,7 @@
 #include "AppInit.h"
 
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 
 AppInit::AppInit ( QObject *parent ) : QObject ( parent ) {

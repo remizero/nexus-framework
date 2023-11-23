@@ -1,6 +1,6 @@
 #include "Exception.h"
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 Exception::Exception ( const QString &text, const QString &file, int line, const QString &function) noexcept :
   message ( text ),

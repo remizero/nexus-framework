@@ -3,5 +3,5 @@
 
 extern "C" NEXUSBUILDER_EXPORT QString version () {
 
-  return "0.0.2";
+  return "0.0.1";
 }

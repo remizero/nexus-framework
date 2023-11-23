@@ -3,7 +3,7 @@
 
 CommandProcessor::CommandProcessor () {}
 
-void CommandProcessor::processCommands ( QCommandLineParser &parser, QMap<QString, NAMESPACE_LIBRARY_CORE::CommandInterface *> commandMap ) {
+void CommandProcessor::processCommands ( QCommandLineParser &parser, QMap<QString, NSLIB_CORE::CommandInterface *> commandMap ) {
 
   parser.addPositionalArgument ( "projectName", QCoreApplication::translate ( "main", "Project Name." ) );
   parser.addPositionalArgument ( "destination", QCoreApplication::translate ( "main", "Destination directory." ) );
@@ -26,7 +26,7 @@ void CommandProcessor::processCommands ( QCommandLineParser &parser, QMap<QStrin
         //      personalizadas que utiliza la aplicación.
       }
 
-      NAMESPACE_LIBRARY_CORE::CommandInterface *command = commandMap.value ( option );
+      NSLIB_CORE::CommandInterface *command = commandMap.value ( option );
       if ( command ) {
 
         // TODO Analizar para que sirve exactamente esto?

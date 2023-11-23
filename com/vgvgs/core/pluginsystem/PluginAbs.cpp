@@ -1,7 +1,7 @@
 #include "PluginAbs.h"
 
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 
 void PluginAbs::initializeMetadata ( PluginInfo *pluginInfo, QJsonObject object ) {

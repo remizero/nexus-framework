@@ -21,29 +21,28 @@
 // C++ Libraries
 
 
-namespace NAMESPACE_LEVEL_1 {
+namespace NS_LEVEL_1 {
 
-  namespace NAMESPACE_LEVEL_2 {
+  namespace NS_LEVEL_2 {
 
-    namespace NAMESPACE_NEXUSBUILDER {
+    namespace NS_NEXUSBUILDER {
 
       class NEXUSBUILDER_EXPORT ProjectInterface {
 
         public :
           virtual ~ProjectInterface () {}
-          virtual bool create () = 0;
           virtual void init ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false ) = 0;
-
-        protected :
-          virtual bool createDir () = 0;
-          virtual bool createStructDir () = 0;
+          virtual bool createProjectDir () = 0;
+          virtual bool createProFile () = 0;
+          virtual bool createDirStruct () = 0;
           virtual bool createProjectFiles () = 0;
+          virtual bool createCommandFiles () = 0;
           virtual bool createResourceFiles () = 0;
       };
     }
   }
 }
 
-Q_DECLARE_INTERFACE ( NAMESPACE_LIBRARY_NEXUSBUILDER::ProjectInterface, "com.vgvgs.nexusbuilder.ProjectInterface" )
+Q_DECLARE_INTERFACE ( NSLIB_NEXUSBUILDER::ProjectInterface, "com.vgvgs.nexusbuilder.ProjectInterface" )
 
 #endif // PROJECTINTERFACE_H

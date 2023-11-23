@@ -1,7 +1,7 @@
 #include "App.h"
 
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 
 App::App ( int &argc, char **argv ) : QApplication ( argc, argv ) {}

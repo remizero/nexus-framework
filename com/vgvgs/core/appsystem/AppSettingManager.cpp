@@ -1,7 +1,7 @@
 #include "AppSettingManager.h"
 
 
-using namespace NAMESPACE_LIBRARY_CORE;
+using namespace NSLIB_CORE;
 
 
 AppSettingManager::AppSettingManager ( QObject *parent ) : QObject ( parent ) {}
