@@ -45,11 +45,11 @@ void CommandProcessor::processCommands ( QCommandLineParser &parser, QMap<QStrin
   QStringList positionalArguments = parser.positionalArguments ();
   if ( !positionalArguments.isEmpty () ) {
 
-//    NSLIB_NEXUSBUILDER::NexusBuilder *nexusBuilder = new NSLIB_NEXUSBUILDER::NexusBuilder ();
-//    NSLIB_NEXUSBUILDER::ProjectInterface *project = nexusBuilder->create ( NSLIB_NEXUSBUILDER::NexusBuilder::stringToProjectId ( projecType ) );
+//    NSLIB_BUILDER::NexusBuilder *nexusBuilder = new NSLIB_BUILDER::NexusBuilder ();
+//    NSLIB_BUILDER::ProjectInterface *project = nexusBuilder->create ( NSLIB_BUILDER::NexusBuilder::stringToProjectId ( projecType ) );
 //    project->init ( positionalArguments.value ( 0 ), positionalArguments.value ( 1 ), projecType, verboseMode );
 //    project->create ();
-    NSLIB_NEXUSBUILDER::NexusBuilderManager::getInstance ()->createProject ( positionalArguments.value ( 0 ), positionalArguments.value ( 1 ), projecType, verboseMode );
+    NSLIB_BUILDER::NexusBuilderManager::getInstance ()->createProject ( positionalArguments.value ( 0 ), positionalArguments.value ( 1 ), projecType, verboseMode );
 
   } else {
 

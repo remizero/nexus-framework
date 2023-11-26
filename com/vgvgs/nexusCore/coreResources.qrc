@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/nexusCoreResources">
+        <file>resources/app/config.xml</file>
+        <file>resources/plugin/PluginJsonStructure.json</file>
+    </qresource>
+</RCC>

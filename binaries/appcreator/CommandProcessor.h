@@ -6,8 +6,7 @@
 
 // Librerías Externas
 // External Libraries
-#include "macros_global.h"
-#include "core_global.h"
+#include "Core_global.h"
 #include "commandsystem/CommandProcessorInterface.h"
 #include "NexusBuilder.h"
 #include "ProjectInterface.h"

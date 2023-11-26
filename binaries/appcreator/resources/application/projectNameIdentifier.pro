@@ -4,7 +4,7 @@ include(../../qmakeBuilders/buildPaths.prf)
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 6): QT += widgets
 
 TARGET = projectNameIdentifier
 
@@ -49,27 +49,27 @@ DISTFILES += \
   export.def
 
 win32:CONFIG(release, debug|release): LIBS += \
-  -L$$LIB_PATH/ -lMacros \
-  -L$$LIB_PATH/ -lCore \
-  -L$$LIB_PATH/ -lPatternify
+  -L$$LIB_PATH/ -lNexusMacros \
+  -L$$LIB_PATH/ -lNexusCore \
+  -L$$LIB_PATH/ -lNexusPatternify
 else:win32:CONFIG(debug, debug|release): LIBS += \
-  -L$$LIB_PATH/ -lMacros \
-  -L$$LIB_PATH/ -lCore \
-  -L$$LIB_PATH/ -lPatternify
+  -L$$LIB_PATH/ -lNexusMacros \
+  -L$$LIB_PATH/ -lNexusCore \
+  -L$$LIB_PATH/ -lNexusPatternify
 else:unix: LIBS += \
-  -L$$LIB_PATH/ -lMacros \
-  -L$$LIB_PATH/ -lCore \
-  -L$$LIB_PATH/ -lPatternify
+  -L$$LIB_PATH/ -lNexusMacros \
+  -L$$LIB_PATH/ -lNexusCore \
+  -L$$LIB_PATH/ -lNexusPatternify
 
 INCLUDEPATH += \
-  $$PWD/../../com/vgvgs/macros \
-  $$PWD/../../com/vgvgs/core \
-  $$PWD/../../com/vgvgs/patternify
+  $$PWD/../../com/vgvgs/nexusMacros \
+  $$PWD/../../com/vgvgs/nexusCore \
+  $$PWD/../../com/vgvgs/nexusPatternify
 
 DEPENDPATH += \
-  $$PWD/../../com/vgvgs/macros \
-  $$PWD/../../com/vgvgs/core \
-  $$PWD/../../com/vgvgs/patternify
+  $$PWD/../../com/vgvgs/nexusMacros \
+  $$PWD/../../com/vgvgs/nexusCore \
+  $$PWD/../../com/vgvgs/nexusPatternify
 
 # Se copia la librería en la ruta destino del proyecto final.
 # The library is copied to the destination path of the final project.

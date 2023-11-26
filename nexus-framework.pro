@@ -56,7 +56,9 @@ DISTFILES += \
   qmakeBuilders/frameworkVersion.prf \
   qmakeBuilders/normalizeProjectName.prf \
   qmakeBuilders/projectBinConfiguration.prf \
-  qmakeBuilders/projectLibConfiguration.prf
+  qmakeBuilders/projectLibConfiguration.prf \
+  qmakeBuilders/projectLibShareConfiguration.prf \
+  qmakeBuilders/projectLibStaticConfiguration.prf
 
 # LISTA DE ARTICULOS INTERESANTES PARA IMPLEMENTAR EN QTRCP
 #
