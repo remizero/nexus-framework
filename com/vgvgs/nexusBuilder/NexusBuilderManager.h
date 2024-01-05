@@ -6,7 +6,8 @@
 #include "Builder_global.h"
 #include "NexusBuilder.h"
 #include "ProjectDirector.h"
-#include "ProjectInterface.h"
+#include "RegisterClasses.h"
+#include "ProjectAbs.h"
 
 // Librerías Externas
 // External Libraries
@@ -45,8 +46,6 @@ namespace NS_LEVEL_1 {
             void createProject ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false );
 
           private :
-            NexusBuilder *nexusBuilder;
-            ProjectDirector *projectDirector;
             NexusBuilderManager ();
             friend class NSLIB_PATTERNIFY::Singleton<NexusBuilderManager>;
         };

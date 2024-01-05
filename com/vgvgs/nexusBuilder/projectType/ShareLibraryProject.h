@@ -14,7 +14,7 @@
 
 // Librerías Qt
 // Qt Libraries
-#include <QWidget>
+#include <QObject>
 
 // Librerías C++
 // C++ Libraries
@@ -30,11 +30,13 @@ namespace NS_LEVEL_1 {
 
         class BUILDER_EXPORT ShareLibraryProject : public LibraryProject {
 
+            Q_OBJECT
+
           public :
-            ShareLibraryProject ();
+            ShareLibraryProject ( QObject *parent = nullptr );
             void init ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false ) override;
-            bool createDirStruct () override { return true; }
-            bool createProjectFiles () override;
+            // bool createDirStruct () override { return true; }
+            // bool createProjectFiles () override;
         };
       }
     }

@@ -11,7 +11,7 @@
 
 // Librerías Qt
 // Qt Libraries
-#include <QApplication>
+#include <QtWidgets/QApplication>
 #include <QDebug>
 
 // Librerías C++

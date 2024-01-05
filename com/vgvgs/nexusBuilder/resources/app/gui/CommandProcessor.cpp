@@ -159,23 +159,23 @@ bool CommandProcessor::createProjectFile ( QString projectName, QString projectP
 
     for ( const QString &resource : resourceList ) {
 
-      QFile resourceFile ( ":/appprojects/resources/application/" + resource );
-      if ( resourceFile.open ( QIODevice::ReadOnly | QIODevice::Text ) ) {
+      QFile *ioDeviceFile = NSLIB_UTILS::Files::load ( ":/appprojects/resources/application/" + resource );
+      if ( ioDeviceFile ) {
 
-        QTextStream in ( &resourceFile );
+        QTextStream in ( ioDeviceFile );
         QString fileContent = in.readAll ();
-        resourceFile.close ();
+        ioDeviceFile->close ();
         fileContent.replace ( "projectNameIdentifier", projectName );
 
         QString fileName = resource;
         fileName.replace ( "projectNameIdentifier", projectName );
         QString destinationPath = projectPath + fileName;
-        QFile newProFile ( destinationPath );
-        if ( newProFile.open ( QIODevice::WriteOnly | QIODevice::Text ) ) {
+        QFile *newIoDeviceFile = NSLIB_UTILS::Files::load ( destinationPath, QIODevice::WriteOnly | QIODevice::Text );
+        if ( newIoDeviceFile ) {
 
-          QTextStream out ( &newProFile );
+          QTextStream out ( &newIoDeviceFile );
           out << fileContent;
-          newProFile.close ();
+          newIoDeviceFile->close ();
           done = true;
           if ( verboseMode ) {
 
@@ -211,23 +211,23 @@ bool CommandProcessor::createCommandsFile ( QString projectName, QString project
 
     for ( const QString &resource : resourceList ) {
 
-      QFile resourceFile ( ":/appprojects/resources/application/commands/" + resource );
-      if ( resourceFile.open ( QIODevice::ReadOnly | QIODevice::Text ) ) {
+      QFile *ioDeviceFile = NSLIB_UTILS::Files::load ( ":/appprojects/resources/application/commands/" + resource );
+      if ( ioDeviceFile ) {
 
-        QTextStream in ( &resourceFile );
+        QTextStream in ( ioDeviceFile );
         QString fileContent = in.readAll ();
-        resourceFile.close ();
+        ioDeviceFile->close ();
         fileContent.replace ( "projectNameIdentifier", projectName );
 
         QString fileName = resource;
         fileName.replace ( "projectNameIdentifier", projectName );
         QString destinationPath = projectPath + "commands/" + resource;
-        QFile newProFile ( destinationPath );
-        if ( newProFile.open ( QIODevice::WriteOnly | QIODevice::Text ) ) {
+        QFile *newIoDeviceFile = NSLIB_UTILS::Files::load ( destinationPath, QIODevice::WriteOnly | QIODevice::Text );
+        if ( newIoDeviceFile ) {
 
-          QTextStream out ( &newProFile );
+          QTextStream out ( &newIoDeviceFile );
           out << fileContent;
-          newProFile.close ();
+          newIoDeviceFile->close ();
           done = true;
           if ( verboseMode ) {
 
@@ -264,21 +264,21 @@ bool CommandProcessor::createResourcesFile ( QString projectName, QString projec
 
     for ( const QString &resource : resourceList ) {
 
-      QFile resourceFile ( ":/appprojects/resources/application/resources/" + resource );
-      if ( resourceFile.open ( QIODevice::ReadOnly | QIODevice::Text ) ) {
+      QFile *ioDeviceFile = NSLIB_UTILS::Files::load ( ":/appprojects/resources/application/resources/" + resource );
+      if ( ioDeviceFile ) {
 
-        QTextStream in ( &resourceFile );
+        QTextStream in ( ioDeviceFile );
         QString fileContent = in.readAll ();
-        resourceFile.close ();
+        ioDeviceFile->close ();
         fileContent.replace ( "projectNameIdentifier", projectName );
 
         QString destinationPath = projectPath + "resources/" + resource;
-        QFile newProFile ( destinationPath );
-        if ( newProFile.open ( QIODevice::WriteOnly | QIODevice::Text ) ) {
+        QFile *newIoDeviceFile = NSLIB_UTILS::Files::load ( destinationPath, QIODevice::WriteOnly | QIODevice::Text );
+        if ( newIoDeviceFile ) {
 
-          QTextStream out ( &newProFile );
+          QTextStream out ( &newIoDeviceFile );
           out << fileContent;
-          newProFile.close ();
+          newIoDeviceFile->close ();
           done = true;
           if ( verboseMode ) {
 

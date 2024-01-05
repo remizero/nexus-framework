@@ -10,6 +10,7 @@
 
 // Librerías Externas
 // External Libraries
+#include "Files.h"
 #include "creational/Singleton.h"
 
 // Librerías de terceros
@@ -23,12 +24,12 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QIODeviceBase>
-#include <QMessageBox>
 #include <QMessageLogContext>
 #include <QScopedPointer>
 #include <QString>
 #include <QStringLiteral>
 #include <QTextStream>
+#include <QtWidgets/QMessageBox>
 
 // Librerías C++
 // C++ Libraries
@@ -42,7 +43,9 @@ namespace NS_LEVEL_1 {
 
       namespace NS_CORE {
 
-        class CORE_EXPORT Logger : public NSLIB_PATTERNIFY::Singleton<Logger> {
+        class CORE_EXPORT Logger : public QObject, public NSLIB_PATTERNIFY::Singleton<Logger> {
+
+            Q_OBJECT
 
           public :
 
@@ -51,16 +54,20 @@ namespace NS_LEVEL_1 {
               Standard,
               File
             };
+            Q_ENUM ( LogOutput )
 
             virtual ~Logger ();
             void exception ( const Exception &exception );
             void init ( Logger::LogOutput output = File, QString outputFormat = STR(FILE_OUTPUT_QT_MESSAGE_PATTERN) );
             void installMessageHandler ();
+            bool isGuiApp ();
             void reinstallMessageHandler ();
+            void setGuiApp ( bool guiApp );
             void uninstallMessageHandler ();
 
           private :
                              QString filePath;
+                                bool guiApp;
                              QString outputFormat;
              QIODeviceBase::OpenMode openMode;
                    Logger::LogOutput output;

@@ -4,22 +4,28 @@
 using namespace NSLIB_BUILDER;
 
 
-ProjectAbs::ProjectAbs () {
+ProjectAbs::ProjectAbs ( QObject *parent ) : QObject ( parent ) {
 
   this->verboseMode = false;
+  this->status = Status::notInitialized;
+  this->proBuilder = new ProBuilder ();
 }
 
 void ProjectAbs::init ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) {
 
   this->name        = projectName;
   this->path        = projectPath;
+  this->prefix      = "nexus";
   this->type        = projecType;
   this->verboseMode = verboseMode;
   this->fileNameToken << "project" << "Plugin" << "Share";
   this->contentToken << "PLUGIN" << "MACROEXPORT" << "CLASSNAME" << "CLASSDEFINITION" << "{{project}}";
+  this->normalizedProjectName = NexusBuilderUtils::normalizeProjectName ( projectName );
   // MACROEXPORT     debe ser remplazado capitalizando toda la palabra.
   // CLASSNAME       debe ser remplazado capitalizando la primera letra.
   // CLASSDEFINITION debe ser remplazado capitalizando toda la palabra.
+  NexusBuilderUtils::getQmakeBuildersPath ();
+  this->status = Status::initialized;
 }
 
 bool ProjectAbs::copyFiles ( QStringList resourceList, QString resoursePath, QString destinyPath ) {
@@ -31,12 +37,12 @@ bool ProjectAbs::copyFiles ( QStringList resourceList, QString resoursePath, QSt
 
     for ( const QString &resourceName : resourceList ) {
 
-      QFile resourceFile ( resoursePath + resourceName );
-      if ( resourceFile.open ( QIODevice::ReadOnly | QIODevice::Text ) ) {
+      QFile *ioDeviceFile = NSLIB_UTILS::Files::load ( resoursePath + resourceName );
+      if ( ioDeviceFile ) {
 
-        QTextStream in ( &resourceFile );
+        QTextStream in ( ioDeviceFile );
         QString fileContent = in.readAll ();
-        resourceFile.close ();
+        ioDeviceFile->close ();
         fileContent = this->normalizeContentFile ( fileContent );
 
         QString fileName = this->normalizeFileName ( resourceName );
@@ -49,12 +55,12 @@ bool ProjectAbs::copyFiles ( QStringList resourceList, QString resoursePath, QSt
 
           destinationPath.append ( destinyPath + QDir::separator () + fileName );
         }
-        QFile newProFile ( destinationPath );
-        if ( newProFile.open ( QIODevice::WriteOnly | QIODevice::Text ) ) {
+        QFile *newIoDeviceFile = NSLIB_UTILS::Files::load ( destinationPath, QIODevice::WriteOnly | QIODevice::Text );
+        if ( newIoDeviceFile ) {
 
-          QTextStream out ( &newProFile );
+          QTextStream out ( newIoDeviceFile );
           out << fileContent;
-          newProFile.close ();
+          newIoDeviceFile->close ();
           if ( verboseMode ) {
 
             qDebug () << "Copiando archivo en directorio de proyecto: " << destinationPath;
@@ -108,7 +114,7 @@ bool ProjectAbs::createDir ( QStringList dirList ) {
     qDebug () << "El directorio de proyecto no existe o no se encuentra: " << projectDir.path ();
   }
   return done;
-  }
+}
 
 QString ProjectAbs::normalizeFileName ( QString fileName ) {
 
@@ -160,15 +166,34 @@ QString ProjectAbs::normalizeContentFile ( QString fileContent ) {
 
 bool ProjectAbs::createProjectDir () {
 
-  bool done = this->createDir ( { this->name } );
-  if ( done ) {
+  if ( this->isInitialized () ) {
 
-    this->path.append ( this->name );
+    if ( NexusBuilderUtils::createDirectory ( this->path, NexusBuilderUtils::normalizeProjectName ( this->name ) ) ) {
+
+      this->path.append ( this->name );
+      this->proBuilder->build ( this->resource );
+      return true;
+    }
   }
-  return done;
+  return false;
 }
 
-bool ProjectAbs::createProFile () {
+// bool ProjectAbs::createProFile () {
 
-  return this->copyFiles ( { "project.pro" }, this->resource );
+//   return this->copyFiles ( { "project.pro" }, this->resource );
+// }
+
+ProjectAbs::Status ProjectAbs::getStatus () const {
+
+  return this->status;
+}
+
+bool ProjectAbs::isInitialized () const {
+
+  bool done = this->status == Status::initialized;
+  if ( !done ) {
+
+    qDebug () << "La clase no ha sido inicializada correctamente.";
+  }
+  return done;
 }

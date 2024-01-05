@@ -4,7 +4,7 @@ include(../../../qmakeBuilders/buildPaths.prf)
 
 # QT -= gui
 
-greaterThan(QT_MAJOR_VERSION, 6): QT += widgets core
+greaterThan(QT_MAJOR_VERSION, 5): QT += widgets core
 
 TARGET = {{project}}
 

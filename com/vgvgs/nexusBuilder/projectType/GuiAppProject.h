@@ -1,5 +1,5 @@
-#ifndef CONSOLEPROJECT_H
-#define CONSOLEPROJECT_H
+#ifndef GUIAPPPROJECT_H
+#define GUIAPPPROJECT_H
 
 // Librerías Internas
 // Internal Libraries
@@ -14,7 +14,7 @@
 
 // Librerías Qt
 // Qt Libraries
-#include <QWidget>
+#include <QObject>
 
 // Librerías C++
 // C++ Libraries
@@ -28,17 +28,18 @@ namespace NS_LEVEL_1 {
 
       namespace NS_BUILDER {
 
-        class BUILDER_EXPORT ConsoleProject : public AppProject {
+        class BUILDER_EXPORT GuiAppProject : public AppProject {
+
+            Q_OBJECT
 
           public :
-            ConsoleProject ();
+            GuiAppProject ( QObject *parent = nullptr );
             void init ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false ) override;
-            bool createDirStruct () override;
-            bool createProjectFiles () override;
+            // bool createProjectFiles () override;
         };
       }
     }
   }
 }
 
-#endif // CONSOLEPROJECT_H
+#endif // GUIAPPPROJECT_H

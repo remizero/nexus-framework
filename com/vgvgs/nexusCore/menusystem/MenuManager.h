@@ -24,12 +24,12 @@
 #include <QAction>
 #include <QDebug>
 #include <QMap>
-#include <QMenu>
-#include <QMenuBar>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QMenuBar>
 #include <QObject>
 #include <QString>
 #include <QStringList>
-#include <QToolBar>
+#include <QtWidgets/QToolBar>
 #include <QVariant>
 
 // Librerías C++

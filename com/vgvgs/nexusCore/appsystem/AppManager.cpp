@@ -53,6 +53,7 @@ int AppManager::execute ( QMainWindow *mainWindow ) {
 
     QScopedPointer<QCoreApplication> appInstance ( this->application );
     Logger::getInstance ();
+    Logger::getInstance ()->setGuiApp ( this->isGuiApp () );
 
     this->setAppInfo ( appInstance.data () );
     if ( qobject_cast<QApplication *> ( appInstance.data () ) ) {

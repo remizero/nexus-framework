@@ -1,10 +1,10 @@
-#ifndef GUIPROJECT_H
-#define GUIPROJECT_H
+#ifndef PROBUILDER_H
+#define PROBUILDER_H
 
 // Librerías Internas
 // Internal Libraries
 #include "Builder_global.h"
-#include "AppProject.h"
+#include "NexusBuilderUtils.h"
 
 // Librerías Externas
 // External Libraries
@@ -14,7 +14,9 @@
 
 // Librerías Qt
 // Qt Libraries
-#include <QWidget>
+#include <QDebug>
+#include <QObject>
+#include <QString>
 
 // Librerías C++
 // C++ Libraries
@@ -28,16 +30,17 @@ namespace NS_LEVEL_1 {
 
       namespace NS_BUILDER {
 
-        class BUILDER_EXPORT GuiProject : public AppProject {
+        class BUILDER_EXPORT ProBuilder : QObject {
+
+            Q_OBJECT
 
           public :
-            GuiProject ();
-            void init ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false ) override;
-            bool createProjectFiles () override;
+            ProBuilder ();
+            QString build ( QString resource );
         };
       }
     }
   }
 }
 
-#endif // GUIPROJECT_H
+#endif // PROBUILDER_H

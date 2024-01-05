@@ -8,7 +8,7 @@ include(../qmakeBuilders/createDirectoryStructure.prf)
 
 QT -= gui
 
-greaterThan(QT_MAJOR_VERSION, 6): QT +=
+greaterThan(QT_MAJOR_VERSION, 5): QT +=
 
 TARGET = shadow
 

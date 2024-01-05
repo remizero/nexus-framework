@@ -4,7 +4,7 @@ include(../../../qmakeBuilders/buildPaths.prf)
 
 # QT -= gui
 
-greaterThan(QT_MAJOR_VERSION, 6): QT += widgets core
+greaterThan(QT_MAJOR_VERSION, 5): QT += widgets core xml gui
 
 TARGET = nexusCore
 
@@ -47,7 +47,8 @@ SOURCES += \
   pluginsystem/PluginCreator.cpp \
   pluginsystem/PluginDependenciesInfo.cpp \
   pluginsystem/PluginInfo.cpp \
-  pluginsystem/PluginManager.cpp
+  pluginsystem/PluginManager.cpp \
+  resourcessystem/ResourcesManager.cpp
 
 HEADERS += \
   Core_global.h \
@@ -83,25 +84,31 @@ HEADERS += \
   pluginsystem/PluginInfo.h \
   pluginsystem/PluginInterface.h \
   pluginsystem/PluginManager.h \
-  reflectionsystem/RegisterClassInterface.h
+  reflectionsystem/RegisterClassInterface.h \
+  resourcessystem/ResourcesManager.h
 
 win32:CONFIG(release, debug|release): LIBS += \
   -L$$LIB_PATH/ -lNexusMacros \
-  -L$$LIB_PATH/ -lNexusPatternify
+  -L$$LIB_PATH/ -lNexusPatternify \
+  -L$$LIB_PATH/ -lNexusUtils
 else:win32:CONFIG(debug, debug|release): LIBS += \
   -L$$LIB_PATH/ -lNexusMacros \
-  -L$$LIB_PATH/ -lNexusPatternify
+  -L$$LIB_PATH/ -lNexusPatternify \
+  -L$$LIB_PATH/ -lNexusUtils
 else:unix: LIBS += \
   -L$$LIB_PATH/ -lNexusMacros \
-  -L$$LIB_PATH/ -lNexusPatternify
+  -L$$LIB_PATH/ -lNexusPatternify \
+  -L$$LIB_PATH/ -lNexusUtils
 
 INCLUDEPATH += \
   $$PWD/../nexusMacros \
-  $$PWD/../nexusPatternify
+  $$PWD/../nexusPatternify \
+  $$PWD/../nexusUtils
 
 DEPENDPATH += \
   $$PWD/../nexusMacros \
-  $$PWD/../nexusPatternify
+  $$PWD/../nexusPatternify \
+  $$PWD/../nexusUtils
 
 DEF_FILE += \
   export.def

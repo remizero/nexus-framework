@@ -1,0 +1,60 @@
+# Se definen las rutas de construcción del proyecto.
+# The project construction routes are defined.
+include({{pathQmakeBuilders}}/buildPaths.prf)
+
+QT       += core gui
+
+greaterThan(QT_MAJOR_VERSION, 5): QT += widgets
+
+TARGET = {{projectName}}
+
+# Normalización del nombre de proyecto.
+# Project name normalization.
+include ({{pathQmakeBuilders}}/normalizeProjectName.prf)
+TARGET = $$PROJECT_NAME
+
+# Definiciones particulares del tipo de proyecto.
+# Particular definitions of the project type.
+include ({{pathQmakeBuilders}}/{{projectConfiguration}}.prf)
+
+# Se definen los parámetros de configuración del compilador.
+# Compiler configuration parameters are defined.
+include({{pathQmakeBuilders}}/buildConfiguration.prf)
+
+SOURCES +=
+
+HEADERS +=
+
+RESOURCES += \
+  resources.qrc
+
+FORMS +=
+
+DEF_FILE +=
+
+DISTFILES +=
+
+win32:CONFIG(release, debug|release): LIBS += \
+  -L$$LIB_PATH/ -lNexusMacros \
+  -L$$LIB_PATH/ -lNexusCore \
+  -L$$LIB_PATH/ -lNexusPatternify
+else:win32:CONFIG(debug, debug|release): LIBS += \
+  -L$$LIB_PATH/ -lNexusMacros \
+  -L$$LIB_PATH/ -lNexusCore \
+  -L$$LIB_PATH/ -lNexusPatternify
+else:unix: LIBS += \
+  -L$$LIB_PATH/ -lNexusMacros \
+  -L$$LIB_PATH/ -lNexusCore \
+  -L$$LIB_PATH/ -lNexusPatternify
+
+INCLUDEPATH +=
+
+DEPENDPATH +=
+
+# Se copia la librería en la ruta destino del proyecto final.
+# The library is copied to the destination path of the final project.
+include ({{pathQmakeBuilders}}/{{copyFiles}}.prf)
+
+# Se definen las reglas y rutas de instalación del proyecto para las diferentes plataformas.
+# The rules and installation paths of the project are defined for the different platforms.
+include ({{pathQmakeBuilders}}/{{deploymentRules}}.prf)

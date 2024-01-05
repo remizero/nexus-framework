@@ -6,7 +6,7 @@ QT       -= gui
 
 CONFIG += c++17
 
-greaterThan(QT_MAJOR_VERSION, 6): QT +=
+greaterThan(QT_MAJOR_VERSION, 5): QT +=
 
 TARGET = nexusSingleinstance
 

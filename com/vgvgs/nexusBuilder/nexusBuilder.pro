@@ -4,7 +4,7 @@ include(../../../qmakeBuilders/buildPaths.prf)
 
 # QT -= gui
 
-greaterThan(QT_MAJOR_VERSION, 6): QT += core
+greaterThan(QT_MAJOR_VERSION, 5): QT += core
 
 TARGET = nexusBuilder
 
@@ -23,24 +23,39 @@ include(../../../qmakeBuilders/buildConfiguration.prf)
 
 SOURCES += \
   AppProject.cpp \
+  Builders.cpp \
   LibraryProject.cpp \
   NexusBuilder.cpp \
   NexusBuilderManager.cpp \
   NexusBuilderUtils.cpp \
   ProjectAbs.cpp \
   ProjectDirector.cpp \
+  RegisterClasses.cpp \
   Version.cpp \
-  projectType/ConsoleProject.cpp \
-  projectType/GuiProject.cpp \
-  projectType/NexusProject.cpp \
+  builders/AttributeBuilder.cpp \
+  builders/ClassBuilder.cpp \
+  builders/ExportsBuilder.cpp \
+  builders/FunctionBuilder.cpp \
+  builders/GlobalBuilder.cpp \
+  builders/MethodBuilder.cpp \
+  builders/ParamBuilder.cpp \
+  builders/ProBuilder.cpp \
+  builders/ResourcesBuilder.cpp \
+  builders/VersionBuilder.cpp \
+  projectType/BlankAppProject.cpp \
+  projectType/BlankLibraryProject.cpp \
+  projectType/ConsoleAppProject.cpp \
+  projectType/GuiAppProject.cpp \
+  projectType/NexusAppProject.cpp \
   projectType/PluginProject.cpp \
   projectType/ShareLibraryProject.cpp \
-  projectType/SimpleGuiProject.cpp \
+  projectType/SimpleGuiAppProject.cpp \
   projectType/StaticLibraryProject.cpp
 
 HEADERS += \
   AppProject.h \
   Builder_global.h \
+  Builders.h \
   LibraryProject.h \
   NexusBuilderManager.h \
   NexusBuilderUtils.h \
@@ -48,42 +63,60 @@ HEADERS += \
   NexusBuilder.h \
   ProjectAbs.h \
   ProjectInterface.h \
+  RegisterClasses.h \
   Version.h \
-  projectType/ConsoleProject.h \
-  projectType/GuiProject.h \
-  projectType/NexusProject.h \
+  builders/AttributeBuilder.h \
+  builders/ClassBuilder.h \
+  builders/ExportsBuilder.h \
+  builders/FunctionBuilder.h \
+  builders/GlobalBuilder.h \
+  builders/MethodBuilder.h \
+  builders/ParamBuilder.h \
+  builders/ProBuilder.h \
+  builders/ResourcesBuilder.h \
+  builders/VersionBuilder.h \
+  projectType/BlankAppProject.h \
+  projectType/BlankLibraryProject.h \
+  projectType/ConsoleAppProject.h \
+  projectType/GuiAppProject.h \
+  projectType/NexusAppProject.h \
   projectType/PluginProject.h \
   projectType/ShareLibraryProject.h \
-  projectType/SimpleGuiProject.h \
+  projectType/SimpleGuiAppProject.h \
   projectType/StaticLibraryProject.h
 
 win32:CONFIG(release, debug|release): LIBS += \
   -L$$LIB_PATH/ -lNexusMacros \
   -L$$LIB_PATH/ -lNexusPatternify \
-  -L$$LIB_PATH/ -lNexusResources \
-  -L$$LIB_PATH/ -lNexusCore
+  -L$$LIB_PATH/ -lNexusUtils \
+  -L$$LIB_PATH/ -lNexusCore \
+  -L$$LIB_PATH/ -lNexusResources
 else:win32:CONFIG(debug, debug|release): LIBS += \
   -L$$LIB_PATH/ -lNexusMacros \
   -L$$LIB_PATH/ -lNexusPatternify \
-  -L$$LIB_PATH/ -lNexusResources \
-  -L$$LIB_PATH/ -lNexusCore
+  -L$$LIB_PATH/ -lNexusUtils \
+  -L$$LIB_PATH/ -lNexusCore \
+  -L$$LIB_PATH/ -lNexusResources
 else:unix: LIBS += \
   -L$$LIB_PATH/ -lNexusMacros \
   -L$$LIB_PATH/ -lNexusPatternify \
-  -L$$LIB_PATH/ -lNexusResources \
-  -L$$LIB_PATH/ -lNexusCore
+  -L$$LIB_PATH/ -lNexusUtils \
+  -L$$LIB_PATH/ -lNexusCore \
+  -L$$LIB_PATH/ -lNexusResources
 
 INCLUDEPATH += \
   $$PWD/../nexusCore \
   $$PWD/../nexusMacros \
   $$PWD/../nexusPatternify \
-  $$PWD/../nexusResources
+  $$PWD/../nexusResources \
+  $$PWD/../nexusUtils
 
 DEPENDPATH += \
   $$PWD/../nexusCore \
   $$PWD/../nexusMacros \
   $$PWD/../nexusPatternify \
-  $$PWD/../nexusResources
+  $$PWD/../nexusResources \
+  $$PWD/../nexusUtils
 
 DEF_FILE += \
   export.def

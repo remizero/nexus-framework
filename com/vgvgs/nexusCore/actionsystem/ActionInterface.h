@@ -13,7 +13,7 @@
 
 // Librerías Qt
 // Qt Libraries
-#include <QWidget>
+#include <QtWidgets/QWidget>
 
 // Librerías C++
 // C++ Libraries

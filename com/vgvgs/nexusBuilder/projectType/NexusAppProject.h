@@ -1,5 +1,5 @@
-#ifndef NEXUSPROJECT_H
-#define NEXUSPROJECT_H
+#ifndef NEXUSAPPPROJECT_H
+#define NEXUSAPPPROJECT_H
 
 // Librerías Internas
 // Internal Libraries
@@ -14,7 +14,7 @@
 
 // Librerías Qt
 // Qt Libraries
-#include <QWidget>
+#include <QObject>
 
 // Librerías C++
 // C++ Libraries
@@ -28,17 +28,19 @@ namespace NS_LEVEL_1 {
 
       namespace NS_BUILDER {
 
-        class BUILDER_EXPORT NexusProject : public AppProject {
+        class BUILDER_EXPORT NexusAppProject : public AppProject {
+
+            Q_OBJECT
 
           public :
-            NexusProject ();
+            NexusAppProject ( QObject *parent = nullptr );
             void init ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false ) override;
-            bool createDirStruct () override;
-            bool createProjectFiles () override;
+            // bool createDirStruct () override;
+            // bool createProjectFiles () override;
         };
       }
     }
   }
 }
 
-#endif // NEXUSPROJECT_H
+#endif // NEXUSAPPPROJECT_H

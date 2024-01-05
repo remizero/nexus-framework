@@ -4,7 +4,7 @@
 using namespace NSLIB_BUILDER;
 
 
-PluginProject::PluginProject () {}
+PluginProject::PluginProject ( QObject *parent ) : LibraryProject ( parent ) {}
 
 void PluginProject::init ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) {
 
@@ -12,17 +12,17 @@ void PluginProject::init ( QString projectName, QString projectPath, QString pro
   this->resource = ":/projects/resources/library/plugin/";
 }
 
-bool PluginProject::createProjectFiles () {
+// bool PluginProject::createProjectFiles () {
 
-  bool done = LibraryProject::createProjectFiles ();
-  if ( done ) {
+//   bool done = LibraryProject::createProjectFiles ();
+//   if ( done ) {
 
-    done = this->copyFiles ( {
-                               "Plugin.h",
-                               "Plugin.cpp",
-                               "Plugin.json",
-                               "Plugin_global.h"
-                             }, this->resource );
-  }
-  return done;
-}
+//     done = this->copyFiles ( {
+//                                "Plugin.h",
+//                                "Plugin.cpp",
+//                                "Plugin.json",
+//                                "Plugin_global.h"
+//                              }, this->resource );
+//   }
+//   return done;
+// }

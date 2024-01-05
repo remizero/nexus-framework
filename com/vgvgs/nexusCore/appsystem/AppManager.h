@@ -22,11 +22,11 @@
 
 // Librerías Qt
 // Qt Libraries
-#include <QApplication>
+#include <QtWidgets/QApplication>
 #include <QCoreApplication>
 #include <QCommandLineParser>
 #include <QDebug>
-#include <QMainWindow>
+#include <QtWidgets/QMainWindow>
 #include <QObject>
 #include <QTimer>
 

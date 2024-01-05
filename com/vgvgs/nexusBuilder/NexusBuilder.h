@@ -4,14 +4,6 @@
 // Librerías Internas
 // Internal Libraries
 #include "Builder_global.h"
-#include "projectType/ConsoleProject.h"
-#include "projectType/GuiProject.h"
-#include "projectType/NexusProject.h"
-#include "projectType/PluginProject.h"
-#include "projectType/ShareLibraryProject.h"
-#include "projectType/SimpleGuiProject.h"
-#include "projectType/StaticLibraryProject.h"
-#include "ProjectInterface.h"
 
 // Librerías Externas
 // External Libraries
@@ -45,6 +37,8 @@ namespace NS_LEVEL_1 {
 
             enum ProjectId {
 
+              BLANKAPP,
+              BLANKLIBRARY,
               CONSOLE,
               GUI,
               NEXUS,
@@ -55,8 +49,6 @@ namespace NS_LEVEL_1 {
               NUM_PROJECTS
             };
             Q_ENUM ( ProjectId )
-            NexusBuilder ();
-            ProjectInterface *create ( ProjectId projectId );
             static const char *getProjectClassName ( ProjectId projectId );
             static ProjectId stringToProjectId ( const QString &projectType );
         };

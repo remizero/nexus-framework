@@ -4,7 +4,7 @@
 using namespace NSLIB_BUILDER;
 
 
-StaticLibraryProject::StaticLibraryProject () {}
+StaticLibraryProject::StaticLibraryProject ( QObject *parent ) : LibraryProject ( parent ) {}
 
 void StaticLibraryProject::init ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) {
 
@@ -12,7 +12,7 @@ void StaticLibraryProject::init ( QString projectName, QString projectPath, QStr
   this->resource = ":/projects/resources/library/static/";
 }
 
-bool StaticLibraryProject::createProjectFiles () {
+// bool StaticLibraryProject::createProjectFiles () {
 
-  return LibraryProject::createProjectFiles ();
-}
+//   return LibraryProject::createProjectFiles ();
+// }

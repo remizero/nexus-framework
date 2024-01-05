@@ -4,7 +4,7 @@
 using namespace NSLIB_BUILDER;
 
 
-ShareLibraryProject::ShareLibraryProject () {}
+ShareLibraryProject::ShareLibraryProject ( QObject *parent ) : LibraryProject ( parent ) {}
 
 void ShareLibraryProject::init ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) {
 
@@ -12,14 +12,14 @@ void ShareLibraryProject::init ( QString projectName, QString projectPath, QStri
   this->resource = ":/projects/resources/library/share/";
 }
 
-bool ShareLibraryProject::createProjectFiles () {
+// bool ShareLibraryProject::createProjectFiles () {
 
-  bool done = LibraryProject::createProjectFiles ();
-  if ( done ) {
+//   bool done = LibraryProject::createProjectFiles ();
+//   if ( done ) {
 
-    done = this->copyFiles ( {
-                               "Share_global.h"
-                             }, this->resource );
-  }
-  return done;
-}
+//     done = this->copyFiles ( {
+//                                "Share_global.h"
+//                              }, this->resource );
+//   }
+//   return done;
+// }

@@ -67,7 +67,10 @@ void Logger::exception ( const Exception &exception ) {
                                                exception.getFunction ().toUtf8 ().constData (),
                                                "Critical" ), exception.what () );
   // this->sendEmail ( customFormat ); // TODO descomentar esta línea.
-  QMessageBox::critical ( nullptr, "Mensaje de Error Crítico del Sistema.", customFormat );
+  if ( this->isGuiApp () ) {
+
+    QMessageBox::critical ( nullptr, "Mensaje de Error Crítico del Sistema.", customFormat );
+  }
   this->writeToLog ( customFormat + "\n" );
 }
 
@@ -79,29 +82,44 @@ void Logger::handleMessage ( QtMsgType type, const QMessageLogContext &context, 
 
     case QtDebugMsg :
 
-      // QMessageBox::warning ( nullptr, "Mensaje de Depuración del Sistema.", msgFormat );
+      if ( this->isGuiApp () ) {
+
+        // QMessageBox::warning ( nullptr, "Mensaje de Depuración del Sistema.", msgFormat );
+      }
       break;
 
     case QtInfoMsg :
 
-      // QMessageBox::information ( nullptr, "Mensaje de Información del Sistema.", msgFormat );
+      if ( this->isGuiApp () ) {
+
+        // QMessageBox::information ( nullptr, "Mensaje de Información del Sistema.", msgFormat );
+      }
       break;
 
     case QtWarningMsg :
 
-      // QMessageBox::warning ( nullptr, "Mensaje de Advertencia del Sistema.", msgFormat );
+      if ( this->isGuiApp () ) {
+
+        // QMessageBox::warning ( nullptr, "Mensaje de Advertencia del Sistema.", msgFormat );
+      }
       break;
 
     case QtCriticalMsg :
 
       // this->sendEmail ( msgFormat ); // TODO descomentar esta línea.
-      QMessageBox::critical ( nullptr, "Mensaje de Acción Crítica del Sistema.", msgFormat );
+      if ( this->isGuiApp () ) {
+
+        QMessageBox::critical ( nullptr, "Mensaje de Acción Crítica del Sistema.", msgFormat );
+      }
       break;
 
     case QtFatalMsg :
 
       // this->sendEmail ( msgFormat ); // TODO descomentar esta línea.
-      QMessageBox::critical ( nullptr, "Mensaje Fatal del Sistema.", msgFormat );
+      if ( this->isGuiApp () ) {
+
+        QMessageBox::critical ( nullptr, "Mensaje Fatal del Sistema.", msgFormat );
+      }
       break;
   }
   this->writeToLog ( msgFormat + "\n" );
@@ -138,6 +156,11 @@ void Logger::installMessageHandler () {
   #endif
 }
 
+bool Logger::isGuiApp () {
+
+  return this->guiApp;
+}
+
 void Logger::messageHandler ( QtMsgType type, const QMessageLogContext &context, const QString &msg ) {
 
   Logger::getInstance ()->handleMessage ( type, context, msg );
@@ -149,8 +172,8 @@ void Logger::open () {
 
     if ( this->logFile.isNull () ) {
 
-      this->logFile.reset ( new QFile ( this->filePath ) );
-      if ( this->logFile.data ()->open ( this->openMode ) ) {
+      this->logFile.reset ( NSLIB_UTILS::Files::load ( this->filePath, this->openMode ) );
+      if ( this->logFile.data ()->isOpen () ) {
 
         this->checkAndRotateLog ();
 
@@ -158,7 +181,10 @@ void Logger::open () {
 
         QString message ( "No se pudo cargar el archivo de registro de la aplicación." );
         qWarning () << message;
-        QMessageBox::warning ( nullptr, "Error de registro", message );
+        if ( this->isGuiApp () ) {
+
+          QMessageBox::warning ( nullptr, "Error de registro", message );
+        }
       }
     } else {
 
@@ -172,7 +198,10 @@ void Logger::open () {
 
           QString message ( "No se pudo abrir el archivo de registro de la aplicación." );
           qWarning () << message;
-          QMessageBox::warning ( nullptr, "Error de registro", message );
+          if ( this->isGuiApp () ) {
+
+            QMessageBox::warning ( nullptr, "Error de registro", message );
+          }
         }
       } else {
 
@@ -183,8 +212,8 @@ void Logger::open () {
 
     if ( this->logFile.isNull () ) {
 
-      this->logFile.reset ( new QFile ( this->filePath ) );
-      if ( this->logFile.data ()->open ( this->openMode ) ) {
+      this->logFile.reset ( NSLIB_UTILS::Files::load ( this->filePath, this->openMode ) );
+      if ( this->logFile.data ()->isOpen () ) {
 
         this->checkAndRotateLog ();
 
@@ -192,7 +221,10 @@ void Logger::open () {
 
         QString message ( "No se pudo crear un nuevo archivo de registro de la aplicación." );
         qWarning () << message;
-        QMessageBox::warning ( nullptr, "Error de registro", message );
+        if ( this->isGuiApp () ) {
+
+          QMessageBox::warning ( nullptr, "Error de registro", message );
+        }
       }
     } else {
 
@@ -206,7 +238,10 @@ void Logger::open () {
 
           QString message ( "No se pudo abrir el archivo de registro de la aplicación." );
           qWarning () << message;
-          QMessageBox::warning ( nullptr, "Error de registro", message );
+          if ( this->isGuiApp () ) {
+
+            QMessageBox::warning ( nullptr, "Error de registro", message );
+          }
         }
       } else {
 
@@ -274,6 +309,11 @@ void Logger::sendEmail ( QString message ) {
 //  smtp.quit ();
 }
 
+void Logger::setGuiApp ( bool guiApp ) {
+
+  this->guiApp = guiApp;
+}
+
 void Logger::uninstallMessageHandler () {
 
   qSetMessagePattern ( "%{message}" );
@@ -292,6 +332,9 @@ void Logger::writeToLog ( const QString &message ) {
 
   } else {
 
-    QMessageBox::critical ( nullptr, "Error de registro", "No se pudo abrir el archivo de registro." );
+    if ( this->isGuiApp () ) {
+
+      QMessageBox::critical ( nullptr, "Error de registro", "No se pudo abrir el archivo de registro." );
+    }
   }
 }

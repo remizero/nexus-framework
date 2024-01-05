@@ -6,7 +6,7 @@ QT       -=
 
 CONFIG += c++17
 
-greaterThan(QT_MAJOR_VERSION, 6): QT += core gui widgets
+greaterThan(QT_MAJOR_VERSION, 5): QT += core gui widgets
 
 TARGET = nexusSplashscreen
 

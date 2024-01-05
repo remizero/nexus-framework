@@ -70,5 +70,8 @@
     </qresource>
     <qresource prefix="/templates">
         <file>resources/projects/pro.template</file>
+        <file>resources/projects/global.h.template</file>
+        <file>resources/projects/Version.cpp.template</file>
+        <file>resources/projects/Version.h.template</file>
     </qresource>
 </RCC>

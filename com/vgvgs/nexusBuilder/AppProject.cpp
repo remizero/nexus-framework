@@ -4,30 +4,35 @@
 using namespace NSLIB_BUILDER;
 
 
-AppProject::AppProject () {}
+AppProject::AppProject ( QObject *parent ) : ProjectAbs ( parent ) {}
 
 void AppProject::init ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) {
 
   ProjectAbs::init ( projectName, projectPath, projecType, verboseMode );
 }
 
-bool AppProject::createProjectFiles () {
+// bool AppProject::createProjectDir () {
 
-  bool done = false;
-  if ( ( done = this->copyFiles ( {
-                                    "main.cpp",
-                                    "export.def",
-                                    "resources.qrc"
-                                  }, this->resource ) ) ) {
+//   return ProjectAbs::createProjectDir ();
+// }
 
-    done = this->copyFiles ( {
-                               "config.xml"
-                             }, this->resource + "resources/", "resources" );
-  }
-  return done;
-}
+// bool AppProject::createProjectFiles () {
 
-bool AppProject::createDirStruct () {
+//   bool done = false;
+//   if ( ( done = this->copyFiles ( {
+//                                     "main.cpp",
+//                                     "export.def",
+//                                     "resources.qrc"
+//                                   }, this->resource ) ) ) {
 
-  return this->createDir ( { "resources" } );
-}
+//     done = this->copyFiles ( {
+//                                "config.xml"
+//                              }, this->resource + "resources/", "resources" );
+//   }
+//   return done;
+// }
+
+// bool AppProject::createDirStruct () {
+
+//   return this->createDir ( { "resources" } );
+// }

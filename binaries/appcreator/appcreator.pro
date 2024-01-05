@@ -2,9 +2,9 @@
 # The project construction routes are defined.
 include(../../qmakeBuilders/buildPaths.prf)
 
-QT       += core gui
+QT += core gui
 
-greaterThan(QT_MAJOR_VERSION, 6): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 5): QT += widgets
 
 TARGET = appCreator
 
@@ -48,36 +48,41 @@ DISTFILES += \
 
 win32:CONFIG(release, debug|release): LIBS += \
   -L$$LIB_PATH/ -lNexusMacros \
-  -L$$LIB_PATH/ -lNexusCore \
   -L$$LIB_PATH/ -lNexusPatternify \
+  -L$$LIB_PATH/ -lNexusUtils \
+  -L$$LIB_PATH/ -lNexusCore \
   -L$$LIB_PATH/ -lNexusResources \
   -L$$LIB_PATH/ -lNexusBuilder
 else:win32:CONFIG(debug, debug|release): LIBS += \
   -L$$LIB_PATH/ -lNexusMacros \
-  -L$$LIB_PATH/ -lNexusCore \
   -L$$LIB_PATH/ -lNexusPatternify \
+  -L$$LIB_PATH/ -lNexusUtils \
+  -L$$LIB_PATH/ -lNexusCore \
   -L$$LIB_PATH/ -lNexusResources \
   -L$$LIB_PATH/ -lNexusBuilder
 else:unix: LIBS += \
   -L$$LIB_PATH/ -lNexusMacros \
-  -L$$LIB_PATH/ -lNexusCore \
   -L$$LIB_PATH/ -lNexusPatternify \
+  -L$$LIB_PATH/ -lNexusUtils \
+  -L$$LIB_PATH/ -lNexusCore \
   -L$$LIB_PATH/ -lNexusResources \
   -L$$LIB_PATH/ -lNexusBuilder
 
 INCLUDEPATH += \
-  $$PWD/../../com/vgvgs/nexusMacros \
   $$PWD/../../com/vgvgs/nexusCore \
+  $$PWD/../../com/vgvgs/nexusBuilder \
+  $$PWD/../../com/vgvgs/nexusMacros \
   $$PWD/../../com/vgvgs/nexusPatternify \
   $$PWD/../../com/vgvgs/nexusResources \
-  $$PWD/../../com/vgvgs/nexusBuilder
+  $$PWD/../../com/vgvgs/nexusUtils
 
 DEPENDPATH += \
-  $$PWD/../../com/vgvgs/nexusMacros \
   $$PWD/../../com/vgvgs/nexusCore \
+  $$PWD/../../com/vgvgs/nexusBuilder \
+  $$PWD/../../com/vgvgs/nexusMacros \
   $$PWD/../../com/vgvgs/nexusPatternify \
   $$PWD/../../com/vgvgs/nexusResources \
-  $$PWD/../../com/vgvgs/nexusBuilder
+  $$PWD/../../com/vgvgs/nexusUtils
 
 # Se copia la librería en la ruta destino del proyecto final.
 # The library is copied to the destination path of the final project.

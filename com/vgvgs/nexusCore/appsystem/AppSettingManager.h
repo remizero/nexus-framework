@@ -14,9 +14,9 @@
 // Librerías Qt
 // Qt Libraries
 #include <QDebug>
-#include <QDockWidget>
-#include <QMainWindow>
-#include <QMessageBox>
+#include <QtWidgets/QDockWidget>
+#include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMessageBox>
 #include <QSettings>
 #include <QMap>
 #include <QString>

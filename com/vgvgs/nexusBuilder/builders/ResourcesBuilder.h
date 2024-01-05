@@ -1,10 +1,9 @@
-#ifndef SIMPLEGUIPROJECT_H
-#define SIMPLEGUIPROJECT_H
+#ifndef RESOURCESBUILDER_H
+#define RESOURCESBUILDER_H
 
 // Librerías Internas
 // Internal Libraries
 #include "Builder_global.h"
-#include "AppProject.h"
 
 // Librerías Externas
 // External Libraries
@@ -14,7 +13,8 @@
 
 // Librerías Qt
 // Qt Libraries
-#include <QWidget>
+#include <QDebug>
+#include <QObject>
 
 // Librerías C++
 // C++ Libraries
@@ -28,16 +28,14 @@ namespace NS_LEVEL_1 {
 
       namespace NS_BUILDER {
 
-        class BUILDER_EXPORT SimpleGuiProject : public AppProject {
+        class BUILDER_EXPORT ResourcesBuilder {
 
           public :
-            SimpleGuiProject ();
-            void init ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false ) override;
-            bool createProjectFiles () override;
+            ResourcesBuilder ();
         };
       }
     }
   }
 }
 
-#endif // SIMPLEGUIPROJECT_H
+#endif // RESOURCESBUILDER_H

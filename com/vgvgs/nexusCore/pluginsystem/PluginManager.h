@@ -66,9 +66,9 @@ namespace NS_LEVEL_1 {
           signals :
 
           private :
-            QList<QObject *> loadedPlugins;
+                           QList<QObject *> loadedPlugins;
             QHash<QString, QPluginLoader *> loaders;
-            //static bool initialized;
+                              //static bool initialized;
             PluginManager ( QObject *parent = nullptr );
             friend class NSLIB_PATTERNIFY::Singleton<PluginManager>;
         };

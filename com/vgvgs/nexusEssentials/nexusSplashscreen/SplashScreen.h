@@ -18,9 +18,9 @@
 #include <QDebug>
 #include <QDir>
 #include <QPainter>
-#include <QProgressBar>
+#include <QtWidgets/QProgressBar>
 #include <QSettings>
-#include <QSplashScreen>
+#include <QtWidgets/QSplashScreen>
 
 // TODO https://amin-ahmadi.com/2016/03/15/how-to-add-a-splash-screen-for-your-qt-application/
 

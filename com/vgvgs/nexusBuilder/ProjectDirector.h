@@ -14,7 +14,8 @@
 
 // Librerías Qt
 // Qt Libraries
-#include <QWidget>
+#include <QDebug>
+#include <QObject>
 
 // Librerías C++
 // C++ Libraries
@@ -31,8 +32,7 @@ namespace NS_LEVEL_1 {
         class BUILDER_EXPORT ProjectDirector {
 
           public :
-            ProjectDirector ();
-            bool create ( ProjectInterface *project );
+            static bool create ( ProjectInterface *project );
         };
       }
     }

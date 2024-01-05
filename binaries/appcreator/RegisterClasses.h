@@ -9,6 +9,7 @@
 // Librerías Externas
 // External Libraries
 #include "Core_global.h"
+#include "Patternify_global.h"
 #include "creational/Singleton.h"
 #include "reflectionsystem/RegisterClassInterface.h"
 

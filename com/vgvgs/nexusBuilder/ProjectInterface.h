@@ -34,11 +34,11 @@ namespace NS_LEVEL_1 {
             virtual ~ProjectInterface () {}
             virtual void init ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false ) = 0;
             virtual bool createProjectDir () = 0;
-            virtual bool createProFile () = 0;
-            virtual bool createDirStruct () = 0;
-            virtual bool createProjectFiles () = 0;
-            virtual bool createCommandFiles () = 0;
-            virtual bool createResourceFiles () = 0;
+            // virtual bool createProFile () = 0;
+            // virtual bool createDirStruct () = 0;
+            // virtual bool createProjectFiles () = 0;
+            // virtual bool createCommandFiles () = 0;
+            // virtual bool createResourceFiles () = 0;
         };
       }
     }

@@ -1,0 +1,3 @@
+LIBRARY
+EXPORTS
+  qInitResources_{{resourcesFileName}}
