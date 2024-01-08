@@ -34,7 +34,7 @@ namespace NS_LEVEL_1 {
 
           public :
             BlankLibraryProject ( QObject *parent = nullptr );
-            void init ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false ) override;
+            void init ( QString projectName, QString projectPath, QString projectType, bool verboseMode = false ) override;
         };
       }
     }

@@ -8,18 +8,17 @@ bool ProjectDirector::create ( ProjectInterface *project ) {
 
   if ( project->createProjectDir () ) {
 
-      return true;
-    // if ( project->createProFile () ) {
+    if ( project->createDirStruct () ) {
 
-    //   if ( project->createDirStruct () ) {
+      if ( project->createProFile () ) {
 
-    //     if ( project->createProjectFiles () ) {
+        if ( project->createProjectFiles () ) {
 
-    //       if ( project->createResourceFiles () ) {
+        //   if ( project->createResourceFiles () ) {
 
-    //         if ( project->createCommandFiles () ) {
+        //     if ( project->createCommandFiles () ) {
 
-    //           return true;
+              return true;
 
     //         } else {
 
@@ -29,21 +28,21 @@ bool ProjectDirector::create ( ProjectInterface *project ) {
 
     //         qDebug () << "No se pudo crear los archivos de recursos.";
     //       }
-    //     } else {
+        } else {
 
-    //       qDebug () << "No se pudo crear la estructura de directorios del proyecto.";
-    //     }
-    //   } else {
+          qDebug () << "No se pudo crear los archivos del proyecto.";
+        }
+      } else {
 
-    //     qDebug () << "No se pudo crear los archivos del proyecto.";
-    //   }
-    // } else {
+        qDebug () << "No se pudo crear el archivo .pro del proyecto.";
+      }
+    } else {
 
-    //   qDebug () << "No se pudo crear el archivo .pro del proyecto.";
-    // }
+      qDebug () << "No se pudo crear la estructura de directorios del proyecto.";
+    }
   } else {
 
-    qDebug () << "No se pudo crear el directorio del proyecto.";
+    qDebug () << "The project directory could not be created.";
   }
   return false;
 }

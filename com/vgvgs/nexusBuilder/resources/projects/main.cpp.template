@@ -1,0 +1,19 @@
+// Librerías Internas
+// Internal Libraries
+
+// Librerías Externas
+// External Libraries
+
+// Librerías de terceros
+// third-party Library
+
+// Librerías Qt
+// Qt Libraries
+#include <QDebug>
+
+// Librerías C++
+// C++ Libraries
+
+
+int main ( int argc, char *argv [] ) {
+}

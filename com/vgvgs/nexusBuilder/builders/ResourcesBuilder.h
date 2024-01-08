@@ -31,7 +31,8 @@ namespace NS_LEVEL_1 {
         class BUILDER_EXPORT ResourcesBuilder {
 
           public :
-            ResourcesBuilder ();
+            ResourcesBuilder ( QObject *parent = nullptr );
+            QString build ( QString resource, const QString &projectName, NexusBuilder::ProjectId projectType );
         };
       }
     }

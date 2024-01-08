@@ -4,6 +4,7 @@
 // Librerías Internas
 // Internal Libraries
 #include "Builder_global.h"
+#include "NexusBuilder.h"
 #include "NexusBuilderUtils.h"
 #include "ProjectInterface.h"
 #include "builders/ProBuilder.h"
@@ -18,8 +19,9 @@
 // Librerías Qt
 // Qt Libraries
 #include <QDir>
-#include <QStringList>
 #include <QObject>
+#include <QStringList>
+#include <QVariant>
 
 // Librerías C++
 // C++ Libraries
@@ -41,38 +43,40 @@ namespace NS_LEVEL_1 {
           public :
             enum Status {
 
-              initialized,
-              notInitialized
+              INITIALIZED,
+              NOT_INITIALIZED
             };
             Q_ENUM ( Status )
-            ProjectAbs ( QObject *parent = nullptr );
-            virtual ~ProjectAbs () {}
-            void init ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false ) override;
+            ProjectAbs ( QObject *parent = nullptr ); // (LISTO)
+            virtual ~ProjectAbs () {} // (LISTO)
+            void init ( QString projectName, QString projectPath, QString projectType, bool verboseMode = false ) override; // (LISTO)
             bool createProjectDir () override; // LISTO
-            // bool createProFile () override;
-            // virtual bool createDirStruct () override { return true; }
-            // virtual bool createProjectFiles () override { return true; }
+            bool createProFile () override; // (LISTO)
+            virtual bool createDirStruct () override { return true; }
+            virtual bool createProjectFiles () override { return true; }
             // virtual bool createCommandFiles () override { return true; }
             // virtual bool createResourceFiles () override { return true; }
-            Status getStatus () const;
-            bool isInitialized () const;
+            Status getStatus () const; // (LISTO)
+            bool isInitialized () const; // (LISTO)
 
           protected :
-                QString name;
-                QString normalizedProjectName;
-                QString path;
-                QString prefix;
-                QString type;
-                QString resource;
-            QStringList contentToken;
-            QStringList fileNameToken;
-                 Status status;
-                   bool verboseMode;
-             ProBuilder *proBuilder;
-            bool copyFiles ( QStringList resourceList, QString resoursePath, QString destinyPath = "" );
-            bool createDir ( QStringList dirList );
-            QString normalizeFileName ( QString fileName );
-            QString normalizeContentFile ( QString fileContent );
+                        QStringList dirList;
+                            QString name; // (LISTO)
+                            QString normalizedProjectName; // (LISTO)
+                            QString path; // (LISTO)
+                            QString prefix; // (LISTO)
+            NexusBuilder::ProjectId projectType; // (LISTO)
+                        QStringList projectFileList; // (LISTO)
+                            QString resource; // (LISTO)
+                        QStringList contentToken;
+                        QStringList fileNameToken;
+                             Status status; // (LISTO)
+                               bool verboseMode; // (LISTO)
+                         ProBuilder *proBuilder; // (LISTO)
+            // bool copyFiles ( QStringList resourceList, QString resoursePath, QString destinyPath = "" );
+            // bool createDir ( QStringList dirList );
+            QString normalizeFileName ( QString fileName ); // (LISTO)
+            // QString normalizeContentFile ( QString fileContent );
         };
       }
     }

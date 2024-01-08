@@ -1,0 +1,39 @@
+#include "CommandProcessor.h"
+
+
+CommandProcessor::CommandProcessor () {}
+
+void CommandProcessor::processCommands ( QCommandLineParser &parser, QMap<QString, NSLIB_CORE::CommandInterface *> commandMap ) {
+
+  // Agregar los argumentos posicionales requeridos con su respectivas descripciones, de la forma siguiente.
+  // Add the required positional arguments with their respective descriptions, as follows.
+  // parser.addPositionalArgument ( "argument_1", QCoreApplication::translate ( "context", "description_1." ) );
+  const QStringList optionList = parser.optionNames ();
+  QString projectType;
+  bool verboseMode = false;
+
+  for ( const QString &option : optionList ) {
+
+    if ( parser.isSet ( option ) ) {
+
+      if ( ( option.compare ( "V" ) == 0 ) || ( option.compare ( "verbose" ) == 0 ) ) {
+
+        verboseMode = true;
+        qDebug () << "Verbose mode is enabled...";
+        qDebug () << "\n";
+      }
+    }
+    // Agregar la implementación de los argumentos indicados para el objeto parser de tipo QCommandLineParser.
+    // Add the implementation of the indicated arguments for the parser object of type QCommandLineParser.
+  }
+  QStringList positionalArguments = parser.positionalArguments ();
+  if ( !positionalArguments.isEmpty () ) {
+
+    // Agregar la implementación de las acciones a realizar en función de los argumentos posicionales indicados para el objeto parser de tipo QCommandLineParser.
+    // Add the implementation of the actions to be performed based on the positional arguments indicated for the parser object of type QCommandLineParser.
+
+  } else {
+
+    qDebug () << "Arguments are missing.";
+  }
+}

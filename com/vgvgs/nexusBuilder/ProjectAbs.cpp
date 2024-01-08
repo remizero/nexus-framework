@@ -7,111 +7,66 @@ using namespace NSLIB_BUILDER;
 ProjectAbs::ProjectAbs ( QObject *parent ) : QObject ( parent ) {
 
   this->verboseMode = false;
-  this->status = Status::notInitialized;
+  this->status = Status::NOT_INITIALIZED;
+  this->projectType = NexusBuilder::ProjectId::NUM_PROJECTS;
   this->proBuilder = new ProBuilder ();
 }
 
-void ProjectAbs::init ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) {
+void ProjectAbs::init ( QString projectName, QString projectPath, QString projectType, bool verboseMode ) {
 
-  this->name        = projectName;
-  this->path        = projectPath;
-  this->prefix      = "nexus";
-  this->type        = projecType;
-  this->verboseMode = verboseMode;
-  this->fileNameToken << "project" << "Plugin" << "Share";
-  this->contentToken << "PLUGIN" << "MACROEXPORT" << "CLASSNAME" << "CLASSDEFINITION" << "{{project}}";
+  this->name                  = projectName;
+  this->path                  = projectPath;
+  this->prefix                = "nexus";
+  this->projectType           = NexusBuilder::stringToProjectId ( projectType );
+  this->verboseMode           = verboseMode;
+  this->fileNameToken         << "project" << "Plugin" << "Share";
+  this->contentToken          << "PLUGIN" << "MACROEXPORT" << "CLASSNAME" << "CLASSDEFINITION" << "{{project}}";
   this->normalizedProjectName = NexusBuilderUtils::normalizeProjectName ( projectName );
+  this->resource              = ":/templates/resources/projects/";
+  NexusBuilderUtils::getQmakeBuildersPath ();
+  this->status                = Status::INITIALIZED;
   // MACROEXPORT     debe ser remplazado capitalizando toda la palabra.
   // CLASSNAME       debe ser remplazado capitalizando la primera letra.
   // CLASSDEFINITION debe ser remplazado capitalizando toda la palabra.
-  NexusBuilderUtils::getQmakeBuildersPath ();
-  this->status = Status::initialized;
 }
 
-bool ProjectAbs::copyFiles ( QStringList resourceList, QString resoursePath, QString destinyPath ) {
+bool ProjectAbs::createProjectDir () {
 
-  bool done = false;
-  const QString projectPath = this->path;
-  QDir projectDir ( projectPath );
-  if ( projectDir.exists () ) {
+  if ( this->isInitialized () ) {
 
-    for ( const QString &resourceName : resourceList ) {
+    if ( NexusBuilderUtils::createDirectory ( this->path, this->normalizedProjectName ) ) {
 
-      QFile *ioDeviceFile = NSLIB_UTILS::Files::load ( resoursePath + resourceName );
-      if ( ioDeviceFile ) {
-
-        QTextStream in ( ioDeviceFile );
-        QString fileContent = in.readAll ();
-        ioDeviceFile->close ();
-        fileContent = this->normalizeContentFile ( fileContent );
-
-        QString fileName = this->normalizeFileName ( resourceName );
-        QString destinationPath = projectPath + QDir::separator ();
-        if ( destinyPath.isEmpty () ) {
-
-          destinationPath.append ( fileName );
-
-        } else {
-
-          destinationPath.append ( destinyPath + QDir::separator () + fileName );
-        }
-        QFile *newIoDeviceFile = NSLIB_UTILS::Files::load ( destinationPath, QIODevice::WriteOnly | QIODevice::Text );
-        if ( newIoDeviceFile ) {
-
-          QTextStream out ( newIoDeviceFile );
-          out << fileContent;
-          newIoDeviceFile->close ();
-          if ( verboseMode ) {
-
-            qDebug () << "Copiando archivo en directorio de proyecto: " << destinationPath;
-          }
-          done = true;
-
-        } else {
-
-          qDebug () << "No se pudo crear el archivo de proyecto " + destinationPath;
-          done = false;
-          break;
-        }
-      } else {
-
-        qDebug () << "No se pudo abrir el archivo de recursos.";
-        done = false;
-        break;
-      }
+      this->path.append ( this->normalizedProjectName );
+      return true;
     }
-  } else {
-
-    qDebug () << "El directorio de proyecto no existe o no se encuentra: " << projectDir.path ();
   }
-  return done;
+  return false;
 }
 
-bool ProjectAbs::createDir ( QStringList dirList ) {
+bool ProjectAbs::createProFile () {
 
-  bool done = false;
-  QDir projectDir ( this->path );
-  if ( projectDir.exists () ) {
+  if ( this->isInitialized () ) {
 
-    for ( const QString &dir : dirList ) {
+    if ( NSLIB_UTILS::Files::save ( this->path + QDir::separator () + this->normalizedProjectName + ".pro",
+                                    QVariant::fromValue ( this->proBuilder->build ( this->resource, this->normalizedProjectName, this->projectType ) ) ) ) {
 
-      QString newPathDir = projectDir.filePath ( dir );
-      if ( projectDir.mkpath ( newPathDir ) ) {
-
-        if ( this->verboseMode ) {
-
-          qDebug () << "Creado directorio de proyecto: " << newPathDir;
-        }
-      } else {
-
-        qDebug () << "Error al crear el directorio de proyecto: " << newPathDir;
-      }
+      return true;
     }
-    done = true;
+  }
+  return false;
+}
 
-  } else {
+ProjectAbs::Status ProjectAbs::getStatus () const {
 
-    qDebug () << "El directorio de proyecto no existe o no se encuentra: " << projectDir.path ();
+  return this->status;
+}
+
+bool ProjectAbs::isInitialized () const {
+
+  bool done = this->status == Status::INITIALIZED;
+  if ( !done ) {
+
+    qDebug () << "La clase no ha sido inicializada correctamente.";
   }
   return done;
 }
@@ -130,70 +85,124 @@ QString ProjectAbs::normalizeFileName ( QString fileName ) {
   return fileName;
 }
 
-QString ProjectAbs::normalizeContentFile ( QString fileContent ) {
+// bool ProjectAbs::copyFiles ( QStringList resourceList, QString resoursePath, QString destinyPath ) {
 
-  for ( const QString &valor : this->contentToken ) {
+//   bool done = false;
+//   const QString projectPath = this->path;
+//   QDir projectDir ( projectPath );
+//   if ( projectDir.exists () ) {
 
-    if ( valor.compare ( "PLUGIN" ) == 0 ) {
+//     for ( const QString &resourceName : resourceList ) {
 
-      QString aux = this->name;
-      aux [ 0 ] = aux [ 0 ].toUpper ();
-      fileContent.replace ( valor, aux );
+//       QFile *ioDeviceFile = NSLIB_UTILS::Files::load ( resoursePath + resourceName );
+//       if ( ioDeviceFile ) {
 
-    } else if ( valor.compare ( "MACROEXPORT" ) == 0 ) {
+//         QTextStream in ( ioDeviceFile );
+//         QString fileContent = in.readAll ();
+//         ioDeviceFile->close ();
+//         fileContent = this->normalizeContentFile ( fileContent );
 
-      QString aux = this->name;
-      fileContent.replace ( valor, aux.toUpper () );
+//         QString fileName = this->normalizeFileName ( resourceName );
+//         QString destinationPath = projectPath + QDir::separator ();
+//         if ( destinyPath.isEmpty () ) {
 
-    } else if ( valor.compare ( "CLASSNAME" ) == 0 ) {
+//           destinationPath.append ( fileName );
 
-      QString aux = this->name;
-      aux [ 0 ] = aux [ 0 ].toUpper ();
-      fileContent.replace ( valor, aux );
+//         } else {
 
-    } else if ( valor.compare ( "CLASSDEFINITION" ) == 0 ) {
+//           destinationPath.append ( destinyPath + QDir::separator () + fileName );
+//         }
+//         QFile *newIoDeviceFile = NSLIB_UTILS::Files::load ( destinationPath, QIODevice::WriteOnly | QIODevice::Text );
+//         if ( newIoDeviceFile ) {
 
-      QString aux = this->name;
-      fileContent.replace ( valor, aux.toUpper () );
+//           QTextStream out ( newIoDeviceFile );
+//           out << fileContent;
+//           newIoDeviceFile->close ();
+//           if ( verboseMode ) {
 
-    } else if ( valor.compare ( "{{project}}" ) == 0 ) {
+//             qDebug () << "Copiando archivo en directorio de proyecto: " << destinationPath;
+//           }
+//           done = true;
 
-      fileContent.replace ( valor, this->name );
-    }
-  }
-  return fileContent;
-}
+//         } else {
 
-bool ProjectAbs::createProjectDir () {
+//           qDebug () << "No se pudo crear el archivo de proyecto " + destinationPath;
+//           done = false;
+//           break;
+//         }
+//       } else {
 
-  if ( this->isInitialized () ) {
+//         qDebug () << "No se pudo abrir el archivo de recursos.";
+//         done = false;
+//         break;
+//       }
+//     }
+//   } else {
 
-    if ( NexusBuilderUtils::createDirectory ( this->path, NexusBuilderUtils::normalizeProjectName ( this->name ) ) ) {
-
-      this->path.append ( this->name );
-      this->proBuilder->build ( this->resource );
-      return true;
-    }
-  }
-  return false;
-}
-
-// bool ProjectAbs::createProFile () {
-
-//   return this->copyFiles ( { "project.pro" }, this->resource );
+//     qDebug () << "El directorio de proyecto no existe o no se encuentra: " << projectDir.path ();
+//   }
+//   return done;
 // }
 
-ProjectAbs::Status ProjectAbs::getStatus () const {
+// bool ProjectAbs::createDir ( QStringList dirList ) {
 
-  return this->status;
-}
+//   bool done = false;
+//   QDir projectDir ( this->path );
+//   if ( projectDir.exists () ) {
 
-bool ProjectAbs::isInitialized () const {
+//     for ( const QString &dir : dirList ) {
 
-  bool done = this->status == Status::initialized;
-  if ( !done ) {
+//       QString newPathDir = projectDir.filePath ( dir );
+//       if ( projectDir.mkpath ( newPathDir ) ) {
 
-    qDebug () << "La clase no ha sido inicializada correctamente.";
-  }
-  return done;
-}
+//         if ( this->verboseMode ) {
+
+//           qDebug () << "Creado directorio de proyecto: " << newPathDir;
+//         }
+//       } else {
+
+//         qDebug () << "Error al crear el directorio de proyecto: " << newPathDir;
+//       }
+//     }
+//     done = true;
+
+//   } else {
+
+//     qDebug () << "El directorio de proyecto no existe o no se encuentra: " << projectDir.path ();
+//   }
+//   return done;
+// }
+
+// QString ProjectAbs::normalizeContentFile ( QString fileContent ) {
+
+//   for ( const QString &valor : this->contentToken ) {
+
+//     if ( valor.compare ( "PLUGIN" ) == 0 ) {
+
+//       QString aux = this->name;
+//       aux [ 0 ] = aux [ 0 ].toUpper ();
+//       fileContent.replace ( valor, aux );
+
+//     } else if ( valor.compare ( "MACROEXPORT" ) == 0 ) {
+
+//       QString aux = this->name;
+//       fileContent.replace ( valor, aux.toUpper () );
+
+//     } else if ( valor.compare ( "CLASSNAME" ) == 0 ) {
+
+//       QString aux = this->name;
+//       aux [ 0 ] = aux [ 0 ].toUpper ();
+//       fileContent.replace ( valor, aux );
+
+//     } else if ( valor.compare ( "CLASSDEFINITION" ) == 0 ) {
+
+//       QString aux = this->name;
+//       fileContent.replace ( valor, aux.toUpper () );
+
+//     } else if ( valor.compare ( "{{project}}" ) == 0 ) {
+
+//       fileContent.replace ( valor, this->name );
+//     }
+//   }
+//   return fileContent;
+// }

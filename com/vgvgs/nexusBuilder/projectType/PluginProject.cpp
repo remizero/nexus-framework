@@ -6,9 +6,9 @@ using namespace NSLIB_BUILDER;
 
 PluginProject::PluginProject ( QObject *parent ) : LibraryProject ( parent ) {}
 
-void PluginProject::init ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) {
+void PluginProject::init ( QString projectName, QString projectPath, QString projectType, bool verboseMode ) {
 
-  LibraryProject::init ( projectName, projectPath, projecType, verboseMode );
+  LibraryProject::init ( projectName, projectPath, projectType, verboseMode );
   this->resource = ":/projects/resources/library/plugin/";
 }
 

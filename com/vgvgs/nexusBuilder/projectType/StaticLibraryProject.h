@@ -34,7 +34,7 @@ namespace NS_LEVEL_1 {
 
           public :
             StaticLibraryProject ( QObject *parent = nullptr );
-            void init ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false ) override;
+            void init ( QString projectName, QString projectPath, QString projectType, bool verboseMode = false ) override;
             // bool createDirStruct () override { return true; }
             // bool createProjectFiles () override;
         };

@@ -6,9 +6,12 @@
 
 // Librerías Externas
 // External Libraries
-#include "macros_global.h"
 #include "Core_global.h"
 #include "commandsystem/CommandProcessorInterface.h"
+#include "Files.h"
+#include "NexusBuilder.h"
+#include "NexusBuilderManager.h"
+#include "ProjectInterface.h"
 
 // Librerías de terceros
 // third-party Library
@@ -31,12 +34,7 @@ class CommandProcessor : public NSLIB_CORE::CommandProcessorInterface {
 
     void processCommands ( QCommandLineParser &parser, QMap<QString, NSLIB_CORE::CommandInterface *> commandMap ) override;
     // Puede agregar nuevos métodos para ser llamados dentro del método "processCommands".
-    void createProject ( QString projectName, QString projectPath, QString projectType, bool verboseMode );
-    bool createDirProject ( QString projectName, QString projectPath, bool verboseMode );
-    bool createStructDirProject ( QString projectPath, bool verboseMode );
-    bool createProjectFile ( QString projectName, QString projectPath, bool verboseMode );
-    bool createCommandsFile ( QString projectName, QString projectPath, bool verboseMode );
-    bool createResourcesFile ( QString projectName, QString projectPath, bool verboseMode );
+    // You can add new methods to be called inside the "processCommands" method.
 };
 
 Q_DECLARE_METATYPE ( CommandProcessor )

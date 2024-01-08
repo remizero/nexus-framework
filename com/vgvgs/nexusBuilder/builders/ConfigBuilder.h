@@ -1,10 +1,11 @@
-#ifndef GUIAPPPROJECT_H
-#define GUIAPPPROJECT_H
+#ifndef CONFIGBUILDER_H
+#define CONFIGBUILDER_H
 
 // Librerías Internas
 // Internal Libraries
 #include "Builder_global.h"
-#include "AppProject.h"
+#include "NexusBuilder.h"
+#include "NexusBuilderUtils.h"
 
 // Librerías Externas
 // External Libraries
@@ -14,7 +15,9 @@
 
 // Librerías Qt
 // Qt Libraries
+#include <QDebug>
 #include <QObject>
+#include <QString>
 
 // Librerías C++
 // C++ Libraries
@@ -28,18 +31,17 @@ namespace NS_LEVEL_1 {
 
       namespace NS_BUILDER {
 
-        class BUILDER_EXPORT GuiAppProject : public AppProject {
+        class BUILDER_EXPORT ConfigBuilder : QObject {
 
             Q_OBJECT
 
           public :
-            GuiAppProject ( QObject *parent = nullptr );
-            void init ( QString projectName, QString projectPath, QString projectType, bool verboseMode = false ) override;
-            // bool createProjectFiles () override;
+            ConfigBuilder ( QObject *parent = nullptr );
+            QString build ( QString resource, const QString &projectName, NexusBuilder::ProjectId projectType );
         };
       }
     }
   }
 }
 
-#endif // GUIAPPPROJECT_H
+#endif // CONFIGBUILDER_H

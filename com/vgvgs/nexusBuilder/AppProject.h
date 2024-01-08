@@ -5,6 +5,8 @@
 // Internal Libraries
 #include "Builder_global.h"
 #include "ProjectAbs.h"
+#include "builders/MainBuilder.h"
+#include "builders/ConfigBuilder.h"
 
 // Librerías Externas
 // External Libraries
@@ -34,10 +36,13 @@ namespace NS_LEVEL_1 {
 
           public :
             AppProject ( QObject *parent = nullptr );
-            void init ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false ) override;
-            // virtual bool createProjectDir () override;
-            // virtual bool createDirStruct () override;
-            // virtual bool createProjectFiles () override;
+            void init ( QString projectName, QString projectPath, QString projectType, bool verboseMode = false ) override;
+            virtual bool createDirStruct () override;
+            bool createProjectFiles () override;
+
+          protected :
+              MainBuilder *mainBuilder;
+            ConfigBuilder *configBuilder;
         };
       }
     }

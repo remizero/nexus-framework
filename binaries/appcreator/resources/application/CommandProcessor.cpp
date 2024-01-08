@@ -8,7 +8,7 @@ void CommandProcessor::processCommands ( QCommandLineParser &parser, QMap<QStrin
   parser.addPositionalArgument ( "projectName", QCoreApplication::translate ( "main", "Project Name." ) );
   parser.addPositionalArgument ( "destination", QCoreApplication::translate ( "main", "Destination directory." ) );
   const QStringList optionList = parser.optionNames ();
-  QString projecType;
+  QString projectType;
   bool verboseMode = false;
 
   for ( const QString &option : optionList ) {

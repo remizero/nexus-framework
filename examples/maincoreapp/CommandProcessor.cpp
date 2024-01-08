@@ -8,7 +8,7 @@ void CommandProcessor::processCommands ( QCommandLineParser &parser, QMap<QStrin
   parser.addPositionalArgument ( "projectName", QCoreApplication::translate ( "main", "Project Name." ) );
   parser.addPositionalArgument ( "destination", QCoreApplication::translate ( "main", "Destination directory." ) );
   const QStringList optionList = parser.optionNames ();
-  QString projecType;
+  QString projectType;
   bool verboseMode = false;
 
   for ( const QString &option : optionList ) {
@@ -17,8 +17,8 @@ void CommandProcessor::processCommands ( QCommandLineParser &parser, QMap<QStrin
 
       if ( ( option.compare ( "t" ) == 0 ) || ( option.compare ( "type" ) == 0 ) ) {
 
-        projecType = parser.value ( option );
-        if ( projecType.isEmpty () ) {
+        projectType = parser.value ( option );
+        if ( projectType.isEmpty () ) {
 
           qDebug () << "Se debe suministrar un tipo de aplicación: \"gui\" o \"console\".";
           return;
@@ -45,7 +45,7 @@ void CommandProcessor::processCommands ( QCommandLineParser &parser, QMap<QStrin
   QStringList positionalArguments = parser.positionalArguments ();
   if ( !positionalArguments.isEmpty () ) {
 
-    this->createProject ( positionalArguments.value ( 0 ), positionalArguments.value ( 1 ), projecType, verboseMode );
+    this->createProject ( positionalArguments.value ( 0 ), positionalArguments.value ( 1 ), projectType, verboseMode );
 
   } else {
 
@@ -53,24 +53,24 @@ void CommandProcessor::processCommands ( QCommandLineParser &parser, QMap<QStrin
   }
 }
 
-void CommandProcessor::createProject ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) {
+void CommandProcessor::createProject ( QString projectName, QString projectPath, QString projectType, bool verboseMode ) {
 
   // Procesar argumentos y opciones según sea necesario
   qDebug () << "Nombre del proyecto: " << projectName;
   qDebug () << "Ruta del destino: " << projectPath;
-  qDebug () << "Tipo de proyecto: " << projecType;
+  qDebug () << "Tipo de proyecto: " << projectType;
 
   if ( this->createDirProject ( projectName, projectPath, verboseMode ) ) {
 
-    if ( projecType.compare ( "console" ) == 0 ) {
+    if ( projectType.compare ( "console" ) == 0 ) {
 
 
 
-    } else if ( projecType.compare ( "gui" ) == 0 ) {
+    } else if ( projectType.compare ( "gui" ) == 0 ) {
 
 
 
-    } else if ( projecType.compare ( "plugin" ) == 0 ) {
+    } else if ( projectType.compare ( "plugin" ) == 0 ) {
 
 
     }

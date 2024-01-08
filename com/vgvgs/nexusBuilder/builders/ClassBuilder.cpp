@@ -14,6 +14,7 @@ QString ClassBuilder::build () {
   // TODO Como crear los atributos?
   // TODO Como crear los métodos?
   // TODO Como crear los atributos y métodos según su accesibilidad?
+  return "";
 }
 
 const QList<AttributeBuilder *> &ClassBuilder::getAttributeList () const {

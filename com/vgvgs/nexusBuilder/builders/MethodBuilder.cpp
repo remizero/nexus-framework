@@ -9,6 +9,7 @@ MethodBuilder::MethodBuilder () {}
 QString MethodBuilder::build () {
 
   // TODO Como generar la definición en el archivo cabecera y la implementación en el archivo de implementación.
+    return "";
 }
 
 const QString &MethodBuilder::getAccessibility () const {

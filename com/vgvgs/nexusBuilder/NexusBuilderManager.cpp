@@ -9,9 +9,9 @@ NexusBuilderManager::NexusBuilderManager () {
   RegisterClasses::getInstance ()->addTypeClass ();
 }
 
-void NexusBuilderManager::createProject ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) {
+void NexusBuilderManager::createProject ( QString projectName, QString projectPath, QString projectType, bool verboseMode ) {
 
-  NexusBuilder::ProjectId projectId = NexusBuilder::stringToProjectId ( projecType );
+  NexusBuilder::ProjectId projectId = NexusBuilder::stringToProjectId ( projectType );
   if ( projectId != NexusBuilder::NUM_PROJECTS ) {
 
     const char *className = NexusBuilder::getProjectClassName ( projectId );
@@ -21,7 +21,7 @@ void NexusBuilderManager::createProject ( QString projectName, QString projectPa
       ProjectAbs *project = static_cast<ProjectAbs *> ( typeId.create () );
       if ( project ) {
 
-        project->init ( projectName, projectPath, projecType, verboseMode );
+        project->init ( projectName, projectPath, projectType, verboseMode );
         ProjectDirector::create ( project );
 
       } else {

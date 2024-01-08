@@ -37,17 +37,19 @@ namespace NS_LEVEL_1 {
         public :
           static bool createProFile ( const QString &projectName );
           static void createProFileFromTemplate ( const QString &projectPath, const QString &projectName, const QString &proTemplate );
-          static QString getQmakeBuildersPath ();
-          static QString getCopyFiles ( const QString &projecType );
-          static QString getDeploymentRules ( const QString &projecType );
-          static QString getProjectConfiguration ( const QString &projecType );
 
-          static QString normalizeProjectFileContent ( const QString &proTemplate, const QString &projectName, const QString &projecType );
+
+
 
           // Los métodos que van quedando.
           static bool createDirectory ( const QString &projectPath, const QString &projectName, bool verboseMode = false );
           static QStringList getClause ( QStringList stringLines, QString clause );
-          static QString loadProTemplate ( const QString &resourcePath );
+          static QString getCopyFiles ( NexusBuilder::ProjectId projectType );
+          static QString getDeploymentRules ( NexusBuilder::ProjectId projectType );
+          static QString getProjectConfiguration ( NexusBuilder::ProjectId projectType );
+          static QString getQmakeBuildersPath ();
+          static QString loadFileContent ( const QString &resourcePath );
+          static QString normalizeProjectFileContent ( const QString &proTemplate, const QString &projectName, NexusBuilder::ProjectId projectType );
           static QString normalizeProjectName ( const QString &projectName );
           static QStringList stringToLines ( QString content );
 

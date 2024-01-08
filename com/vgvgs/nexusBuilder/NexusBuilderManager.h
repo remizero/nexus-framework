@@ -43,7 +43,7 @@ namespace NS_LEVEL_1 {
             Q_OBJECT
 
           public :
-            void createProject ( QString projectName, QString projectPath, QString projecType, bool verboseMode = false );
+            void createProject ( QString projectName, QString projectPath, QString projectType, bool verboseMode = false );
 
           private :
             NexusBuilderManager ();

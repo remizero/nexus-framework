@@ -4,6 +4,7 @@
 // Librerías Internas
 // Internal Libraries
 #include "Builder_global.h"
+#include "NexusBuilder.h"
 #include "NexusBuilderUtils.h"
 
 // Librerías Externas
@@ -35,8 +36,8 @@ namespace NS_LEVEL_1 {
             Q_OBJECT
 
           public :
-            ProBuilder ();
-            QString build ( QString resource );
+            ProBuilder ( QObject *parent = nullptr );
+            QString build ( QString resource, const QString &projectName, NexusBuilder::ProjectId projectType );
         };
       }
     }

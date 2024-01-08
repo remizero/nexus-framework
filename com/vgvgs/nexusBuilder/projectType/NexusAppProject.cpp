@@ -6,42 +6,16 @@ using namespace NSLIB_BUILDER;
 
 NexusAppProject::NexusAppProject ( QObject *parent ) : AppProject ( parent ) {}
 
-void NexusAppProject::init ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) {
+void NexusAppProject::init ( QString projectName, QString projectPath, QString projectType, bool verboseMode ) {
 
-  AppProject::init ( projectName, projectPath, projecType, verboseMode );
-  this->resource = ":/projects/resources/app/nexus/";
+  AppProject::init ( projectName, projectPath, projectType, verboseMode );
+  this->dirList << "commands" << "resources";
+  this->projectFileList << "main.cpp.template"
+                        << "config.xml.template"
+                        << "CommandProcessor.h.template"
+                        << "CommandProcessor.cpp.template"
+                        << "MainWindow.h.template"
+                        << "MainWindow.cpp.template"
+                        << "RegisterClasses.h.template"
+                        << "RegisterClasses.cpp.template";
 }
-
-// bool NexusAppProject::createProjectFiles () {
-
-//   bool done = AppProject::createProjectFiles ();
-//   if ( done ) {
-
-//     if ( ( done = this->copyFiles ( {
-//                                       "CommandProcessor.h",
-//                                       "CommandProcessor.cpp",
-//                                       "MainWindow.h",
-//                                       "MainWindow.cpp",
-//                                       "MainWindow.ui",
-//                                       "RegisterClasses.h",
-//                                       "RegisterClasses.cpp"
-//                                     }, this->resource ) ) ) {
-
-//       done = this->copyFiles ( {
-//                                  "Command.h",
-//                                  "Command.cpp"
-//                                }, this->resource + "commands/", "commands" );
-//     }
-//   }
-//   return done;
-// }
-
-// bool NexusAppProject::createDirStruct () {
-
-//   bool done = AppProject::createDirStruct ();
-//   if ( done ) {
-
-//     done = this->createDir ( { "commands" } );
-//   }
-//   return done;
-// }

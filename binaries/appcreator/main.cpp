@@ -20,15 +20,7 @@
 
 int main ( int argc, char *argv [] ) {
 
-  // TODO 1-. ( LISTO ) Todo arranca con la carga del recurso de configuración de la aplicación
-  // principal. Ahí se encuentra el valor que definirá si la aplicación será de
-  // tipo GUI o Consola.
-  // 2-. Verificar si vienen argumentos en int main ( int argc, char *argv [] ) {
-  // 3-. ( LISTO ) Validar cuales son los permitidos para aplicaciones GUI y para consola.
-  // 4-. ( LISTO ) Permitir agregar comandos adicionales para la comprobación anterior.
-  // 5-. ( LISTO ) Estudiar la conveniencia de agregar estos comandos vía archivo de
-  // configuración o vía programación.
-  // 6-. Agregar el sistema DOXYGEN y ver como enlazarlo con la wiki de github.
+  // TODO 1-. Agregar el sistema DOXYGEN y ver como enlazarlo con la wiki de github.
 
   NSLIB_CORE::AppManager::getInstance ()->create ( argc, argv );
   NSLIB_CORE::AppManager::getInstance ()->initialize ();

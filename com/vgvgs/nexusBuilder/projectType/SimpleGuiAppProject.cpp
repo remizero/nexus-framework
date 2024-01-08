@@ -6,22 +6,13 @@ using namespace NSLIB_BUILDER;
 
 SimpleGuiAppProject::SimpleGuiAppProject ( QObject *parent ) : AppProject ( parent ) {}
 
-void SimpleGuiAppProject::init ( QString projectName, QString projectPath, QString projecType, bool verboseMode ) {
+void SimpleGuiAppProject::init ( QString projectName, QString projectPath, QString projectType, bool verboseMode ) {
 
-  AppProject::init ( projectName, projectPath, projecType, verboseMode );
-  this->resource = ":/projects/resources/app/simplegui/";
+  AppProject::init ( projectName, projectPath, projectType, verboseMode );
+  this->dirList << "resources";
+  this->projectFileList << "main.cpp.template"
+                        << "config.xml.template"
+                        << "MainWindow.h.template"
+                        << "MainWindow.cpp.template"
+                        << "MainWindow.ui.template";
 }
-
-// bool SimpleGuiAppProject::createProjectFiles () {
-
-//   bool done = AppProject::createProjectFiles ();
-//   if ( done ) {
-
-//     done = this->copyFiles ( {
-//                                 "MainWindow.h",
-//                                 "MainWindow.cpp",
-//                                 "MainWindow.ui"
-//                               }, this->resource );
-//   }
-//   return done;
-// }

@@ -4,17 +4,15 @@
 using namespace NSLIB_BUILDER;
 
 
-ProBuilder::ProBuilder () {}
+ProBuilder::ProBuilder ( QObject *parent ) : QObject ( parent ) {}
 
-QString ProBuilder::build ( QString resource ) {
+QString ProBuilder::build ( QString resource, const QString &projectName, NexusBuilder::ProjectId projectType ) {
 
-  QString proTemplateFile = NexusBuilderUtils::loadProTemplate ( resource );
-  QStringList proTemplateFileLines = NexusBuilderUtils::stringToLines ( proTemplateFile );
-  proTemplateFileLines = NexusBuilderUtils::getClause ( proTemplateFileLines, "SOURCES +=" );
+  QString fileContent = NexusBuilderUtils::loadFileContent ( resource + "pro.template" );
+  fileContent = NexusBuilderUtils::normalizeProjectFileContent ( fileContent, projectName, projectType );
+  QStringList codeLines = NexusBuilderUtils::stringToLines ( fileContent );
+  codeLines = NexusBuilderUtils::getClause ( codeLines, "SOURCES +=" );
   // TODO Como agregar módulos de Qt en el archivo .pro.
-  // TODO Como agregar el directorio base de los archivos .prf.
-  // TODO Como agregar el nombre del proyecto en el archivo .pro.
-  // TODO Como agregar el archivo projectConfiguration.prf según el tipo de proyecto.
   // TODO Como agregar agregar los archivos a la clausula SOURCES.
   // TODO Como agregar agregar los archivos a la clausula HEADERS.
   // TODO Como agregar agregar los archivos a la clausula RESOURCES.
@@ -24,7 +22,6 @@ QString ProBuilder::build ( QString resource ) {
   // TODO Como agregar agregar los archivos a la clausula INCLUDEPATH.
   // TODO Como agregar agregar los archivos a la clausula DEPENDPATH.
   // TODO Como agregar agregar las librerías correspondientes al tipo de proyecto.
-  // TODO Como agregar el archivo copyFiles.prf según el tipo de proyecto.
-  // TODO Como agregar el archivo deploymentRules.prf según el tipo de proyecto.
-  // TODO Como convertir todo el QString contenedor de los valores a ajustar en archivo físico en el directorio del proyecto.
+  fileContent = codeLines.join ( "\n" );
+  return fileContent;
 }

@@ -34,9 +34,12 @@ SOURCES += \
   Version.cpp \
   builders/AttributeBuilder.cpp \
   builders/ClassBuilder.cpp \
+  builders/CommandBuilder.cpp \
+  builders/ConfigBuilder.cpp \
   builders/ExportsBuilder.cpp \
   builders/FunctionBuilder.cpp \
   builders/GlobalBuilder.cpp \
+  builders/MainBuilder.cpp \
   builders/MethodBuilder.cpp \
   builders/ParamBuilder.cpp \
   builders/ProBuilder.cpp \
@@ -67,9 +70,12 @@ HEADERS += \
   Version.h \
   builders/AttributeBuilder.h \
   builders/ClassBuilder.h \
+  builders/CommandBuilder.h \
+  builders/ConfigBuilder.h \
   builders/ExportsBuilder.h \
   builders/FunctionBuilder.h \
   builders/GlobalBuilder.h \
+  builders/MainBuilder.h \
   builders/MethodBuilder.h \
   builders/ParamBuilder.h \
   builders/ProBuilder.h \

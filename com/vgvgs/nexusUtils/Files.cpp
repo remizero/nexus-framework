@@ -7,7 +7,7 @@ using namespace NSLIB_UTILS;
 QFile *Files::load ( const QString fileName, QIODeviceBase::OpenMode openMode ) {
 
   QFile *ioDeviceFile = new QFile ( fileName );
-  if ( ioDeviceFile->exists () ) {
+  // if ( ioDeviceFile->exists () ) {
 
     if ( ioDeviceFile->open ( openMode ) ) {
 
@@ -24,10 +24,10 @@ QFile *Files::load ( const QString fileName, QIODeviceBase::OpenMode openMode ) 
 
       qDebug () << "El archivo seleccionado \"" + fileName + "\" no se puede abrir o está dañado.";
     }
-  } else {
+  // } else {
 
-    qDebug () << "El archivo seleccionado \"" + fileName + "\" no existe o no se encuentra.";
-  }
+  //   qDebug () << "El archivo seleccionado \"" + fileName + "\" no existe o no se encuentra.";
+  // }
   delete ioDeviceFile;
   return nullptr;
 }
@@ -47,19 +47,19 @@ bool Files::save ( QFile *ioDeviceFile, const QVariant &contentToSave ) {
 
       stream << contentToSave.toString ();
       success = true;
-      qDebug () << "Datos guardados satisfactoriamente.";
+      qDebug () << "Datos guardados satisfactoriamente. Archivo: " + ioDeviceFile->fileName ();
 
     } else if ( contentToSave.canConvert<QDomDocument> () ) {
 
       stream << contentToSave.value<QDomDocument> ().toString ();
       success = true;
-      qDebug () << "Datos guardados satisfactoriamente.";
+      qDebug () << "Datos guardados satisfactoriamente. Archivo: " + ioDeviceFile->fileName ();
 
     } else if ( contentToSave.canConvert<QJsonDocument> () ) {
 
       stream << contentToSave.value<QJsonDocument> ().toJson ();
       success = true;
-      qDebug () << "Datos guardados satisfactoriamente.";
+      qDebug () << "Datos guardados satisfactoriamente. Archivo: " + ioDeviceFile->fileName ();
 
     } else {
 

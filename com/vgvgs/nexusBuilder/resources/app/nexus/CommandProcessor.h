@@ -32,7 +32,7 @@ class CommandProcessor : public NSLIB_CORE::CommandProcessorInterface {
 
     void processCommands ( QCommandLineParser &parser, QMap<QString, NSLIB_CORE::CommandInterface *> commandMap ) override;
     // Puede agregar nuevos métodos para ser llamados dentro del método "processCommands".
-    void createProject ( QString projectName, QString projectPath, QString projecType, bool verboseMode );
+    void createProject ( QString projectName, QString projectPath, QString projectType, bool verboseMode );
     bool createDirProject ( QString projectName, QString projectPath, bool verboseMode );
     bool createStructDirProject ( QString projectPath, bool verboseMode );
     bool createProjectFile ( QString projectName, QString projectPath, bool verboseMode );

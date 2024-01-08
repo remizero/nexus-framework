@@ -73,5 +73,14 @@
         <file>resources/projects/global.h.template</file>
         <file>resources/projects/Version.cpp.template</file>
         <file>resources/projects/Version.h.template</file>
+        <file>resources/projects/main.cpp.template</file>
+        <file>resources/projects/CommandProcessor.cpp.template</file>
+        <file>resources/projects/CommandProcessor.h.template</file>
+        <file>resources/projects/MainWindow.cpp.template</file>
+        <file>resources/projects/MainWindow.h.template</file>
+        <file>resources/projects/MainWindow.ui.template</file>
+        <file>resources/projects/RegisterClasses.cpp.template</file>
+        <file>resources/projects/RegisterClasses.h.template</file>
+        <file>resources/projects/config.xml.template</file>
     </qresource>
 </RCC>
