@@ -4,7 +4,7 @@ include(../../../qmakeBuilders/buildPaths.prf)
 
 # QT -= gui
 
-greaterThan(QT_MAJOR_VERSION, 5): QT += core
+greaterThan(QT_MAJOR_VERSION, 5): QT += core xml
 
 TARGET = nexusBuilder
 
@@ -53,6 +53,7 @@ SOURCES += \
   projectType/PluginProject.cpp \
   projectType/ShareLibraryProject.cpp \
   projectType/SimpleGuiAppProject.cpp \
+  projectType/StandaloneNexusAppProject.cpp \
   projectType/StaticLibraryProject.cpp
 
 HEADERS += \
@@ -89,6 +90,7 @@ HEADERS += \
   projectType/PluginProject.h \
   projectType/ShareLibraryProject.h \
   projectType/SimpleGuiAppProject.h \
+  projectType/StandaloneNexusAppProject.h \
   projectType/StaticLibraryProject.h
 
 win32:CONFIG(release, debug|release): LIBS += \

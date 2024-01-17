@@ -14,8 +14,10 @@ void NexusAppProject::init ( QString projectName, QString projectPath, QString p
                         << "config.xml.template"
                         << "CommandProcessor.h.template"
                         << "CommandProcessor.cpp.template"
+                        << "export.def.template"
                         << "MainWindow.h.template"
                         << "MainWindow.cpp.template"
                         << "RegisterClasses.h.template"
-                        << "RegisterClasses.cpp.template";
+                        << "RegisterClasses.cpp.template"
+                        << "resources.qrc.template";
 }

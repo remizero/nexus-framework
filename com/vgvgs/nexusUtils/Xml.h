@@ -37,7 +37,7 @@ namespace NS_LEVEL_1 {
 
           public :
             static QDomDocument *load ( QString fileName, bool readOnly = false );
-            static bool save ( QDomDocument *domDocument, QString fileName );
+            static bool save ( QString fileName, QDomDocument *domDocument );
         };
       }
     }

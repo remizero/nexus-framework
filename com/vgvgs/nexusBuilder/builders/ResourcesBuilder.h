@@ -4,9 +4,11 @@
 // Librerías Internas
 // Internal Libraries
 #include "Builder_global.h"
+#include "NexusBuilderUtils.h"
 
 // Librerías Externas
 // External Libraries
+#include "Xml.h"
 
 // Librerías de terceros
 // third-party Library
@@ -14,7 +16,10 @@
 // Librerías Qt
 // Qt Libraries
 #include <QDebug>
+#include <QDomDocument>
+#include <QDomElement>
 #include <QObject>
+#include <QStringList>
 
 // Librerías C++
 // C++ Libraries
@@ -28,11 +33,21 @@ namespace NS_LEVEL_1 {
 
       namespace NS_BUILDER {
 
-        class BUILDER_EXPORT ResourcesBuilder {
+        class BUILDER_EXPORT ResourcesBuilder : public QObject {
+
+            Q_OBJECT
 
           public :
             ResourcesBuilder ( QObject *parent = nullptr );
-            QString build ( QString resource, const QString &projectName, NexusBuilder::ProjectId projectType );
+            QDomDocument *build ( QString resource, QMap<QString, QStringList> prefixFileMap );
+
+            QDomElement createResourceElement ( QDomDocument *doc, const QString &prefix = "/" );
+            QDomElement createFileElement ( QDomElement &resourceElement, const QString &filePath );
+            void init ( QString resource );
+
+          protected :
+            QDomDocument *resource;
+            bool initialized;
         };
       }
     }

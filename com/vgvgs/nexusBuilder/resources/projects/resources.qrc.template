@@ -1,5 +1,2 @@
 <RCC>
-    <qresource prefix="{{prefix}}">
-        <file></file>
-    </qresource>
 </RCC>

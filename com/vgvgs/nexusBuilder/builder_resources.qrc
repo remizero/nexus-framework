@@ -82,5 +82,7 @@
         <file>resources/projects/RegisterClasses.cpp.template</file>
         <file>resources/projects/RegisterClasses.h.template</file>
         <file>resources/projects/config.xml.template</file>
+        <file>resources/projects/export.def.template</file>
+        <file>resources/projects/resources.qrc.template</file>
     </qresource>
 </RCC>

@@ -12,6 +12,8 @@ void GuiAppProject::init ( QString projectName, QString projectPath, QString pro
   this->dirList << "resources";
   this->projectFileList << "main.cpp.template"
                         << "config.xml.template"
+                        << "export.def.template"
                         << "MainWindow.h.template"
-                        << "MainWindow.cpp.template";
+                        << "MainWindow.cpp.template"
+                        << "resources.qrc.template";
 }

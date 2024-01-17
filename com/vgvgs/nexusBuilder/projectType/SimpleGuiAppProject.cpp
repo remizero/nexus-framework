@@ -12,7 +12,9 @@ void SimpleGuiAppProject::init ( QString projectName, QString projectPath, QStri
   this->dirList << "resources";
   this->projectFileList << "main.cpp.template"
                         << "config.xml.template"
+                        << "export.def.template"
                         << "MainWindow.h.template"
                         << "MainWindow.cpp.template"
-                        << "MainWindow.ui.template";
+                        << "MainWindow.ui.template"
+                        << "resources.qrc.template";
 }

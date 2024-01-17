@@ -23,7 +23,7 @@ QDomDocument *Xml::load ( QString fileName, bool readOnly ) {
   return doc;
 }
 
-bool Xml::save ( QDomDocument *domDocument, QString fileName ) {
+bool Xml::save ( QString fileName, QDomDocument *domDocument ) {
 
   return Files::save ( fileName, QVariant::fromValue ( domDocument ), QIODevice::WriteOnly | QIODevice::Text );
 }

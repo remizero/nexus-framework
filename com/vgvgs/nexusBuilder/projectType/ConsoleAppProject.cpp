@@ -14,6 +14,8 @@ void ConsoleAppProject::init ( QString projectName, QString projectPath, QString
                         << "config.xml.template"
                         << "CommandProcessor.h.template"
                         << "CommandProcessor.cpp.template"
+                        << "export.def.template"
                         << "RegisterClasses.h.template"
-                        << "RegisterClasses.cpp.template";
+                        << "RegisterClasses.cpp.template"
+                        << "resources.qrc.template";
 }

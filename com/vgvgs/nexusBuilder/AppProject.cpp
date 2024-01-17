@@ -6,8 +6,10 @@ using namespace NSLIB_BUILDER;
 
 AppProject::AppProject ( QObject *parent ) : ProjectAbs ( parent ) {
 
-  this->mainBuilder = new MainBuilder ();
   this->configBuilder = new ConfigBuilder ();
+  this->exportsBuilder = new ExportsBuilder ();
+  this->mainBuilder = new MainBuilder ();
+  this->resourcesBuilder = new ResourcesBuilder ();
 }
 
 void AppProject::init ( QString projectName, QString projectPath, QString projectType, bool verboseMode ) {
@@ -17,11 +19,6 @@ void AppProject::init ( QString projectName, QString projectPath, QString projec
 
 bool AppProject::createProjectFiles () {
 
-  // TODO Si projectType es de tipo BlankAppProject, solo se debe agregar un archivo main.cpp en blanco.
-  // TODO Si projectType es de tipo ConsoleAppProject, solo se debe agregar CommandProcessor, RegisterClasses, el directorio commands y el archivo de recurso config.xml.
-  // TODO Si projectType es de tipo GuiAppProject, solo se debe agregar un archivo main.cpp con MainWindow heredando de NexusMainWindow, sin capacidad de procesar comandos.
-  // TODO Si projectType es de tipo NexusAppProject, solo se debe agregar un archivo main.cpp con las configuraciones de los proyectos de tipo Console y Gui.
-  // TODO Si projectType es de tipo SimpleGuiAppProject, solo se debe agregar un archivo main.cpp con MainWindow simple heredado de Qt directamente.
   bool done = false;
   if ( this->isInitialized () ) {
 
@@ -57,6 +54,14 @@ bool AppProject::createProjectFiles () {
 
           break;
         }
+      } else if ( templeteFile.contains ( "export.def" ) ) {
+
+        QStringList resourcesList = NexusBuilderUtils::findQrcFiles ( this->path );
+        if ( !( done = NSLIB_UTILS::Files::save ( this->path + QDir::separator () + projectFile,
+                                                  QVariant::fromValue ( this->exportsBuilder->build ( this->resource + templeteFile, resourcesList ) ) ) ) ) {
+
+          break;
+        }
       } else if ( templeteFile.contains ( "MainWindow.h" ) ) {
 
         if ( !( done = NSLIB_UTILS::Files::save ( this->path + QDir::separator () + projectFile,
@@ -89,6 +94,16 @@ bool AppProject::createProjectFiles () {
 
         if ( !( done = NSLIB_UTILS::Files::save ( this->path + QDir::separator () + projectFile,
                                                   QVariant::fromValue ( NexusBuilderUtils::loadFileContent ( this->resource + templeteFile ) ) ) ) ) {
+
+          break;
+        }
+      } else if ( templeteFile.contains ( "resources.qrc" ) ) {
+
+        QStringList initialDirList;
+        QMap<QString, QStringList> resourcesMap = NexusBuilderUtils::readResourcesRecursively ( this->path + QDir::separator () + "resources/", initialDirList );
+        projectFile = this->prefix + projectFile.at ( 0 ).toUpper () + projectFile.mid ( 1 );
+        if ( !( done = NSLIB_UTILS::Xml::save ( this->path + QDir::separator () + projectFile,
+                                                this->resourcesBuilder->build ( this->resource + templeteFile, resourcesMap ) ) ) ) {
 
           break;
         }

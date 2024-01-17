@@ -7,6 +7,8 @@
 #include "ProjectAbs.h"
 #include "builders/MainBuilder.h"
 #include "builders/ConfigBuilder.h"
+#include "builders/ExportsBuilder.h"
+#include "builders/ResourcesBuilder.h"
 
 // Librerías Externas
 // External Libraries
@@ -41,8 +43,10 @@ namespace NS_LEVEL_1 {
             bool createProjectFiles () override;
 
           protected :
-              MainBuilder *mainBuilder;
-            ConfigBuilder *configBuilder;
+               ConfigBuilder *configBuilder;
+              ExportsBuilder *exportsBuilder;
+                 MainBuilder *mainBuilder;
+            ResourcesBuilder *resourcesBuilder;
         };
       }
     }

@@ -30,6 +30,21 @@ bool NexusBuilderUtils::createDirectory ( const QString &projectPath, const QStr
   return done;
 }
 
+QStringList NexusBuilderUtils::findQrcFiles ( const QString &searchPath ) {
+
+  QStringList qrcFiles;
+  QDir searchDir(searchPath);
+  QStringList filters;
+  filters << "*.qrc";
+  searchDir.setNameFilters ( filters );
+  QFileInfoList fileInfoList = searchDir.entryInfoList ( QDir::Files );
+  for ( const QFileInfo &fileInfo : fileInfoList ) {
+
+    qrcFiles.append ( fileInfo.absoluteFilePath () );
+  }
+  return qrcFiles;
+}
+
 QStringList NexusBuilderUtils::getClause ( QStringList stringLines, QString clause ) {
 
   bool found = false;
@@ -273,6 +288,88 @@ QString NexusBuilderUtils::normalizeProjectName ( const QString &projectName ) {
     normalizedProjectName = QString ( "nexus" ) + projectName.at ( 0 ).toUpper () + projectName.mid ( 1 );
   }
   return normalizedProjectName;
+}
+
+QString NexusBuilderUtils::normalizeResourceName ( const QString &resourceName ) {
+
+  QString resourceNameAux = resourceName;
+  if ( resourceNameAux.isEmpty () ) {
+
+    resourceNameAux = "/mainapp";
+
+  } else {
+
+    QStringList resourceList = resourceNameAux.split ( "resources" );
+    resourceNameAux = "/resources"  + resourceList.at ( resourceList.length () - 1 );
+  }
+  return resourceNameAux;
+}
+
+// void NexusBuilderUtils::readResourcesRecursively ( const QString &path, const QStringList &currentDirList ) {
+
+//   QDir dir ( path );
+//   QStringList filters;
+//   filters << "*";
+//   dir.setNameFilters ( filters );
+//   QFileInfoList fileInfoList = dir.entryInfoList ( QDir::Files );
+//   foreach ( const QFileInfo &fileInfo, fileInfoList ) {
+
+//     qDebug () << "Archivo encontrado:" << fileInfo.absoluteFilePath ();
+//   }
+//   QFileInfoList folderInfoList = dir.entryInfoList ( QDir::Dirs | QDir::NoDotAndDotDot );
+//   foreach ( const QFileInfo &folderInfo, folderInfoList ) {
+
+//     QStringList updatedDirList = currentDirList;
+//     updatedDirList.append ( folderInfo.fileName () );
+//     qDebug () << "Directorio encontrado:" << updatedDirList.join ( "/" );
+//     NexusBuilderUtils::readResourcesRecursively ( folderInfo.absoluteFilePath (), updatedDirList );
+//   }
+// }
+
+QMap<QString, QStringList> NexusBuilderUtils::readResourcesRecursively ( const QString &path, const QStringList &currentDirList ) {
+
+    QMap<QString, QStringList> prefixFileMap;
+    QDir dir ( path );
+    QStringList filters;
+    filters << "*";
+    dir.setNameFilters ( filters );
+    QFileInfoList fileInfoList = dir.entryInfoList ( QDir::Files );
+    foreach ( const QFileInfo &fileInfo, fileInfoList ) {
+
+      QString filePath = fileInfo.absoluteFilePath ();
+      QString currentPath = currentDirList.join ( "/" );
+      if ( currentPath.isEmpty () ) {
+
+        currentPath = "/mainapp";
+
+      } else {
+
+        currentPath = "/resources/" + currentPath;
+      }
+      if ( !prefixFileMap.contains ( currentPath ) ) {
+
+        prefixFileMap [ currentPath ] = QStringList ();
+      }
+      prefixFileMap [ currentPath ].append ( filePath );
+    }
+    QFileInfoList folderInfoList = dir.entryInfoList ( QDir::Dirs | QDir::NoDotAndDotDot );
+    foreach ( const QFileInfo &folderInfo, folderInfoList ) {
+
+      QStringList updatedDirList = currentDirList;
+      updatedDirList.append ( folderInfo.fileName () );
+      QString updatedPath = updatedDirList.join ( "/" );
+      QMap<QString, QStringList> subMap = readResourcesRecursively ( folderInfo.absoluteFilePath (), updatedDirList );
+      // Merge subMap into prefixFileMap
+      for ( auto it = subMap.constBegin (); it != subMap.constEnd (); ++it ) {
+
+        if ( !prefixFileMap.contains ( it.key () ) ) {
+
+          prefixFileMap [ it.key () ] = QStringList ();
+        }
+        prefixFileMap [ it.key () ].append ( it.value () );
+      }
+    }
+    return prefixFileMap;
 }
 
 QStringList NexusBuilderUtils::stringToLines ( QString content ) {

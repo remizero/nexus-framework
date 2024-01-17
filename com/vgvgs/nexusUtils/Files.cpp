@@ -49,9 +49,9 @@ bool Files::save ( QFile *ioDeviceFile, const QVariant &contentToSave ) {
       success = true;
       qDebug () << "Datos guardados satisfactoriamente. Archivo: " + ioDeviceFile->fileName ();
 
-    } else if ( contentToSave.canConvert<QDomDocument> () ) {
+    } else if ( contentToSave.canConvert<QDomDocument *> () ) {
 
-      stream << contentToSave.value<QDomDocument> ().toString ();
+      stream << contentToSave.value<QDomDocument *> ()->toString ();
       success = true;
       qDebug () << "Datos guardados satisfactoriamente. Archivo: " + ioDeviceFile->fileName ();
 
