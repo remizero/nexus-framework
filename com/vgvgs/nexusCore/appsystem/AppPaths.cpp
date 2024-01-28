@@ -1,4 +1,4 @@
-#include "AppPaths.h"
+#include "appsystem/AppPaths.h"
 
 
 using namespace NSLIB_CORE;

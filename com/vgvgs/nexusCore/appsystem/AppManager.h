@@ -9,6 +9,7 @@
 #include "appsystem/AppExit.h"
 #include "appsystem/AppInit.h"
 #include "appsystem/AppPaths.h"
+#include "appsystem/AppUtils.h"
 #include "appsystem/UserConfig.h"
 #include "commandsystem/CommandManager.h"
 #include "loggersystem/Logger.h"

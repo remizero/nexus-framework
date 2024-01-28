@@ -6,9 +6,10 @@ using namespace NSLIB_UTILS;
 
 QFile *Files::load ( const QString fileName, QIODeviceBase::OpenMode openMode ) {
 
-  QFile *ioDeviceFile = new QFile ( fileName );
-  // if ( ioDeviceFile->exists () ) {
+    // TODO Ver como aplicar https://doc.qt.io/qt-6/qfiledevice.html#Permission-enum
+  // if ( QFile::exists ( fileName ) ) {
 
+    QFile *ioDeviceFile = new QFile ( fileName );
     if ( ioDeviceFile->open ( openMode ) ) {
 
       return ioDeviceFile;
@@ -23,12 +24,13 @@ QFile *Files::load ( const QString fileName, QIODeviceBase::OpenMode openMode ) 
     } else {
 
       qDebug () << "El archivo seleccionado \"" + fileName + "\" no se puede abrir o está dañado.";
+      // qDebug () << "Error al abrir el archivo:" << ioDeviceFile->errorString ();
+      delete ioDeviceFile;
     }
   // } else {
 
   //   qDebug () << "El archivo seleccionado \"" + fileName + "\" no existe o no se encuentra.";
   // }
-  delete ioDeviceFile;
   return nullptr;
 }
 

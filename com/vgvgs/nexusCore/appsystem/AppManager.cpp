@@ -62,6 +62,22 @@ int AppManager::execute ( QMainWindow *mainWindow ) {
       appInstance.data ()->addLibraryPath ( AppPaths::getInstance ()->getApplicationLibrariesPath () );
       AppInit::getInstance ()->initialize ( this->appConfig, this->userConfig );
       AppExit::getInstance ()->initialize ( this->appConfig, this->userConfig );
+      // QString styleSheet = AppUtils::loadStyleSheet ();
+      // if ( !styleSheet.isEmpty () ) {
+
+      //   appInstance.data ()->setStyleSheet ( styleSheet );
+      // }
+      // mainWindow->show ();
+
+      QApplication *guiApp = qobject_cast<QApplication *> ( appInstance.data () );
+      if ( guiApp ) {
+
+        QString styleSheet = AppUtils::loadStyleSheet ();
+        if ( !styleSheet.isEmpty () ) {
+
+          guiApp->setStyleSheet ( styleSheet );
+        }
+      }
       mainWindow->show ();
 
     } else {

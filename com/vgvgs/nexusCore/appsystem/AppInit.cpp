@@ -1,4 +1,4 @@
-#include "AppInit.h"
+#include "appsystem/AppInit.h"
 
 
 using namespace NSLIB_CORE;

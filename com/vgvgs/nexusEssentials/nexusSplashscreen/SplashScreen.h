@@ -13,6 +13,9 @@
 // External Libraries
 #include "appsystem/AppPaths.h"
 
+// Librerías de terceros
+// third-party Library
+
 // Librerías Qt
 // Qt Libraries
 #include <QDebug>
@@ -23,6 +26,9 @@
 #include <QtWidgets/QSplashScreen>
 
 // TODO https://amin-ahmadi.com/2016/03/15/how-to-add-a-splash-screen-for-your-qt-application/
+
+// Librerías C++
+// C++ Libraries
 
 
 namespace NS_LEVEL_1 {

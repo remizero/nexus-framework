@@ -4,6 +4,11 @@
 using namespace NSLIB_CORE;
 
 
+QString AppUtils::loadStyleSheet () {
+
+  return NSLIB_UTILS::Strings::Strings::load ( ":/styles.qss" );
+}
+
 QString AppUtils::normalizePath ( QString path ) {
 
   #ifdef Q_OS_WIN

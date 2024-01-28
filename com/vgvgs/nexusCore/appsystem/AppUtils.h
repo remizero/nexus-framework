@@ -7,6 +7,7 @@
 
 // Librerías Externas
 // External Libraries
+#include "Strings.h"
 
 // Librerías de terceros
 // third-party Library
@@ -15,6 +16,8 @@
 // Qt Libraries
 #include <QDebug>
 #include <QDir>
+#include <QFile>
+#include <QLatin1String>
 
 // Librerías C++
 // C++ Libraries
@@ -34,6 +37,7 @@ namespace NS_LEVEL_1 {
             static QString normalizePath ( QString path );
             static QString pathTo ( QString path );
             static QString relativePath ( QString rootPath, QString path );
+            static QString loadStyleSheet ();
         };
       }
     }

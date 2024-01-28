@@ -29,41 +29,7 @@
 #define NSLIB_MACROS      Com::Vgvgs::NexusFramework::Macros
 #define NS_NEXUS          NexusFramework
 #define NS_NEXUSFRAMEWORK Com::Vgvgs::NexusFramework
-
-// Se definen las macros particulares para todos los espacios de nombre de las librerías.
-// Particular macros are defined for all library namespaces.
-//#define NS_CONSOLE        Console
-//#define NS_ENGINES        Engines
-//#define NS_XSD            Xsd
-//#define NS_XSDFORM        XsdForm
-//#define NS_LOGGER         Logger
-//#define NS_UTILS          Utils
-//#define NS_WINDOW         Window
-//#define NS_COMPONENTS     Components
-//#define NS_ACTIONS        Actions
-//#define NS_COLORBOX       ColorBox
-//#define NS_COLORPICKER    ColorPicker
-//#define NS_MENUBAR        MenuBar
-//#define NS_STATUSBAR      StatusBar
-//#define NS_SYSTEMTRAYICON SystemTrayIcon
-//#define NS_MAINWINDOW     MainWindow
-
-
-// Se definen las macros con los nombres completos para todos los espacios de nombre de las librerías.
-// Macros with fully qualified names are defined for all library namespaces.
-// #define NSLIB_APP            Com::Vgvgs::App
-//#define NSLIB_CONSOLE        Com::Vgvgs::Console
-//#define NSLIB_XSD            Com::Vgvgs::Engines::Xsd
-//#define NSLIB_LOGGER         Com::Vgvgs::Logger
-//#define NSLIB_UTILS          Com::Vgvgs::Utils
-//#define NSLIB_ACTONS         Com::Vgvgs::Window::Components::Actions
-//#define NSLIB_COLORBOX       Com::Vgvgs::Window::Components::ColorBox
-//#define NSLIB_COLORPICKER    Com::Vgvgs::Window::Components::ColorPicker
-//#define NSLIB_MENUBAR        Com::Vgvgs::Window::Components::MenuBar
-//#define NSLIB_STATUSBAR      Com::Vgvgs::Window::Components::StatusBar
-//#define NSLIB_SYSTEMTRAYICON Com::Vgvgs::Window::Components::SystemTrayIcon
-//#define NSLIB_XSDFORM        Com::Vgvgs::Window::Components::XsdForm
-//#define NSLIB_MAINWINDOW     Com::Vgvgs::Window::MainWindow
-
+#define NS_ESSENTIALS     Essentials
+#define NS_ENGINES        Engines
 
 #endif // MACROS_GLOBAL_H
