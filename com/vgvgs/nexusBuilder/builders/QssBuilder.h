@@ -1,5 +1,5 @@
-#ifndef VERSIONBUILDER_H
-#define VERSIONBUILDER_H
+#ifndef QSSBUILDER_H
+#define QSSBUILDER_H
 
 // Librerías Internas
 // Internal Libraries
@@ -21,7 +21,7 @@
 // Librerías C++
 // C++ Libraries
 
-
+// TODO Revisar https://doc.qt.io/qt-6/stylesheet-syntax.html
 namespace NS_LEVEL_1 {
 
   namespace NS_LEVEL_2 {
@@ -30,17 +30,17 @@ namespace NS_LEVEL_1 {
 
       namespace NS_BUILDER {
 
-        class BUILDER_EXPORT VersionBuilder : QObject {
+        class BUILDER_EXPORT QssBuilder : QObject {
 
             Q_OBJECT
 
           public :
-            VersionBuilder ( QObject *parent = nullptr );
-            QString build ( QString resource, QString prefix, QString fileName );
+            QssBuilder ( QObject *parent = nullptr );
+            QString build ( QString resource );
         };
       }
     }
   }
 }
 
-#endif // VERSIONBUILDER_H
+#endif // QSSBUILDER_H

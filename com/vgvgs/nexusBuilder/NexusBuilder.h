@@ -35,6 +35,30 @@ namespace NS_LEVEL_1 {
 
           public :
 
+            enum Accessibility {
+
+              PRIVATE,
+              PROTECTED,
+              PUBLIC
+            };
+            Q_ENUM ( Accessibility )
+
+            enum FileClasses {
+
+              HEADERSONLY,
+              SOURCESONLY,
+              HEADERSANDSOURCESBOTH
+            };
+            Q_ENUM ( FileClasses )
+
+            enum GetterAndSetter {
+
+              GETTERONLY,
+              SETTERONLY,
+              GETTERANDSETTERBOTH
+            };
+            Q_ENUM ( GetterAndSetter )
+
             enum ProjectId {
 
               BLANKAPP,
@@ -45,10 +69,18 @@ namespace NS_LEVEL_1 {
               PLUGIN,
               SHARE,
               SIMPLEGUI,
+              STANDALONE,
               STATIC,
               NUM_PROJECTS
             };
             Q_ENUM ( ProjectId )
+
+            enum TypeBuild {
+
+              DEFINITION,
+              IMPLEMENTATION
+            };
+            Q_ENUM ( TypeBuild )
             static const char *getProjectClassName ( ProjectId projectId );
             static ProjectId stringToProjectId ( const QString &projectType );
         };

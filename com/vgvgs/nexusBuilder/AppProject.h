@@ -8,7 +8,13 @@
 #include "builders/MainBuilder.h"
 #include "builders/ConfigBuilder.h"
 #include "builders/ExportsBuilder.h"
+#include "builders/QssBuilder.h"
 #include "builders/ResourcesBuilder.h"
+
+#include "builders/AttributeBuilder.h"
+#include "builders/ClassBuilder.h"
+#include "builders/MethodBuilder.h"
+#include "builders/ParamBuilder.h"
 
 // Librerías Externas
 // External Libraries
@@ -46,6 +52,7 @@ namespace NS_LEVEL_1 {
                ConfigBuilder *configBuilder;
               ExportsBuilder *exportsBuilder;
                  MainBuilder *mainBuilder;
+                  QssBuilder *qssBuilder;
             ResourcesBuilder *resourcesBuilder;
         };
       }

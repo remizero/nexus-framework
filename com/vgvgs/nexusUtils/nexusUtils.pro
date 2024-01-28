@@ -23,6 +23,7 @@ include(../../../qmakeBuilders/buildConfiguration.prf)
 
 SOURCES += \
   Enumeration.cpp \
+  Hash.cpp \
   Json.cpp \
   Utils.cpp \
   Strings.cpp \
@@ -31,6 +32,7 @@ SOURCES += \
   Version.cpp
 
 HEADERS += \
+  Hash.h \
   Json.h \
   Utils_global.h \
   Enumeration.h \

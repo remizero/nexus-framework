@@ -4,46 +4,31 @@
 using namespace NSLIB_BUILDER;
 
 
-ParamBuilder::ParamBuilder () {}
+ParamBuilder::ParamBuilder ( QString paramName, QString paramType, bool paramDynamic, bool paramNullPointer, QString paramDefaultValue )
+  : name ( paramName ),
+    type ( paramType ),
+    dynamic ( paramDynamic ),
+    nullPointer ( paramNullPointer ),
+    defaultValue ( paramDefaultValue ) {}
 
-QString ParamBuilder::build () {
+void ParamBuilder::build () {
 
-  this->param += this->type + " " + this->name;
-  if ( !this->defaultValue.isEmpty () ) {
+  this->param += this->type + " ";
+  this->param += this->dynamic ? "*" : "";
+  this->param += this->name;
+  if ( this->nullPointer ) {
 
-    this->param += " = " + this->defaultValue;
+    this->param += " = nullptr_t";
+
+  } else {
+
+    if ( !this->defaultValue.isEmpty () ) {
+
+      // TODO Como validar el valor de this->defaultValue a agregar dependiendo
+      // del tipo de dato que representa this->type
+      this->param += " = " + this->defaultValue;
+    }
   }
-  return this->param;
-}
-
-const QString &ParamBuilder::getName () const {
-
-  return this->name;
-}
-
-void ParamBuilder::setName ( const QString &newName ) {
-
-  this->name = newName;
-}
-
-const QString &ParamBuilder::getParam () const {
-
-  return this->param;
-}
-
-void ParamBuilder::setParam ( const QString &newParam ) {
-
-  this->param = newParam;
-}
-
-const QString &ParamBuilder::getType () const {
-
-  return this->type;
-}
-
-void ParamBuilder::setType ( const QString &newType ) {
-
-  this->type = newType;
 }
 
 const QString &ParamBuilder::getDefaultValue () const {
@@ -51,7 +36,27 @@ const QString &ParamBuilder::getDefaultValue () const {
   return this->defaultValue;
 }
 
-void ParamBuilder::setDefaultValue ( const QString &newDefaultValue ) {
+const QString &ParamBuilder::getName () const {
 
-  this->defaultValue = newDefaultValue;
+  return this->name;
+}
+
+const QString &ParamBuilder::getParam () const {
+
+  return this->param;
+}
+
+const QString &ParamBuilder::getType () const {
+
+  return this->type;
+}
+
+bool ParamBuilder::isDynamic () const {
+
+  return this->dynamic;
+}
+
+bool ParamBuilder::isNullPointer () const {
+
+  return this->nullPointer;
 }

@@ -9,6 +9,7 @@
 
 // Librerías Externas
 // External Libraries
+#include "Xml.h"
 
 // Librerías de terceros
 // third-party Library
@@ -16,6 +17,8 @@
 // Librerías Qt
 // Qt Libraries
 #include <QDebug>
+#include <QtXml/QDomDocument>
+#include <QtXml/QDomElement>
 #include <QObject>
 #include <QString>
 
@@ -37,7 +40,12 @@ namespace NS_LEVEL_1 {
 
           public :
             ConfigBuilder ( QObject *parent = nullptr );
-            QString build ( QString resource, const QString &projectName, NexusBuilder::ProjectId projectType );
+            QDomDocument *build ( QString resource, const QString &projectName, NexusBuilder::ProjectId projectType );
+            void modifyXmlElement ( QDomElement &parent, const QString &elementName, const QString &newValue );
+
+          protected :
+            QDomDocument *resource;
+            bool initialized;
         };
       }
     }

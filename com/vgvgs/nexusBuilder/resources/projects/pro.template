@@ -21,18 +21,17 @@ include ({{pathQmakeBuilders}}/{{projectConfiguration}}.prf)
 # Compiler configuration parameters are defined.
 include({{pathQmakeBuilders}}/buildConfiguration.prf)
 
-SOURCES +=
+SOURCES += \
 
-HEADERS +=
+HEADERS += \
 
 RESOURCES += \
-  resources.qrc
 
-FORMS +=
+FORMS += \
 
-DEF_FILE +=
+DEF_FILE += \
 
-DISTFILES +=
+DISTFILES += \
 
 win32:CONFIG(release, debug|release): LIBS += \
   -L$$LIB_PATH/ -lNexusMacros \
@@ -47,9 +46,9 @@ else:unix: LIBS += \
   -L$$LIB_PATH/ -lNexusCore \
   -L$$LIB_PATH/ -lNexusPatternify
 
-INCLUDEPATH +=
+INCLUDEPATH += \
 
-DEPENDPATH +=
+DEPENDPATH += \
 
 # Se copia la librería en la ruta destino del proyecto final.
 # The library is copied to the destination path of the final project.

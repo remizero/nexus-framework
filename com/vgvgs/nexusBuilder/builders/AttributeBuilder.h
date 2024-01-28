@@ -4,6 +4,7 @@
 // Librerías Internas
 // Internal Libraries
 #include "Builder_global.h"
+#include "NexusBuilder.h"
 #include "ParamBuilder.h"
 
 // Librerías Externas
@@ -33,15 +34,18 @@ namespace NS_LEVEL_1 {
         class BUILDER_EXPORT AttributeBuilder : public ParamBuilder {
 
           public :
-            AttributeBuilder ();
+            AttributeBuilder ( QString paramName, QString paramType, bool paramDynamic, bool paramNullPointer, QString paramDefaultValue = "" );
 
-            QString build ();
+            void build ();
 
-            const QString &getAccessibility () const;
-            void setAccessibility ( const QString &newAccessibility );
+            NexusBuilder::Accessibility getAccessibility ();
+            const NexusBuilder::GetterAndSetter &getGetterAndSetter () const;
+            void setAccessibility ( NexusBuilder::Accessibility newAccessibility );
+            void setGetterAndSetter(const NexusBuilder::GetterAndSetter &newGetterAndSetter);
 
           private :
-            QString accessibility;
+              NexusBuilder::Accessibility accessibility;
+            NexusBuilder::GetterAndSetter getterAndSetter;
         };
       }
     }

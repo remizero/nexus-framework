@@ -7,7 +7,7 @@
 
 // Librerías Externas
 // External Libraries
-#include "macros_global.h"
+#include "Macros_global.h"
 #include "pluginsystem/PluginAbs.h"
 #include "pluginsystem/PluginInfo.h"
 #include "pluginsystem/PluginInterface.h"

@@ -9,20 +9,10 @@ PluginProject::PluginProject ( QObject *parent ) : LibraryProject ( parent ) {}
 void PluginProject::init ( QString projectName, QString projectPath, QString projectType, bool verboseMode ) {
 
   LibraryProject::init ( projectName, projectPath, projectType, verboseMode );
-  this->resource = ":/projects/resources/library/plugin/";
+  this->dirList << "resources";
+  this->projectFileList << "global.h.template"
+                        << "Version.h.template"
+                        << "Version.cpp.template"
+                        << "resources.qrc.template"
+                        << "export.def.template";
 }
-
-// bool PluginProject::createProjectFiles () {
-
-//   bool done = LibraryProject::createProjectFiles ();
-//   if ( done ) {
-
-//     done = this->copyFiles ( {
-//                                "Plugin.h",
-//                                "Plugin.cpp",
-//                                "Plugin.json",
-//                                "Plugin_global.h"
-//                              }, this->resource );
-//   }
-//   return done;
-// }

@@ -5,6 +5,10 @@
 // Internal Libraries
 #include "Builder_global.h"
 #include "ProjectAbs.h"
+#include "builders/ExportsBuilder.h"
+#include "builders/GlobalBuilder.h"
+#include "builders/ResourcesBuilder.h"
+#include "builders/VersionBuilder.h"
 
 // Librerías Externas
 // External Libraries
@@ -35,8 +39,14 @@ namespace NS_LEVEL_1 {
           public :
             LibraryProject ( QObject *parent = nullptr );
             void init ( QString projectName, QString projectPath, QString projectType, bool verboseMode = false ) override;
-            // virtual bool createDirStruct () override { return true; }
-            // virtual bool createProjectFiles () override;
+            bool createDirStruct () override;
+            bool createProjectFiles () override;
+
+          protected :
+              ExportsBuilder *exportsBuilder;
+               GlobalBuilder *globalBuilder;
+              VersionBuilder *versionBuilder;
+            ResourcesBuilder *resourcesBuilder;
         };
       }
     }

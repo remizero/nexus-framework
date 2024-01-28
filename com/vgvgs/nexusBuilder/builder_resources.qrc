@@ -84,5 +84,6 @@
         <file>resources/projects/config.xml.template</file>
         <file>resources/projects/export.def.template</file>
         <file>resources/projects/resources.qrc.template</file>
+        <file>resources/projects/style.qss.template</file>
     </qresource>
 </RCC>

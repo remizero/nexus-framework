@@ -36,28 +36,22 @@ namespace NS_LEVEL_1 {
         class BUILDER_EXPORT NexusBuilderUtils {
 
         public :
-          static bool createProFile ( const QString &projectName );
-          static void createProFileFromTemplate ( const QString &projectPath, const QString &projectName, const QString &proTemplate );
-
-
-
-
-          // Los métodos que van quedando.
           static bool createDirectory ( const QString &projectPath, const QString &projectName, bool verboseMode = false );
-          static QStringList findQrcFiles ( const QString &searchPath );
+          static QStringList findFiles ( const QString &searchPath, const QString &filters );
           static QStringList getClause ( QStringList stringLines, QString clause );
           static QString getCopyFiles ( NexusBuilder::ProjectId projectType );
           static QString getDeploymentRules ( NexusBuilder::ProjectId projectType );
           static QString getProjectConfiguration ( NexusBuilder::ProjectId projectType );
           static QString getQmakeBuildersPath ();
+          static QStringList insertLinesFromList ( QStringList codeLines, QString token, QStringList fileList );
           static QString loadFileContent ( const QString &resourcePath );
+          static QString normalizeExportName ( const QString &prefix );
+          static QString normalizeGlobalName ( const QString &prefix, const QString &fileName );
           static QString normalizeProjectFileContent ( const QString &proTemplate, const QString &projectName, NexusBuilder::ProjectId projectType );
           static QString normalizeProjectName ( const QString &projectName );
           static QString normalizeResourceName ( const QString &resourceName );
-          // static void readResourcesRecursively ( const QString &path, const QStringList &currentDirList );
           static QMap<QString, QStringList> readResourcesRecursively ( const QString &path, const QStringList &currentDirList );
           static QStringList stringToLines ( QString content );
-
         };
       }
     }

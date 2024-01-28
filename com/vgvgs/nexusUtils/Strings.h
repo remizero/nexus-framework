@@ -35,7 +35,7 @@ namespace NS_LEVEL_1 {
             static QString capitalize ( QString string );
             static QString load ( QString fileName, bool readOnly = false );
             static QString normalizeClassName ( QString string );
-            static bool save ( QString *text, QString fileName );
+            static bool save ( QString fileName, QString text );
         };
       }
     }

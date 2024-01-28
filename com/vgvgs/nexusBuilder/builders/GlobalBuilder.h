@@ -4,6 +4,7 @@
 // Librerías Internas
 // Internal Libraries
 #include "Builder_global.h"
+#include "NexusBuilderUtils.h"
 
 // Librerías Externas
 // External Libraries
@@ -28,10 +29,13 @@ namespace NS_LEVEL_1 {
 
       namespace NS_BUILDER {
 
-        class BUILDER_EXPORT GlobalBuilder {
+        class BUILDER_EXPORT GlobalBuilder : QObject {
+
+            Q_OBJECT
 
           public :
-            GlobalBuilder ();
+            GlobalBuilder ( QObject *parent = nullptr );
+            QString build ( QString resource, QString projectName );
         };
       }
     }

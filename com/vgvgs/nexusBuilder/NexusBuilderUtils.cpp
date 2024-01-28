@@ -30,19 +30,19 @@ bool NexusBuilderUtils::createDirectory ( const QString &projectPath, const QStr
   return done;
 }
 
-QStringList NexusBuilderUtils::findQrcFiles ( const QString &searchPath ) {
+QStringList NexusBuilderUtils::findFiles ( const QString &searchPath, const QString &filters ) {
 
-  QStringList qrcFiles;
-  QDir searchDir(searchPath);
-  QStringList filters;
-  filters << "*.qrc";
-  searchDir.setNameFilters ( filters );
+  QStringList filesFound;
+  QDir searchDir ( searchPath );
+  QStringList filterList;
+  filterList << filters;
+  searchDir.setNameFilters ( filterList );
   QFileInfoList fileInfoList = searchDir.entryInfoList ( QDir::Files );
   for ( const QFileInfo &fileInfo : fileInfoList ) {
 
-    qrcFiles.append ( fileInfo.absoluteFilePath () );
+    filesFound.append ( fileInfo.absoluteFilePath () );
   }
-  return qrcFiles;
+  return filesFound;
 }
 
 QStringList NexusBuilderUtils::getClause ( QStringList stringLines, QString clause ) {
@@ -178,6 +178,25 @@ QString NexusBuilderUtils::getQmakeBuildersPath () {
   QString qmakeBuildersPath = QCoreApplication::applicationDirPath ();
   qmakeBuildersPath = qmakeBuildersPath.left ( qmakeBuildersPath.length () - 10 ) + QDir::separator () + QString ( "qmakeBuilders" );
   return qmakeBuildersPath;
+  }
+
+QStringList NexusBuilderUtils::insertLinesFromList ( QStringList codeLines, QString token, QStringList fileList ) {
+
+  if ( fileList.length () > 0 ) {
+
+    int index = -1;
+    int factor = 0;
+    index = codeLines.indexOf ( token );
+    for ( const QString &file : fileList ) {
+
+      QStringList fileSplit = file.split ( QDir::separator () );
+      codeLines.insert ( index + ++factor, "  " + fileSplit.last () + " \\" );
+    }
+    QString lastInsertedLine = codeLines.at ( index + factor );
+    lastInsertedLine.chop ( 2 );
+    codeLines.replace ( index + factor, lastInsertedLine );
+  }
+  return codeLines;
 }
 
 QString NexusBuilderUtils::loadFileContent ( const QString &resourcePath ) {
@@ -194,6 +213,16 @@ QString NexusBuilderUtils::loadFileContent ( const QString &resourcePath ) {
 
     return QString ( "" );
   }
+}
+
+QString NexusBuilderUtils::normalizeExportName ( const QString &prefix ) {
+
+  return prefix.toUpper () + "_EXPORT";
+}
+
+QString NexusBuilderUtils::normalizeGlobalName ( const QString &prefix, const QString &fileName ) {
+
+  return prefix.at ( 0 ).toUpper () + prefix.mid ( 1 ) + "_" + fileName;
 }
 
 QString NexusBuilderUtils::normalizeProjectFileContent ( const QString &proTemplate, const QString &projectName, NexusBuilder::ProjectId projectType ) {
@@ -305,27 +334,6 @@ QString NexusBuilderUtils::normalizeResourceName ( const QString &resourceName )
   return resourceNameAux;
 }
 
-// void NexusBuilderUtils::readResourcesRecursively ( const QString &path, const QStringList &currentDirList ) {
-
-//   QDir dir ( path );
-//   QStringList filters;
-//   filters << "*";
-//   dir.setNameFilters ( filters );
-//   QFileInfoList fileInfoList = dir.entryInfoList ( QDir::Files );
-//   foreach ( const QFileInfo &fileInfo, fileInfoList ) {
-
-//     qDebug () << "Archivo encontrado:" << fileInfo.absoluteFilePath ();
-//   }
-//   QFileInfoList folderInfoList = dir.entryInfoList ( QDir::Dirs | QDir::NoDotAndDotDot );
-//   foreach ( const QFileInfo &folderInfo, folderInfoList ) {
-
-//     QStringList updatedDirList = currentDirList;
-//     updatedDirList.append ( folderInfo.fileName () );
-//     qDebug () << "Directorio encontrado:" << updatedDirList.join ( "/" );
-//     NexusBuilderUtils::readResourcesRecursively ( folderInfo.absoluteFilePath (), updatedDirList );
-//   }
-// }
-
 QMap<QString, QStringList> NexusBuilderUtils::readResourcesRecursively ( const QString &path, const QStringList &currentDirList ) {
 
     QMap<QString, QStringList> prefixFileMap;
@@ -375,56 +383,4 @@ QMap<QString, QStringList> NexusBuilderUtils::readResourcesRecursively ( const Q
 QStringList NexusBuilderUtils::stringToLines ( QString content ) {
 
   return content.split ( "\n" );
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-bool NexusBuilderUtils::createProFile ( const QString &projectName ) {
-
-  QFile *ioDeviceFile = NSLIB_UTILS::Files::load ( projectName + ".pro", QIODevice::WriteOnly | QIODevice::Text );
-  if ( ioDeviceFile ) {
-
-    QTextStream out ( ioDeviceFile );
-    out << "TARGET = " << projectName << "\n";
-    ioDeviceFile->close ();
-    qDebug () << "Created .pro file: " << projectName;
-    return true;
-
-  } else {
-
-    qDebug () << "Failed to create .pro file: " << projectName;
-    return false;
-  }
-}
-
-void NexusBuilderUtils::createProFileFromTemplate ( const QString &projectPath, const QString &projectName, const QString &proTemplate ) {
-
-  QFile *ioDeviceFile = NSLIB_UTILS::Files::load ( projectPath + projectName + ".pro", QIODevice::WriteOnly | QIODevice::Text );
-  if ( ioDeviceFile ) {
-
-    QTextStream out ( ioDeviceFile );
-    out << proTemplate.arg ( projectName );
-    ioDeviceFile->close ();
-    qDebug () << "Created .pro file: " << projectName;
-
-  } else {
-
-    qDebug () << "Failed to create .pro file: " << projectName;
-  }
 }

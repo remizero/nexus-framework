@@ -6,9 +6,11 @@
 #include "Builder_global.h"
 #include "AttributeBuilder.h"
 #include "MethodBuilder.h"
+#include "NexusBuilder.h"
 
 // Librerías Externas
 // External Libraries
+#include "Strings.h"
 
 // Librerías de terceros
 // third-party Library
@@ -16,8 +18,11 @@
 // Librerías Qt
 // Qt Libraries
 #include <QDebug>
+#include <QDir>
 #include <QList>
 #include <QObject>
+#include <QString>
+#include <QStringList>
 
 // Librerías C++
 // C++ Libraries
@@ -35,21 +40,52 @@ namespace NS_LEVEL_1 {
         class BUILDER_EXPORT ClassBuilder {
 
           public :
-            ClassBuilder ();
+            ClassBuilder ( QString className, NexusBuilder::FileClasses fileClass, bool interface = false );
 
-            QString build ();
+            void build ();
 
+            void alignStrings ( QStringList &stringList );
+            void closeClass ();
+            void closeClassFile ();
+            void createAccessibilitySection ( NexusBuilder::Accessibility accessibility );
+            void createClassDefinition ();
+            void createHeaderFile ();
+            void createIncludeGuard ();
+            void createLibsSection ();
+            void createMetadataSection ();
+            void createNamespacesClosing ();
+            void createNamespacesOpening ();
+            void createPrivateSection ();
+            void createProtectedSection ();
+            void createPublicSection ();
+            void createSourceFile ();
+            void decreaseIndentation ();
             const QList<AttributeBuilder *> &getAttributeList () const;
+            const QString &getClassName () const;
+            const NexusBuilder::FileClasses &getFileClasses () const;
+            const QStringList &getInheritsFrom () const;
             const QList<MethodBuilder *> &getMethodList () const;
-            const QList<QString *> &getNamespaceList() const;
+            const QStringList &getNamespaceList () const;
             void setAttributeList ( AttributeBuilder *attribute );
+            void setInheritsFrom ( const QStringList &newInheritsFrom );
             void setMethodList ( MethodBuilder *method );
-            void setNamespaceList ( QString *nameSpace );
+            void setNamespaceList ( QString nameSpace );
+            bool toFile ( QString path );
 
           private :
             QList<AttributeBuilder *> attributeList;
-            QList<MethodBuilder *> methodList;
-            QList<QString *> namespaceList;
+                              QString className;
+            NexusBuilder::FileClasses fileClasses;
+                              QString headerBody;
+                              QString indentation;
+                          QStringList inheritsFrom;
+               QList<MethodBuilder *> methodList;
+                          QStringList namespaceList;
+                              QString sourceBody;
+
+                              QString interfaceSection;
+                              QString pluginSection;
+                                 bool isInterface;
         };
       }
     }

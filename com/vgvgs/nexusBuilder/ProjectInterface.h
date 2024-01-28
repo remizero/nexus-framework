@@ -37,8 +37,8 @@ namespace NS_LEVEL_1 {
             virtual bool createProFile () = 0;
             virtual bool createDirStruct () = 0;
             virtual bool createProjectFiles () = 0;
-            // virtual bool createCommandFiles () = 0;
-            // virtual bool createResourceFiles () = 0;
+            virtual bool createCommandFiles () = 0;
+            virtual bool createResourceFiles () = 0;
         };
       }
     }

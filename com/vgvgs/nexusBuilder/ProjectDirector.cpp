@@ -10,31 +10,31 @@ bool ProjectDirector::create ( ProjectInterface *project ) {
 
     if ( project->createDirStruct () ) {
 
-      if ( project->createProFile () ) {
+      if ( project->createResourceFiles () ) {
 
-        if ( project->createProjectFiles () ) {
+        if ( project->createCommandFiles () ) {
 
-        //   if ( project->createResourceFiles () ) {
+          if ( project->createProjectFiles () ) {
 
-        //     if ( project->createCommandFiles () ) {
+              if ( project->createProFile () ) {
 
               return true;
 
-    //         } else {
+            } else {
 
-    //           qDebug () << "No se pudo crear los archivos de comandos.";
-    //         }
-    //       } else {
+              qDebug () << "No se pudo crear el archivo .pro del proyecto.";
+            }
+          } else {
 
-    //         qDebug () << "No se pudo crear los archivos de recursos.";
-    //       }
+            qDebug () << "No se pudo crear los archivos del proyecto.";
+          }
         } else {
 
-          qDebug () << "No se pudo crear los archivos del proyecto.";
+          qDebug () << "No se pudo crear los archivos de comandos.";
         }
       } else {
 
-        qDebug () << "No se pudo crear el archivo .pro del proyecto.";
+        qDebug () << "No se pudo crear los archivos de recursos.";
       }
     } else {
 

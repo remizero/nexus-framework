@@ -4,6 +4,7 @@
 // Librerías Internas
 // Internal Libraries
 #include "Builder_global.h"
+#include "NexusBuilder.h"
 #include "ParamBuilder.h"
 
 // Librerías Externas
@@ -36,24 +37,31 @@ namespace NS_LEVEL_1 {
           public :
             FunctionBuilder ();
 
-            QString build ();
+            QString build ( NexusBuilder::TypeBuild typeBuild, QString memberScope );
+
+            void createDefinition ( NexusBuilder::TypeBuild typeBuild, QString memberScope = "" );
+            void createParams ();
+            void createSectionedDefinition ( NexusBuilder::TypeBuild typeBuild, QString memberScope, bool begin = true );
 
             const QString &getBody () const;
             const QString &getFunction () const;
             const QString &getName () const;
             const QString &getType () const;
             const QList<ParamBuilder *> &getParamList () const;
+            bool isPointer () const;
             void setBody ( const QString &newBody );
             void setFunction ( const QString &newFunction );
+            void setIsPointer ( bool newIsPointer );
             void setName ( const QString &newName );
             void setType ( const QString &newType );
             void setParamList ( ParamBuilder *param );
 
           protected :
-            QString body;
-            QString function;
-            QString name;
-            QString type;
+                          QString body;
+                          QString function;
+                             bool pointer;
+                          QString name;
+                          QString type;
             QList<ParamBuilder *> paramList;
         };
       }

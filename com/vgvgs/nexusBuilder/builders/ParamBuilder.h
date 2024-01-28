@@ -31,24 +31,24 @@ namespace NS_LEVEL_1 {
         class BUILDER_EXPORT ParamBuilder {
 
           public :
-            ParamBuilder ();
+            ParamBuilder ( QString paramName, QString paramType, bool paramDynamic, bool paramNullPointer, QString paramDefaultValue = "" );
 
-            QString build ();
+            void build ();
 
+            const QString &getDefaultValue () const;
             const QString &getName () const;
             const QString &getParam () const;
             const QString &getType () const;
-            const QString &getDefaultValue () const;
-            void setName ( const QString &newName );
-            void setParam ( const QString &newParam );
-            void setType ( const QString &newType );
-            void setDefaultValue ( const QString &newDefaultValue );
+            bool isDynamic () const;
+            bool isNullPointer () const;
 
           protected :
+            QString defaultValue;
+               bool dynamic;
             QString name;
+               bool nullPointer;
             QString param;
             QString type;
-            QString defaultValue;
         };
       }
     }

@@ -1,10 +1,9 @@
-#ifndef JSON_H
-#define JSON_H
+#ifndef HASH_H
+#define HASH_H
 
 // Librerías Internas
 // Internal Libraries
 #include "Utils_global.h"
-#include "Files.h"
 
 // Librerías Externas
 // External Libraries
@@ -15,13 +14,9 @@
 // Librerías Qt
 // Qt Libraries
 #include <QByteArray>
+#include <QCryptographicHash>
 #include <QDebug>
-#include <QFile>
-#include <QIODevice>
-#include <QJsonDocument>
-#include <QJsonParseError>
 #include <QString>
-#include <QVariant>
 
 // Librerías C++
 // C++ Libraries
@@ -35,15 +30,14 @@ namespace NS_LEVEL_1 {
 
       namespace NS_UTILS {
 
-        class UTILS_EXPORT Json {
+        class UTILS_EXPORT Hash {
 
           public :
-            static QJsonDocument *load ( QString fileName, bool readOnly = false );
-            static bool save ( QString fileName, QJsonDocument *jsonDocument );
+            static QString generate ( const QString &inputString, QCryptographicHash::Algorithm algorithm = QCryptographicHash::Md5 );
         };
       }
     }
   }
 }
 
-#endif // JSON_H
+#endif // HASH_H

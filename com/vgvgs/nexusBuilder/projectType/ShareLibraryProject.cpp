@@ -9,17 +9,10 @@ ShareLibraryProject::ShareLibraryProject ( QObject *parent ) : LibraryProject ( 
 void ShareLibraryProject::init ( QString projectName, QString projectPath, QString projectType, bool verboseMode ) {
 
   LibraryProject::init ( projectName, projectPath, projectType, verboseMode );
-  this->resource = ":/projects/resources/library/share/";
+  this->dirList << "resources";
+  this->projectFileList << "global.h.template"
+                        << "Version.h.template"
+                        << "Version.cpp.template"
+                        << "resources.qrc.template"
+                        << "export.def.template";
 }
-
-// bool ShareLibraryProject::createProjectFiles () {
-
-//   bool done = LibraryProject::createProjectFiles ();
-//   if ( done ) {
-
-//     done = this->copyFiles ( {
-//                                "Share_global.h"
-//                              }, this->resource );
-//   }
-//   return done;
-// }

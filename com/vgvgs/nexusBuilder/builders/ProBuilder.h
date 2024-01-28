@@ -37,7 +37,7 @@ namespace NS_LEVEL_1 {
 
           public :
             ProBuilder ( QObject *parent = nullptr );
-            QString build ( QString resource, const QString &projectName, NexusBuilder::ProjectId projectType );
+            QString build ( QString projectPath, QString resource, const QString &projectName, NexusBuilder::ProjectId projectType );
         };
       }
     }

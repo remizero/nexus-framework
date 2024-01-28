@@ -4,25 +4,79 @@
 using namespace NSLIB_BUILDER;
 
 
-FunctionBuilder::FunctionBuilder () {}
+FunctionBuilder::FunctionBuilder () {
 
-QString FunctionBuilder::build () {
+  this->pointer = false;
+}
 
-  this->function += this->type + " " + this->name + " (";
+QString FunctionBuilder::build ( NexusBuilder::TypeBuild typeBuild, QString memberScope ) {
+
+  this->createDefinition ( typeBuild, memberScope );
+  if ( typeBuild == NexusBuilder::TypeBuild::IMPLEMENTATION ) {
+
+    // TODO Normalizar el body de la función.
+    this->function += this->body;
+    this->function += "\n}";
+  }
+  return this->function;
+}
+
+void FunctionBuilder::createDefinition ( NexusBuilder::TypeBuild typeBuild, QString memberScope ) {
+
+  this->function += this->type + " ";
+  this->function += this->isPointer () ? "*" : "";
+  this->createSectionedDefinition ( typeBuild, memberScope );
+  this->createParams ();
+  this->function += ")";
+  this->createSectionedDefinition ( typeBuild, memberScope, false );
+}
+
+void FunctionBuilder::createParams () {
+
   if ( this->paramList.count () > 0 ) {
 
     this->function += " ";
-    // TODO Procesar los parámetros.
-    this->function += " ";
+    for ( int i = 0; i < this->paramList.size (); ++i ) {
 
+      this->paramList.at ( i )->build ();
+      this->function += this->paramList.at ( i )->getParam ();
+      if ( i < paramList.size () - 1 ) {
+
+        this->function += ", ";
+      }
+    }
+    this->function += " ";
   }
-  this->function += ")";
-  this->function += " {\n\n";
-  // TODO Normalizar el body de la función.
-  this->function += this->body;
-  this->function += "\n";
-  this->function += "}";
-  return this->function;
+}
+
+void FunctionBuilder::createSectionedDefinition ( NexusBuilder::TypeBuild typeBuild, QString memberScope, bool begin ) {
+
+  if ( typeBuild == NexusBuilder::TypeBuild::DEFINITION ) {
+
+    if ( begin ) {
+
+      this->function += this->name + " (";
+
+    } else {
+
+      this->function += ";";
+    }
+  } else if ( typeBuild == NexusBuilder::TypeBuild::IMPLEMENTATION ) {
+
+    if ( begin ) {
+      if ( memberScope.isEmpty () ) {
+
+        this->function += this->name + " (";
+
+      } else {
+
+        this->function += memberScope + "::" + this->name + " (";
+      }
+    } else {
+
+      this->function += " {\n\n";
+    }
+  }
 }
 
 const QString &FunctionBuilder::getBody () const {
@@ -40,9 +94,19 @@ const QString &FunctionBuilder::getFunction () const {
   return this->function;
 }
 
+bool FunctionBuilder::isPointer () const {
+
+  return this->pointer;
+}
+
 void FunctionBuilder::setFunction ( const QString &newFunction ) {
 
   this->function = newFunction;
+}
+
+void FunctionBuilder::setIsPointer ( bool newIsPointer ) {
+
+  this->pointer = newIsPointer;
 }
 
 const QString &FunctionBuilder::getName () const {

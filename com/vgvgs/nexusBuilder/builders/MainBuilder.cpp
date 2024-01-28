@@ -6,7 +6,7 @@ using namespace NSLIB_BUILDER;
 
 MainBuilder::MainBuilder ( QObject *parent ) : QObject ( parent ) {}
 
-QString MainBuilder::build ( QString resource, const QString &projectName, NexusBuilder::ProjectId projectType ) {
+QString MainBuilder::build ( QString resource, NexusBuilder::ProjectId projectType ) {
 
   QString fileContent = NexusBuilderUtils::loadFileContent ( resource );
   QStringList codeLines = NexusBuilderUtils::stringToLines ( fileContent );

@@ -30,7 +30,7 @@ QString Strings::normalizeClassName ( QString string ) {
   return string.remove ( 0, pos + 1 );
 }
 
-bool Strings::save ( QString *text, QString fileName ) {
+bool Strings::save ( QString fileName, QString text ) {
 
   return Files::save ( fileName, QVariant::fromValue ( text ), QIODevice::WriteOnly | QIODevice::Text );
 }

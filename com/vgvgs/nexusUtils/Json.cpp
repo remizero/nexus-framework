@@ -26,7 +26,7 @@ QJsonDocument *Json::load ( QString fileName, bool readOnly ) {
   return nullptr;
 }
 
-bool Json::save ( QJsonDocument *jsonDocument, QString fileName ) {
+bool Json::save ( QString fileName, QJsonDocument *jsonDocument ) {
 
   return Files::save ( fileName, QVariant::fromValue ( jsonDocument ), QIODevice::WriteOnly | QIODevice::Text );
 }

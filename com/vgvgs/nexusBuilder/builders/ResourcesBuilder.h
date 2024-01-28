@@ -16,9 +16,10 @@
 // Librerías Qt
 // Qt Libraries
 #include <QDebug>
-#include <QDomDocument>
-#include <QDomElement>
+#include <QtXml/QDomDocument>
+#include <QtXml/QDomElement>
 #include <QObject>
+#include <QString>
 #include <QStringList>
 
 // Librerías C++

@@ -5,6 +5,7 @@
 // Internal Libraries
 #include "Builder_global.h"
 #include "FunctionBuilder.h"
+#include "NexusBuilder.h"
 
 // Librerías Externas
 // External Libraries
@@ -35,16 +36,15 @@ namespace NS_LEVEL_1 {
           public :
             MethodBuilder ();
 
-            QString build ();
+            QString build ( NexusBuilder::FileClasses fileClass, NexusBuilder::TypeBuild typeBuild, QString memberScope );
 
-            const QString &getAccessibility () const;
+            NexusBuilder::Accessibility getAccessibility ();
             bool getImplementedIn () const;
-            void setAccessibility ( const QString &newAccessibility );
+            void setAccessibility ( NexusBuilder::Accessibility newAccessibility );
             void setImplementedIn ( bool newImplementedIn );
 
           private :
-            QString accessibility;
-            // TODO Crear un enumerado con los valores "Implementation y Header".
+            NexusBuilder::Accessibility accessibility;
             bool implementedIn;
         };
       }

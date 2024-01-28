@@ -15,6 +15,7 @@ const char *NexusBuilder::getProjectClassName ( ProjectId projectId ) {
     "PluginProject",
     "ShareLibraryProject",
     "SimpleGuiAppProject",
+    "StandaloneNexusAppProject",
     "StaticLibraryProject"
   };
   return projectClassNames [ projectId ];
@@ -31,6 +32,7 @@ NexusBuilder::ProjectId NexusBuilder::stringToProjectId ( const QString &project
     {     "plugin", ProjectId::PLUGIN       },
     {      "share", ProjectId::SHARE        },
     {  "simplegui", ProjectId::SIMPLEGUI    },
+    { "standalone", ProjectId::STANDALONE   },
     {     "static", ProjectId::STATIC       }
   };
   return projectIdMap.value ( projectType.toLower (), ProjectId::NUM_PROJECTS );

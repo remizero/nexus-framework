@@ -4,21 +4,34 @@
 using namespace NSLIB_BUILDER;
 
 
-AttributeBuilder::AttributeBuilder () {}
 
-QString AttributeBuilder::build () {
 
-  QString attribute = ParamBuilder::build ();
-  attribute += ";";
-  return attribute;
+AttributeBuilder::AttributeBuilder ( QString paramName, QString paramType, bool paramDynamic, bool paramNullPointer, QString paramDefaultValue )
+  : ParamBuilder ( paramName, paramType, paramDynamic, paramNullPointer, paramDefaultValue )
+  {}
+
+void AttributeBuilder::build () {
+
+  ParamBuilder::build ();
+  this->param += ";";
 }
 
-const QString &AttributeBuilder::getAccessibility () const {
+NexusBuilder::Accessibility AttributeBuilder::getAccessibility () {
 
   return this->accessibility;
 }
 
-void AttributeBuilder::setAccessibility ( const QString &newAccessibility ) {
+const NexusBuilder::GetterAndSetter &AttributeBuilder::getGetterAndSetter () const {
+
+  return this->getterAndSetter;
+}
+
+void AttributeBuilder::setAccessibility ( NexusBuilder::Accessibility newAccessibility ) {
 
   this->accessibility = newAccessibility;
+}
+
+void AttributeBuilder::setGetterAndSetter ( const NexusBuilder::GetterAndSetter &newGetterAndSetter ) {
+
+  this->getterAndSetter = newGetterAndSetter;
 }

@@ -9,10 +9,10 @@ StaticLibraryProject::StaticLibraryProject ( QObject *parent ) : LibraryProject 
 void StaticLibraryProject::init ( QString projectName, QString projectPath, QString projectType, bool verboseMode ) {
 
   LibraryProject::init ( projectName, projectPath, projectType, verboseMode );
-  this->resource = ":/projects/resources/library/static/";
+  this->dirList << "resources";
+  this->projectFileList << "global.h.template"
+                        << "Version.h.template"
+                        << "Version.cpp.template"
+                        << "resources.qrc.template"
+                        << "export.def.template";
 }
-
-// bool StaticLibraryProject::createProjectFiles () {
-
-//   return LibraryProject::createProjectFiles ();
-// }

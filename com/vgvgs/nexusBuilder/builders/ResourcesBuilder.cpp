@@ -32,11 +32,6 @@ QDomDocument *ResourcesBuilder::build ( QString resource, QMap<QString, QStringL
 QDomElement ResourcesBuilder::createResourceElement ( QDomDocument *doc, const QString &prefix ) {
 
   QDomElement root = this->resource->documentElement ();
-  // if ( root.tagName () != "RCC") {
-
-  //   qDebug () << "Error: El documento XML debe tener un elemento raíz 'RCC'.";
-  //   return;
-  // }
   QDomElement qResourceElement = doc->createElement ( "qresource" );
   qResourceElement.setAttribute ( "prefix", prefix );
   root.appendChild ( qResourceElement );
