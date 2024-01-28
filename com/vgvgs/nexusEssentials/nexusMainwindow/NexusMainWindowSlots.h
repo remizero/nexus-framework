@@ -1,19 +1,23 @@
-#ifndef MAINWINDOWSIGNALS_H
-#define MAINWINDOWSIGNALS_H
+#ifndef NEXUSMAINWINDOWSLOTS_H
+#define NEXUSMAINWINDOWSLOTS_H
 
 // Librerías Internas
 // Internal Libraries
 #include "Mainwindow_global.h"
+#include "NexusMainWindow.h"
 
 // Librerías Externas
 // External Libraries
 #include "Macros_global.h"
+#include "appsystem/App.h"
 
 // Librerías de terceros
 // third-party Library
 
 // Librerías Qt
 // Qt Libraries
+#include <QApplication>
+#include <QDebug>
 #include <QMainWindow>
 
 // Librerías C++
@@ -30,10 +34,14 @@ namespace NS_LEVEL_1 {
 
         namespace NS_MAINWINDOW {
 
-          class MAINWINDOW_EXPORT MainWindowSignals {
+          class MAINWINDOW_EXPORT NexusMainWindowSlots {
 
             public :
-              MainWindowSignals ( QMainWindow *parent );
+              NexusMainWindowSlots ( QMainWindow *parent );
+              ~NexusMainWindowSlots ();
+
+              QMainWindow *getParent () const;
+              void slotReboot ();
 
             private :
               QMainWindow *parent;
@@ -44,4 +52,4 @@ namespace NS_LEVEL_1 {
   }
 }
 
-#endif // MAINWINDOWSIGNALS_H
+#endif // NEXUSMAINWINDOWSLOTS_H

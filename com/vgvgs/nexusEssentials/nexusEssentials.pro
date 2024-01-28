@@ -5,6 +5,7 @@ SUBDIRS += \
   nexusColorbox \
   nexusColorpicker \
   nexusMainwindow \
+  nexusMenu \
   nexusMenubar \
   nexusSingleinstance \
   nexusSplashscreen \
@@ -37,6 +38,9 @@ nexusXsdform.depends = nexusColorpicker nexusColorbox
 
 nexusActions.subdir = nexusActions
 nexusActions.depends = nexusColorpicker nexusColorbox nexusXsdform
+
+nexusMenu.subdir = nexusMenu
+nexusMenu.depends = nexusColorpicker nexusColorbox nexusXsdform nexusActions
 
 nexusMenubar.subdir = nexusMenubar
 nexusMenubar.depends = nexusColorpicker nexusColorbox nexusXsdform nexusActions

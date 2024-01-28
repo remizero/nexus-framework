@@ -1,12 +1,12 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef NEXUSMAINWINDOW_H
+#define NEXUSMAINWINDOW_H
 
 // Librerías Internas
 // Internal Libraries
 #include "Mainwindow_global.h"
-#include "MainWindowEvents.h"
-#include "MainWindowSignals.h"
-#include "MainWindowSlots.h"
+#include "NexusMainWindowEvents.h"
+#include "NexusMainWindowSignals.h"
+#include "NexusMainWindowSlots.h"
 
 // Librerías Externas
 // External Libraries
@@ -44,42 +44,42 @@ namespace NS_LEVEL_1 {
 
         namespace NS_MAINWINDOW {
 
-          class MainWindowEvents;
-          class MainWindowSlots;
+          class NexusMainWindowEvents;
+          class NexusMainWindowSlots;
 
-          class MAINWINDOW_EXPORT MainWindow : public QMainWindow {
+          class MAINWINDOW_EXPORT NexusMainWindow : public QMainWindow {
 
               Q_OBJECT
 
             public :
-              explicit MainWindow ( QSettings *settings, QWidget *parent = nullptr );
-              ~MainWindow ();
+              explicit NexusMainWindow ( QSettings *settings, QWidget *parent = nullptr );
+              ~NexusMainWindow ();
 
               // static int const EXIT_CODE_REBOOT = -123456789;
 
-              MainWindowSlots *getMainWindowSlots () const;
+              NexusMainWindowSlots *getMainWindowSlots () const;
               QSystemTrayIcon *getSysTrayIcon () const;
-              void setVisible ( bool visible ) Q_DECL_OVERRIDE;
+              void setVisible ( bool visible ) override;
 
             public slots :
               void iconActivated ( QSystemTrayIcon::ActivationReason reason );
 
             protected :
               void centerWindow ();
-              virtual void changeEvent( QEvent *event ) Q_DECL_OVERRIDE;
-              void closeEvent ( QCloseEvent *event ) Q_DECL_OVERRIDE;
+              virtual void changeEvent( QEvent *event ) override;
+              void closeEvent ( QCloseEvent *event ) override;
               void createMenuBar ();
               void createStatusBar ();
               void init ( QSettings *settings );
               void loadSettins ();
-              void resizeEvent ( QResizeEvent *event ) Q_DECL_OVERRIDE;
+              void resizeEvent ( QResizeEvent *event ) override;
               void saveSettings ();
               void setMinimunWindowSize ();
 
             private :
-                                  MainWindowEvents *mainWindowEvents;
-                                 MainWindowSignals *mainWindowSignals;
-                                   MainWindowSlots *mainWindowSlots;
+                             NexusMainWindowEvents *mainWindowEvents;
+                            NexusMainWindowSignals *mainWindowSignals;
+                              NexusMainWindowSlots *mainWindowSlots;
               NSLIB_SYSTEMTRAYICON::SystemTrayIcon *sysTrayIcon;
 
               void createSysTrayIcon ();
@@ -90,4 +90,4 @@ namespace NS_LEVEL_1 {
   }
 }
 
-#endif // MAINWINDOW_H
+#endif // NEXUSMAINWINDOW_H

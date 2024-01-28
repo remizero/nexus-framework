@@ -22,19 +22,19 @@ include (../../../../qmakeBuilders/projectLibConfiguration.prf)
 include(../../../../qmakeBuilders/buildConfiguration.prf)
 
 SOURCES += \
-  MainWindow.cpp \
-  MainWindowActions.cpp \
-  MainWindowEvents.cpp \
-  MainWindowSignals.cpp \
-  MainWindowSlots.cpp
+  NexusMainWindow.cpp \
+  NexusMainWindowActions.cpp \
+  NexusMainWindowEvents.cpp \
+  NexusMainWindowSignals.cpp \
+  NexusMainWindowSlots.cpp
 
 HEADERS += \
   Mainwindow_global.h \
-  MainWindow.h \
-  MainWindowActions.h \
-  MainWindowEvents.h \
-  MainWindowSignals.h \
-  MainWindowSlots.h
+  NexusMainWindow.h \
+  NexusMainWindowActions.h \
+  NexusMainWindowEvents.h \
+  NexusMainWindowSignals.h \
+  NexusMainWindowSlots.h
 
 win32:CONFIG(release, debug|release): LIBS += \
   -L$$LIB_PATH/ -lNexusMacros \

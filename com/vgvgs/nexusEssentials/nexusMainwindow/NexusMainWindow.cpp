@@ -1,10 +1,10 @@
-#include "MainWindow.h"
+#include "NexusMainWindow.h"
 
 
 using namespace NSLIB_MAINWINDOW;
 
 
-MainWindow::MainWindow ( QSettings *settings, QWidget *parent ) : QMainWindow ( parent ) {
+NexusMainWindow::NexusMainWindow ( QSettings *settings, QWidget *parent ) : QMainWindow ( parent ) {
 
   this->init ( settings );
   if ( ( this->windowState () != Qt::WindowMaximized ) || ( this->windowState () != Qt::WindowFullScreen ) ) {
@@ -14,25 +14,25 @@ MainWindow::MainWindow ( QSettings *settings, QWidget *parent ) : QMainWindow ( 
   }
 }
 
-MainWindow::~MainWindow () {}
+NexusMainWindow::~NexusMainWindow () {}
 
-void MainWindow::centerWindow () {
+void NexusMainWindow::centerWindow () {
 
   this->adjustSize ();
   this->move ( this->screen ()->availableGeometry ().center () - this->rect ().center () );
 }
 
-void MainWindow::changeEvent ( QEvent *event ) {
+void NexusMainWindow::changeEvent ( QEvent *event ) {
 
   this->mainWindowEvents->changeEvent ( event );
 }
 
-void MainWindow::closeEvent ( QCloseEvent *event ) {
+void NexusMainWindow::closeEvent ( QCloseEvent *event ) {
 
   this->mainWindowEvents->closeEvent ( event );
 }
 
-void MainWindow::createMenuBar () {
+void NexusMainWindow::createMenuBar () {
 
   // TODO Aquí, se necesita leer desde el archivo de configuración, que tipo de
   // de menú se ha de crear, si el clásico "Barra de Menú" o el "menú tipo Cintillo"
@@ -42,13 +42,13 @@ void MainWindow::createMenuBar () {
   this->setMenuBar ( new NSLIB_MENUBAR::MenuBar ( this ) );
 }
 
-void MainWindow::createStatusBar () {
+void NexusMainWindow::createStatusBar () {
 
-  // TODO Basicamente aquí se haría lo mismo que en MainWindow::createMenuBar ()
+  // TODO Basicamente aquí se haría lo mismo que en NexusMainWindow::createMenuBar ()
   this->setStatusBar ( new NSLIB_STATUSBAR::StatusBar ( this ) );
 }
 
-void MainWindow::createSysTrayIcon () {
+void NexusMainWindow::createSysTrayIcon () {
 
   /**
    * TODO
@@ -65,17 +65,17 @@ void MainWindow::createSysTrayIcon () {
   }
 }
 
-MainWindowSlots *MainWindow::getMainWindowSlots () const {
+NexusMainWindowSlots *NexusMainWindow::getMainWindowSlots () const {
 
   return this->mainWindowSlots;
 }
 
-QSystemTrayIcon *MainWindow::getSysTrayIcon () const {
+QSystemTrayIcon *NexusMainWindow::getSysTrayIcon () const {
 
   return this->sysTrayIcon;
 }
 
-void MainWindow::iconActivated ( QSystemTrayIcon::ActivationReason reason ) {
+void NexusMainWindow::iconActivated ( QSystemTrayIcon::ActivationReason reason ) {
 
   switch ( reason ) {
 
@@ -108,12 +108,12 @@ void MainWindow::iconActivated ( QSystemTrayIcon::ActivationReason reason ) {
   }
 }
 
-void MainWindow::init ( QSettings *settings ) {
+void NexusMainWindow::init ( QSettings *settings ) {
 
-  //int const MainWindow::EXIT_CODE_REBOOT = -123456789;
-  this->mainWindowEvents = new MainWindowEvents ( this );
-  this->mainWindowSignals = new MainWindowSignals ( this );
-  this->mainWindowSlots = new MainWindowSlots ( this );
+  //int const NexusMainWindow::EXIT_CODE_REBOOT = -123456789;
+  this->mainWindowEvents = new NexusMainWindowEvents ( this );
+  this->mainWindowSignals = new NexusMainWindowSignals ( this );
+  this->mainWindowSlots = new NexusMainWindowSlots ( this );
 
   this->setWindowTitle ( settings->value ( "app/applicationdisplayname" ).toString () );
   // TODO https://amin-ahmadi.com/2016/08/05/how-to-update-your-qt-applications-taskbar-icon-at-runtime/
@@ -138,9 +138,9 @@ void MainWindow::init ( QSettings *settings ) {
   //this->setStyleSheet ( "QMainWindow { background : rgb( 64, 66, 68 ) }" );
 }
 
-void MainWindow::loadSettins () {}
+void NexusMainWindow::loadSettins () {}
 
-void MainWindow::resizeEvent ( QResizeEvent *event ) {
+void NexusMainWindow::resizeEvent ( QResizeEvent *event ) {
 
   this->mainWindowEvents->resizeEvent ( event );
   /**
@@ -159,9 +159,9 @@ void MainWindow::resizeEvent ( QResizeEvent *event ) {
   //event->accept ();
 }
 
-void MainWindow::saveSettings () {}
+void NexusMainWindow::saveSettings () {}
 
-void MainWindow::setMinimunWindowSize () {
+void NexusMainWindow::setMinimunWindowSize () {
 
   // if ( QApplication::desktop ()->screen ()->width () > 800 ) {
   if ( this->screen ()->availableGeometry ().width () > 800 ) {
@@ -188,7 +188,7 @@ void MainWindow::setMinimunWindowSize () {
   }
 }
 
-void MainWindow::setVisible ( bool visible ) {
+void NexusMainWindow::setVisible ( bool visible ) {
 
   /*this->minimizeAction->setEnabled ( visible );
   this->maximizeAction->setEnabled ( !isMaximized () );

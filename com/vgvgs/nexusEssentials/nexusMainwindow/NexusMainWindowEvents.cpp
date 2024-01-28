@@ -1,4 +1,4 @@
-#include "MainWindowEvents.h"
+#include "NexusMainWindowEvents.h"
 
 #include <QApplication>
 // #include <QDesktopWidget>
@@ -6,12 +6,14 @@
 
 using namespace NSLIB_MAINWINDOW;
 
-MainWindowEvents::MainWindowEvents ( QMainWindow *parent ) {
+NexusMainWindowEvents::NexusMainWindowEvents ( QMainWindow *parent ) {
 
   this->parent = parent;
 }
 
-void MainWindowEvents::adjustMaximizedSize ( QMainWindow *parent ) {
+NexusMainWindowEvents::~NexusMainWindowEvents () {}
+
+void NexusMainWindowEvents::adjustMaximizedSize ( QMainWindow *parent ) {
 
   /**
    * TODO
@@ -40,7 +42,7 @@ void MainWindowEvents::adjustMaximizedSize ( QMainWindow *parent ) {
   }
 }
 
-void MainWindowEvents::adjustMinimizedSize ( QMainWindow *parent ) {
+void NexusMainWindowEvents::adjustMinimizedSize ( QMainWindow *parent ) {
 
   /**
    * TODO
@@ -62,7 +64,7 @@ void MainWindowEvents::adjustMinimizedSize ( QMainWindow *parent ) {
   }
 }
 
-void MainWindowEvents::changeEvent ( QEvent *event ) {
+void NexusMainWindowEvents::changeEvent ( QEvent *event ) {
 
   if ( event->type () == QEvent::WindowStateChange ) {
 
@@ -89,7 +91,7 @@ void MainWindowEvents::changeEvent ( QEvent *event ) {
   }
 }
 
-void MainWindowEvents::closeEvent ( QCloseEvent *event ) {
+void NexusMainWindowEvents::closeEvent ( QCloseEvent *event ) {
 
 #ifdef Q_OS_OSX
   if ( !event->spontaneous () || !this->parent->isVisible () ) {
@@ -98,7 +100,7 @@ void MainWindowEvents::closeEvent ( QCloseEvent *event ) {
   }
 #endif
   //this->parent->sy
-  if ( ( ( MainWindow * ) this->parent )->getSysTrayIcon ()->isVisible () ) {
+  if ( ( ( NexusMainWindow * ) this->parent )->getSysTrayIcon ()->isVisible () ) {
 
     if ( NSLIB_CORE::AppInit::getInstance ()->getAppConfig ()->getSettings ()->value ( "systemtrayicon/systraydefaultmessagetype" ).toString ().compare ( "Information" ) == 0 ) {
 
@@ -141,7 +143,12 @@ void MainWindowEvents::closeEvent ( QCloseEvent *event ) {
   //event->accept ();
 }
 
-void MainWindowEvents::resizeEvent ( QResizeEvent *event ) {
+QMainWindow *NexusMainWindowEvents::getParent () const {
+
+  return this->parent;
+}
+
+void NexusMainWindowEvents::resizeEvent ( QResizeEvent *event ) {
 
   /**
    * TODO

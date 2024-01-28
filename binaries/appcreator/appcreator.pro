@@ -22,21 +22,21 @@ include (../../qmakeBuilders/projectBinConfiguration.prf)
 include(../../qmakeBuilders/buildConfiguration.prf)
 
 SOURCES += \
+  ACRegisterClasses.cpp \
   AttributeDialog.cpp \
   MethodDialog.cpp \
   commands/TypeCmd.cpp \
   CommandProcessor.cpp \
   main.cpp \
-  MainWindow.cpp \
-  RegisterClasses.cpp
+  MainWindow.cpp
 
 HEADERS += \
+  ACRegisterClasses.h \
   AttributeDialog.h \
   MethodDialog.h \
   commands/TypeCmd.h \
   CommandProcessor.h \
-  MainWindow.h \
-  RegisterClasses.h
+  MainWindow.h
 
 RESOURCES += \
   resources.qrc

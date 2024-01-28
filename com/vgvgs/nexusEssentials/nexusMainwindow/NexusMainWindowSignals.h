@@ -1,5 +1,5 @@
-#ifndef MAINWINDOWACTIONS_H
-#define MAINWINDOWACTIONS_H
+#ifndef NEXUSMAINWINDOWSIGNALS_H
+#define NEXUSMAINWINDOWSIGNALS_H
 
 // Librerías Internas
 // Internal Libraries
@@ -30,18 +30,13 @@ namespace NS_LEVEL_1 {
 
         namespace NS_MAINWINDOW {
 
-          class MAINWINDOW_EXPORT MainWindowActions {
+          class MAINWINDOW_EXPORT NexusMainWindowSignals {
 
             public :
-              MainWindowActions ();
-              ~MainWindowActions ();
+              NexusMainWindowSignals ( QMainWindow *parent );
+              ~NexusMainWindowSignals ();
 
-              virtual void createActions () = 0;
               QMainWindow *getParent () const;
-              void setParent ( QMainWindow *value );
-              void loadBasicActions ();
-              void loadPluginActions ();
-              void setPluginAction ();
 
             private :
               QMainWindow *parent;
@@ -52,4 +47,4 @@ namespace NS_LEVEL_1 {
   }
 }
 
-#endif // MAINWINDOWACTIONS_H
+#endif // NEXUSMAINWINDOWSIGNALS_H

@@ -54,7 +54,7 @@ namespace NS_LEVEL_1 {
               bool colorChanged ();
 
             protected :
-              void keyPressEvent ( QKeyEvent *event ) Q_DECL_OVERRIDE;
+              void keyPressEvent ( QKeyEvent *event ) override;
 
             private :
                QColor m_color;

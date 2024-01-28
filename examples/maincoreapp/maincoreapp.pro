@@ -23,7 +23,7 @@ include(../../qmakeBuilders/buildConfiguration.prf)
 
 SOURCES += \
   CommandProcessor.cpp \
-  RegisterClasses.cpp \
+  MCARegisterClasses.cpp \
   commands/InfoCmd.cpp \
   commands/TypeCmd.cpp \
   main.cpp \
@@ -31,8 +31,8 @@ SOURCES += \
 
 HEADERS += \
   CommandProcessor.h \
+  MCARegisterClasses.h \
   MainWindow.h \
-  RegisterClasses.h \
   commands/InfoCmd.h \
   commands/TypeCmd.h
 

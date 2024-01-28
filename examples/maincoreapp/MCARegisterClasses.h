@@ -1,15 +1,15 @@
-#ifndef REGISTERCLASSES_H
-#define REGISTERCLASSES_H
+#ifndef MCAREGISTERCLASSES_H
+#define MCAREGISTERCLASSES_H
 
 // Librerías Internas
 // Internal Libraries
+#include "commands/InfoCmd.h"
 #include "commands/TypeCmd.h"
 #include "CommandProcessor.h"
 
 // Librerías Externas
 // External Libraries
 #include "Core_global.h"
-#include "Patternify_global.h"
 #include "creational/Singleton.h"
 #include "reflectionsystem/RegisterClassInterface.h"
 
@@ -37,4 +37,4 @@ class RegisterClasses : public NSLIB_CORE::RegisterClassInterface, public NSLIB_
     friend class NSLIB_PATTERNIFY::Singleton<RegisterClasses>;
 };
 
-#endif // REGISTERCLASSES_H
+#endif // MCAREGISTERCLASSES_H

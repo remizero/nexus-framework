@@ -1,10 +1,10 @@
-#ifndef MAINWINDOWEVENTS_H
-#define MAINWINDOWEVENTS_H
+#ifndef NEXUSMAINWINDOWEVENTS_H
+#define NEXUSMAINWINDOWEVENTS_H
 
 // Librerías Internas
 // Internal Libraries
 #include "Mainwindow_global.h"
-#include "MainWindow.h"
+#include "NexusMainWindow.h"
 
 // Librerías Externas
 // External Libraries
@@ -36,15 +36,17 @@ namespace NS_LEVEL_1 {
 
         namespace NS_MAINWINDOW {
 
-          class MAINWINDOW_EXPORT MainWindowEvents {
+          class MAINWINDOW_EXPORT NexusMainWindowEvents {
 
             public :
-              MainWindowEvents ( QMainWindow *parent );
+              NexusMainWindowEvents ( QMainWindow *parent );
+              ~NexusMainWindowEvents ();
 
               void adjustMaximizedSize ( QMainWindow *parent );
               void adjustMinimizedSize ( QMainWindow *parent );
               void changeEvent( QEvent *event );
               void closeEvent ( QCloseEvent *event );
+              QMainWindow *getParent () const;
               void resizeEvent ( QResizeEvent *event );
 
             private :
@@ -56,4 +58,4 @@ namespace NS_LEVEL_1 {
   }
 }
 
-#endif // MAINWINDOWEVENTS_H
+#endif // NEXUSMAINWINDOWEVENTS_H

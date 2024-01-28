@@ -4,7 +4,10 @@
 using namespace NSLIB_BUILDER;
 
 
-ConfigBuilder::ConfigBuilder ( QObject *parent ) : QObject ( parent ) {}
+ConfigBuilder::ConfigBuilder ( QObject *parent ) : QObject ( parent ) {
+
+  this->resource = nullptr;
+}
 
 QDomDocument *ConfigBuilder::build ( QString resource, const QString &projectName, NexusBuilder::ProjectId projectType ) {
 

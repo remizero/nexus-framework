@@ -31,7 +31,7 @@ namespace NS_LEVEL_1 {
         class BUILDER_EXPORT ParamBuilder {
 
           public :
-            ParamBuilder ( QString paramName, QString paramType, bool paramDynamic, bool paramNullPointer, QString paramDefaultValue = "" );
+            ParamBuilder ( const QString &paramName, const QString &paramType, bool paramDynamic, bool paramNullPointer, const QString &paramDefaultValue = "" );
 
             void build ();
 

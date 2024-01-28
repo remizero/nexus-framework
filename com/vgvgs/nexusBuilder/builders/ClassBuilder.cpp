@@ -184,7 +184,8 @@ void ClassBuilder::createMetadataSection () {
 
 void ClassBuilder::createNamespacesClosing () {
 
-  for ( const QString &namespaceDefinition : this->namespaceList ) {
+  for ( int i = 0; i < this->namespaceList.length (); i++ ) {
+  //for ( const QString &namespaceDefinition : this->namespaceList ) {
 
     this->headerBody += this->indentation + "}\n";
     this->decreaseIndentation ();

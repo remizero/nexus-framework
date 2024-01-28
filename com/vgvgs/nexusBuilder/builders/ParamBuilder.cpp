@@ -4,12 +4,15 @@
 using namespace NSLIB_BUILDER;
 
 
-ParamBuilder::ParamBuilder ( QString paramName, QString paramType, bool paramDynamic, bool paramNullPointer, QString paramDefaultValue )
+ParamBuilder::ParamBuilder ( const QString &paramName, const QString &paramType, bool paramDynamic, bool paramNullPointer, const QString &paramDefaultValue )
   : name ( paramName ),
     type ( paramType ),
     dynamic ( paramDynamic ),
     nullPointer ( paramNullPointer ),
-    defaultValue ( paramDefaultValue ) {}
+    defaultValue ( paramDefaultValue ) {
+
+  this->param = "";
+}
 
 void ParamBuilder::build () {
 
@@ -18,7 +21,7 @@ void ParamBuilder::build () {
   this->param += this->name;
   if ( this->nullPointer ) {
 
-    this->param += " = nullptr_t";
+    this->param += " = nullptr";
 
   } else {
 

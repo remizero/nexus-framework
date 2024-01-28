@@ -1,22 +1,19 @@
-#ifndef MAINWINDOWSLOTS_H
-#define MAINWINDOWSLOTS_H
+#ifndef NEXUSMAINWINDOWACTIONS_H
+#define NEXUSMAINWINDOWACTIONS_H
 
 // Librerías Internas
 // Internal Libraries
 #include "Mainwindow_global.h"
-#include "MainWindow.h"
 
 // Librerías Externas
 // External Libraries
 #include "Macros_global.h"
-#include "appsystem/App.h"
 
 // Librerías de terceros
 // third-party Library
 
 // Librerías Qt
 // Qt Libraries
-#include <QApplication>
 #include <QMainWindow>
 
 // Librerías C++
@@ -33,12 +30,17 @@ namespace NS_LEVEL_1 {
 
         namespace NS_MAINWINDOW {
 
-          class MAINWINDOW_EXPORT MainWindowSlots {
+          class MAINWINDOW_EXPORT NexusMainWindowActions {
 
             public :
-              MainWindowSlots ( QMainWindow *parent );
+              NexusMainWindowActions ( QMainWindow *parent );
+              ~NexusMainWindowActions ();
 
-              void slotReboot ();
+              virtual void createActions () = 0;
+              QMainWindow *getParent () const;
+              void loadBasicActions ();
+              void loadPluginActions ();
+              void setPluginAction ();
 
             private :
               QMainWindow *parent;
@@ -49,4 +51,4 @@ namespace NS_LEVEL_1 {
   }
 }
 
-#endif // MAINWINDOWSLOTS_H
+#endif // NEXUSMAINWINDOWACTIONS_H
