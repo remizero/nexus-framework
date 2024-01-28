@@ -4,9 +4,9 @@ include(../../../../qmakeBuilders/buildPaths.prf)
 
 QT       -= gui
 
-greaterThan(QT_MAJOR_VERSION, 5): QT +=
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = nexusSingleinstance
+TARGET = nexusStatusbar
 
 # Normalización del nombre de proyecto.
 # Project name normalization.
@@ -15,18 +15,18 @@ TARGET = $$PROJECT_NAME
 
 # Definiciones particulares del tipo de proyecto.
 # Particular definitions of the project type.
-include (../../../../qmakeBuilders/projectLibShareConfiguration.prf)
+include (../../../../qmakeBuilders/projectLibConfiguration.prf)
 
 # Se definen los parámetros de configuración del compilador.
 # Compiler configuration parameters are defined.
 include(../../../../qmakeBuilders/buildConfiguration.prf)
 
 SOURCES += \
-  SingleInstance.cpp
+  StatusBar.cpp
 
 HEADERS += \
-  SingleInstance.h \
-  Singleinstance_global.h
+  StatusBar.h \
+  Statusbar_global.h
 
 win32:CONFIG(release, debug|release): LIBS += \
   -L$$LIB_PATH/ -lNexusMacros
@@ -40,6 +40,9 @@ INCLUDEPATH += \
 
 DEPENDPATH += \
   $$PWD/../../nexusMacros
+
+DISTFILES += \
+  TODO.txt
 
 # Se copia la librería en la ruta destino del proyecto final.
 # The library is copied to the destination path of the final project.

@@ -4,9 +4,9 @@ include(../../../../qmakeBuilders/buildPaths.prf)
 
 QT       -= gui
 
-greaterThan(QT_MAJOR_VERSION, 5): QT +=
+greaterThan(QT_MAJOR_VERSION, 5): QT += widgets
 
-TARGET = nexusSingleinstance
+TARGET = nexusColorbox
 
 # Normalización del nombre de proyecto.
 # Project name normalization.
@@ -15,31 +15,38 @@ TARGET = $$PROJECT_NAME
 
 # Definiciones particulares del tipo de proyecto.
 # Particular definitions of the project type.
-include (../../../../qmakeBuilders/projectLibShareConfiguration.prf)
+include (../../../../qmakeBuilders/projectLibConfiguration.prf)
 
 # Se definen los parámetros de configuración del compilador.
 # Compiler configuration parameters are defined.
 include(../../../../qmakeBuilders/buildConfiguration.prf)
 
 SOURCES += \
-  SingleInstance.cpp
+  ColorBox.cpp
 
 HEADERS += \
-  SingleInstance.h \
-  Singleinstance_global.h
+  Colorbox_global.h \
+  ColorBox.h
 
 win32:CONFIG(release, debug|release): LIBS += \
-  -L$$LIB_PATH/ -lNexusMacros
+  -L$$LIB_PATH/ -lNexusMacros \
+  -L$$LIB_PATH/ -lNexusColorpicker
 else:win32:CONFIG(debug, debug|release): LIBS += \
-  -L$$LIB_PATH/ -lNexusMacros
+  -L$$LIB_PATH/ -lNexusMacros \
+  -L$$LIB_PATH/ -lNexusColorpicker
 else:unix: LIBS += \
-  -L$$LIB_PATH/ -lNexusMacros
+  -L$$LIB_PATH/ -lNexusMacros \
+  -L$$LIB_PATH/ -lNexusColorpicker
 
 INCLUDEPATH += \
-  $$PWD/../../nexusMacros
+  $$PWD/../../nexusMacros \
+  $$UI_DIR \
+  $$PWD/../nexusColorpicker
 
 DEPENDPATH += \
-  $$PWD/../../nexusMacros
+  $$PWD/../../nexusMacros \
+  $$UI_DIR \
+  $$PWD/../nexusColorpicker
 
 # Se copia la librería en la ruta destino del proyecto final.
 # The library is copied to the destination path of the final project.

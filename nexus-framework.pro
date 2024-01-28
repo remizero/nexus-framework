@@ -21,10 +21,13 @@ SUBDIRS += \
 # Se definen las rutas, archivos pro y dependencias de los subproyectos.
 # The paths, pro files and dependencies of the subprojects are defined.
 shadow.subdir = shadow
+
 com.subdir = com
 com.depends = shadow
+
 binaries.subdir = binaries
 binaries.depends = shadow com
+
 examples.subdir = examples
 examples.depends = shadow com binaries
 

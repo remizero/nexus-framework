@@ -22,6 +22,8 @@ include (../../qmakeBuilders/projectBinConfiguration.prf)
 include(../../qmakeBuilders/buildConfiguration.prf)
 
 SOURCES += \
+  AttributeDialog.cpp \
+  MethodDialog.cpp \
   commands/TypeCmd.cpp \
   CommandProcessor.cpp \
   main.cpp \
@@ -29,6 +31,8 @@ SOURCES += \
   RegisterClasses.cpp
 
 HEADERS += \
+  AttributeDialog.h \
+  MethodDialog.h \
   commands/TypeCmd.h \
   CommandProcessor.h \
   MainWindow.h \
@@ -38,6 +42,8 @@ RESOURCES += \
   resources.qrc
 
 FORMS += \
+  AttributeDialog.ui \
+  MethodDialog.ui \
   MainWindow.ui
 
 DEF_FILE += \
@@ -74,7 +80,8 @@ INCLUDEPATH += \
   $$PWD/../../com/vgvgs/nexusMacros \
   $$PWD/../../com/vgvgs/nexusPatternify \
   $$PWD/../../com/vgvgs/nexusResources \
-  $$PWD/../../com/vgvgs/nexusUtils
+  $$PWD/../../com/vgvgs/nexusUtils \
+  $$UI_DIR
 
 DEPENDPATH += \
   $$PWD/../../com/vgvgs/nexusCore \
@@ -82,7 +89,8 @@ DEPENDPATH += \
   $$PWD/../../com/vgvgs/nexusMacros \
   $$PWD/../../com/vgvgs/nexusPatternify \
   $$PWD/../../com/vgvgs/nexusResources \
-  $$PWD/../../com/vgvgs/nexusUtils
+  $$PWD/../../com/vgvgs/nexusUtils \
+  $$UI_DIR
 
 # Se copia la librería en la ruta destino del proyecto final.
 # The library is copied to the destination path of the final project.

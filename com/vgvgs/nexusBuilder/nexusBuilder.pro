@@ -43,6 +43,7 @@ SOURCES += \
   builders/MethodBuilder.cpp \
   builders/ParamBuilder.cpp \
   builders/ProBuilder.cpp \
+  builders/QssBuilder.cpp \
   builders/ResourcesBuilder.cpp \
   builders/VersionBuilder.cpp \
   projectType/BlankAppProject.cpp \
@@ -80,6 +81,7 @@ HEADERS += \
   builders/MethodBuilder.h \
   builders/ParamBuilder.h \
   builders/ProBuilder.h \
+  builders/QssBuilder.h \
   builders/ResourcesBuilder.h \
   builders/VersionBuilder.h \
   projectType/BlankAppProject.h \
