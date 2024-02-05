@@ -35,13 +35,11 @@ void ClassBuilder::build () {
 
 void ClassBuilder::alignStrings ( QStringList &stringList ) {
 
-  // Encuentra la longitud máxima
   int maxLength = 0;
   for ( const QString &str : stringList ) {
 
     maxLength = std::max ( maxLength, static_cast<int>( str.length () ) );
   }
-  // Agrega espacios en blanco a las cadenas más cortas
   for ( QString& str : stringList ) {
 
     int padding = maxLength - str.length ();
@@ -185,7 +183,6 @@ void ClassBuilder::createMetadataSection () {
 void ClassBuilder::createNamespacesClosing () {
 
   for ( int i = 0; i < this->namespaceList.length (); i++ ) {
-  //for ( const QString &namespaceDefinition : this->namespaceList ) {
 
     this->headerBody += this->indentation + "}\n";
     this->decreaseIndentation ();
@@ -308,12 +305,43 @@ void ClassBuilder::setMethodList ( MethodBuilder *method ) {
   );
 }
 
-void ClassBuilder::setNamespaceList ( QString nameSpace ) {
+void ClassBuilder::setNamespaceList ( const QString &nameSpace ) {
 
   this->namespaceList.append ( nameSpace );
 }
 
-bool ClassBuilder::toFile ( QString path ) {
+bool ClassBuilder::saveHeaderFile ( const QString &path, SaveFunction saveFunction ) {
+
+  bool toReturn = false;
+  if ( ( toReturn = NSLIB_UTILS::Strings::save ( path + ".h", this->headerBody ) ) ) {
+
+    qDebug () << "Archivo header creado satisfactoriamente.";
+    if ( saveFunction ) {
+
+      toReturn = saveFunction ( path );
+    }
+  } else {
+
+    qDebug () << "El archivo header no se pudo crear satisfactoriamente.";
+  }
+  return toReturn;
+}
+
+bool ClassBuilder::saveSourceFile ( const QString &path ) {
+
+  bool toReturn = false;
+  if ( ( toReturn = NSLIB_UTILS::Strings::save ( path + ".cpp", this->sourceBody ) ) ) {
+
+    qDebug () << "Archivo source creado satisfactoriamente.";
+
+  } else {
+
+    qDebug () << "El archivo source no se pudo crear satisfactoriamente.";
+  }
+  return toReturn;
+}
+
+bool ClassBuilder::toFile ( const QString &path ) {
 
   bool toReturn = false;
   QString newPath = path + QDir::separator () + this->getClassName ();
@@ -321,45 +349,17 @@ bool ClassBuilder::toFile ( QString path ) {
 
     case NexusBuilder::FileClasses::HEADERSONLY :
 
-      if ( ( toReturn = NSLIB_UTILS::Strings::save ( newPath + ".h", this->headerBody ) ) ) {
-
-        qDebug () << "Archivo header creado satisfactoriamente.";
-
-      } else {
-
-        qDebug () << "El archivo header no se pudo crear satisfactoriamente.";
-      }
+      toReturn = this->saveHeaderFile ( newPath );
       break;
 
     case NexusBuilder::FileClasses::SOURCESONLY :
 
-      if ( ( toReturn = NSLIB_UTILS::Strings::save ( newPath + ".cpp", this->sourceBody ) ) ) {
-
-        qDebug () << "Archivo source creado satisfactoriamente.";
-
-      } else {
-
-        qDebug () << "El archivo source no se pudo crear satisfactoriamente.";
-      }
+      toReturn = this->saveSourceFile ( newPath );
       break;
 
     default :
 
-      if ( ( toReturn = NSLIB_UTILS::Strings::save ( newPath + ".h", this->headerBody ) ) ) {
-
-        qDebug () << "Archivo header creado satisfactoriamente.";
-        if ( ( toReturn = NSLIB_UTILS::Strings::save ( newPath + ".cpp", this->sourceBody ) ) ) {
-
-          qDebug () << "Archivo source creado satisfactoriamente.";
-
-        } else {
-
-          qDebug () << "El archivo source no se pudo crear satisfactoriamente.";
-        }
-      } else {
-
-        qDebug () << "El archivo header no se pudo crear satisfactoriamente.";
-      }
+      toReturn = this->saveHeaderFile ( newPath, std::bind ( &ClassBuilder::saveSourceFile, this, newPath ) );
       break;
   }
   return toReturn;

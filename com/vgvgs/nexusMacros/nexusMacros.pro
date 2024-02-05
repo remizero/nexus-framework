@@ -28,7 +28,8 @@ include(../../../qmakeBuilders/buildConfiguration.prf)
 SOURCES +=
 
 HEADERS += \
-  Macros_global.h
+  Macros_global.h \
+  NexusTypes.h
 
 # Se copia la librería en la ruta destino del proyecto final.
 # The library is copied to the destination path of the final project.

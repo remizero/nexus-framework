@@ -21,5 +21,4 @@ void NexusAppProject::init ( QString projectName, QString projectPath, QString p
                         << "RegisterClasses.cpp.template"
                         << "resources.qrc.template"
                         << "export.def.template";
-
 }

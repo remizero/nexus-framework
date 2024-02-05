@@ -13,10 +13,6 @@ QString MainBuilder::build ( QString resource, NexusBuilder::ProjectId projectTy
   int index = -1;
   index = codeLines.indexOf ( "// External Libraries" );
   codeLines.insert ( index + 1, "#include \"appsystem/AppManager.h\"" );
-  index = codeLines.indexOf ( "int main ( int argc, char *argv [] ) {" );
-  codeLines.insert ( index + 1, "" );
-  codeLines.insert ( index + 2, "  NSLIB_CORE::AppManager::getInstance ()->create ( argc, argv );" );
-  codeLines.insert ( index + 3, "  NSLIB_CORE::AppManager::getInstance ()->initialize ();" );
   switch ( projectType ) {
 
     case NexusBuilder::ProjectId::CONSOLE :
@@ -24,9 +20,12 @@ QString MainBuilder::build ( QString resource, NexusBuilder::ProjectId projectTy
       index = codeLines.indexOf ( "// Internal Libraries" );
       codeLines.insert ( index + 1, "#include \"RegisterClasses.h\"" );
 
-      index = codeLines.indexOf ( "  NSLIB_CORE::AppManager::getInstance ()->initialize ();" );
-      codeLines.insert ( index + 1, "  RegisterClasses::getInstance ()->addTypeClass ();" );
-      codeLines.insert ( index + 2, "  return NSLIB_CORE::AppManager::getInstance ()->execute ();" );
+      index = codeLines.indexOf ( "int main ( int argc, char *argv [] ) {" );
+      codeLines.insert ( index + 1, "" );
+      codeLines.insert ( index + 2, "  NSLIB_CORE::AppManager::getInstance ()->createConsoleOnly ( argc, argv );" );
+      codeLines.insert ( index + 3, "  NSLIB_CORE::AppManager::getInstance ()->initialize ();" );
+      codeLines.insert ( index + 4, "  RegisterClasses::getInstance ()->addTypeClass ();" );
+      codeLines.insert ( index + 5, "  return NSLIB_CORE::AppManager::getInstance ()->executeConsoleOnly ();" );
       break;
 
     case NexusBuilder::ProjectId::NEXUS :
@@ -35,17 +34,20 @@ QString MainBuilder::build ( QString resource, NexusBuilder::ProjectId projectTy
       codeLines.insert ( index + 1, "#include \"MainWindow.h\"" );
       codeLines.insert ( index + 2, "#include \"RegisterClasses.h\"" );
 
-      index = codeLines.indexOf ( "  NSLIB_CORE::AppManager::getInstance ()->initialize ();" );
-      codeLines.insert ( index + 1, "  RegisterClasses::getInstance ()->addTypeClass ();" );
-      codeLines.insert ( index + 2, "  if ( NSLIB_CORE::AppManager::getInstance ()->isGuiApp () ) {" );
-      codeLines.insert ( index + 3, "" );
-      codeLines.insert ( index + 4, "    MainWindow w;" );
-      codeLines.insert ( index + 5, "    return NSLIB_CORE::AppManager::getInstance ()->execute ( &w );" );
+      index = codeLines.indexOf ( "int main ( int argc, char *argv [] ) {" );
+      codeLines.insert ( index + 1, "" );
+      codeLines.insert ( index + 2, "  NSLIB_CORE::AppManager::getInstance ()->create ( argc, argv );" );
+      codeLines.insert ( index + 3, "  NSLIB_CORE::AppManager::getInstance ()->initialize ();" );
+      codeLines.insert ( index + 4, "  RegisterClasses::getInstance ()->addTypeClass ();" );
+      codeLines.insert ( index + 5, "  if ( NSLIB_CORE::AppManager::getInstance ()->isGuiApp () ) {" );
       codeLines.insert ( index + 6, "" );
-      codeLines.insert ( index + 7, "  } else {" );
-      codeLines.insert ( index + 8, "" );
-      codeLines.insert ( index + 9, "    return NSLIB_CORE::AppManager::getInstance ()->execute ();" );
-      codeLines.insert ( index + 10, "  }" );
+      codeLines.insert ( index + 7, "    MainWindow w;" );
+      codeLines.insert ( index + 8, "    return NSLIB_CORE::AppManager::getInstance ()->execute ( &w );" );
+      codeLines.insert ( index + 9, "" );
+      codeLines.insert ( index + 10, "  } else {" );
+      codeLines.insert ( index + 11, "" );
+      codeLines.insert ( index + 12, "    return NSLIB_CORE::AppManager::getInstance ()->execute ();" );
+      codeLines.insert ( index + 13, "  }" );
       break;
 
     case NexusBuilder::ProjectId::GUI :
@@ -54,9 +56,12 @@ QString MainBuilder::build ( QString resource, NexusBuilder::ProjectId projectTy
       index = codeLines.indexOf ( "// Internal Libraries" );
       codeLines.insert ( index + 1, "#include \"MainWindow.h\"" );
 
-      index = codeLines.indexOf ( "  NSLIB_CORE::AppManager::getInstance ()->initialize ();" );
-      codeLines.insert ( index + 1, "  MainWindow w;" );
-      codeLines.insert ( index + 2, "  return NSLIB_CORE::AppManager::getInstance ()->execute ( &w );" );
+      index = codeLines.indexOf ( "int main ( int argc, char *argv [] ) {" );
+      codeLines.insert ( index + 1, "" );
+      codeLines.insert ( index + 2, "  NSLIB_CORE::AppManager::getInstance ()->createGuiOnly ( argc, argv );" );
+      codeLines.insert ( index + 3, "  NSLIB_CORE::AppManager::getInstance ()->initialize ();" );
+      codeLines.insert ( index + 4, "  MainWindow w;" );
+      codeLines.insert ( index + 5, "  return NSLIB_CORE::AppManager::getInstance ()->executeGuiOnly ( &w );" );
       break;
   }
   fileContent = codeLines.join ( "\n" );

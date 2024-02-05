@@ -27,6 +27,7 @@
 // Librerías C++
 // C++ Libraries
 #include <algorithm>
+#include <functional>
 
 
 namespace NS_LEVEL_1 {
@@ -69,23 +70,27 @@ namespace NS_LEVEL_1 {
             void setAttributeList ( AttributeBuilder *attribute );
             void setInheritsFrom ( const QStringList &newInheritsFrom );
             void setMethodList ( MethodBuilder *method );
-            void setNamespaceList ( QString nameSpace );
-            bool toFile ( QString path );
+            void setNamespaceList ( const QString &nameSpace );
+            bool toFile ( const QString &path );
 
           private :
-            QList<AttributeBuilder *> attributeList;
-                              QString className;
-            NexusBuilder::FileClasses fileClasses;
-                              QString headerBody;
-                              QString indentation;
-                          QStringList inheritsFrom;
-               QList<MethodBuilder *> methodList;
-                          QStringList namespaceList;
-                              QString sourceBody;
+                                 QList<AttributeBuilder *> attributeList;
+                                                   QString className;
+                                 NexusBuilder::FileClasses fileClasses;
+                                                   QString headerBody;
+                                                   QString indentation;
+                                               QStringList inheritsFrom;
+                                    QList<MethodBuilder *> methodList;
+                                               QStringList namespaceList;
+            typedef std::function<bool( const QString & )> SaveFunction;
+                                                   QString sourceBody;
 
-                              QString interfaceSection;
-                              QString pluginSection;
-                                 bool isInterface;
+                                                   QString interfaceSection;
+                                                   QString pluginSection;
+                                                      bool isInterface;
+
+            bool saveHeaderFile ( const QString &path, SaveFunction saveFunction = nullptr );
+            bool saveSourceFile ( const QString &path );
         };
       }
     }

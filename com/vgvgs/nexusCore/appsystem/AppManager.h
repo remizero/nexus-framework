@@ -49,7 +49,11 @@ namespace NS_LEVEL_1 {
 
           public :
             void create ( int &argc, char *argv [] );
+            void createConsoleOnly ( int &argc, char *argv [] );
+            void createGuiOnly ( int &argc, char *argv [] );
             int execute ( QMainWindow *mainWindow = nullptr );
+            int executeConsoleOnly ();
+            int executeGuiOnly ( QMainWindow *mainWindow );
             AppConfig *getAppConfig () const;
             UserConfig *getUserConfig () const;
             void initialize ();

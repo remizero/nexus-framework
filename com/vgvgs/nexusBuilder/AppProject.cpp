@@ -166,14 +166,14 @@ bool AppProject::createProjectFiles () {
         }
       } else if ( templeteFile.contains ( "RegisterClasses.h" ) ) {
 
-        if ( !( done = NSLIB_UTILS::Strings::save ( this->path + QDir::separator () + projectFile,
+        if ( !( done = NSLIB_UTILS::Strings::save ( this->path + QDir::separator () + this->normalizedProjectName + projectFile,
                                                     NexusBuilderUtils::loadFileContent ( this->resource + templeteFile ) ) ) ) {
 
           break;
         }
       } else if ( templeteFile.contains ( "RegisterClasses.cpp" ) ) {
 
-        if ( !( done = NSLIB_UTILS::Strings::save ( this->path + QDir::separator () + projectFile,
+        if ( !( done = NSLIB_UTILS::Strings::save ( this->path + QDir::separator () + this->normalizedProjectName + projectFile,
                                                     NexusBuilderUtils::loadFileContent ( this->resource + templeteFile ) ) ) ) {
 
           break;
@@ -182,7 +182,7 @@ bool AppProject::createProjectFiles () {
 
         QStringList initialDirList;
         QMap<QString, QStringList> resourcesMap = NexusBuilderUtils::readResourcesRecursively ( this->path + QDir::separator () + "resources" + QDir::separator (), initialDirList );
-        projectFile = this->prefix + projectFile.at ( 0 ).toUpper () + projectFile.mid ( 1 );
+        projectFile = this->normalizedProjectName + projectFile.at ( 0 ).toUpper () + projectFile.mid ( 1 );
         if ( !( done = NSLIB_UTILS::Xml::save ( this->path + QDir::separator () + projectFile,
                                                 this->resourcesBuilder->build ( this->resource + templeteFile, resourcesMap ) ) ) ) {
 

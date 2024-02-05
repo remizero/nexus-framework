@@ -47,45 +47,122 @@ void AppManager::create ( int &argc, char *argv [] ) {
   }
 }
 
+void AppManager::createConsoleOnly ( int &argc, char *argv [] ) {
+
+  this->application = new QCoreApplication ( argc, argv );
+}
+
+void AppManager::createGuiOnly ( int &argc, char *argv [] ) {
+
+  this->application = new App ( argc, argv );
+}
+
 int AppManager::execute ( QMainWindow *mainWindow ) {
+
+  if ( this->initialized ) {
+
+    if ( this->isGuiApp () ) {
+
+      return this->executeGuiOnly ( mainWindow );
+
+    } else {
+
+      return this->executeConsoleOnly ();
+    }
+
+    // QScopedPointer<QCoreApplication> appInstance ( this->application );
+    // Logger::getInstance ();
+    // Logger::getInstance ()->setGuiApp ( this->isGuiApp () );
+    // this->setAppInfo ( appInstance.data () );
+    // if ( qobject_cast<QApplication *> ( appInstance.data () ) ) {
+    //   // start GUI version...
+    //   appInstance.data ()->addLibraryPath ( AppPaths::getInstance ()->getApplicationPluginsPath () );
+    //   appInstance.data ()->addLibraryPath ( AppPaths::getInstance ()->getApplicationLibrariesPath () );
+    //   AppInit::getInstance ()->initialize ( this->appConfig, this->userConfig );
+    //   AppExit::getInstance ()->initialize ( this->appConfig, this->userConfig );
+    //   // QString styleSheet = AppUtils::loadStyleSheet ();
+    //   // if ( !styleSheet.isEmpty () ) {
+
+    //   //   appInstance.data ()->setStyleSheet ( styleSheet );
+    //   // }
+    //   // mainWindow->show ();
+
+    //   QApplication *guiApp = qobject_cast<QApplication *> ( appInstance.data () );
+    //   if ( guiApp ) {
+
+    //     QString styleSheet = AppUtils::loadStyleSheet ();
+    //     if ( !styleSheet.isEmpty () ) {
+
+    //       guiApp->setStyleSheet ( styleSheet );
+    //     }
+    //   }
+    //   mainWindow->show ();
+
+    // } else {
+    //   // start non-GUI version...
+    //   CommandManager::getInstance ()->setCustomCommands ( this->appConfig );
+    //   CommandManager::getInstance ()->executeCommand ( appInstance.data () );
+    //   QTimer::singleShot ( 1000, appInstance.data (), SLOT ( quit () ) );
+    // }
+    // return appInstance.data ()->exec ();
+
+  } else {
+
+    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 76.";
+    return 0;
+  }
+}
+
+int AppManager::executeConsoleOnly () {
 
   if ( this->initialized ) {
 
     QScopedPointer<QCoreApplication> appInstance ( this->application );
     Logger::getInstance ();
     Logger::getInstance ()->setGuiApp ( this->isGuiApp () );
-
     this->setAppInfo ( appInstance.data () );
-    if ( qobject_cast<QApplication *> ( appInstance.data () ) ) {
-      // start GUI version...
-      appInstance.data ()->addLibraryPath ( AppPaths::getInstance ()->getApplicationPluginsPath () );
-      appInstance.data ()->addLibraryPath ( AppPaths::getInstance ()->getApplicationLibrariesPath () );
-      AppInit::getInstance ()->initialize ( this->appConfig, this->userConfig );
-      AppExit::getInstance ()->initialize ( this->appConfig, this->userConfig );
-      // QString styleSheet = AppUtils::loadStyleSheet ();
-      // if ( !styleSheet.isEmpty () ) {
+    CommandManager::getInstance ()->setCustomCommands ( this->appConfig );
+    CommandManager::getInstance ()->executeCommand ( appInstance.data () );
+    QTimer::singleShot ( 1000, appInstance.data (), SLOT ( quit () ) );
+    return appInstance.data ()->exec ();
 
-      //   appInstance.data ()->setStyleSheet ( styleSheet );
-      // }
-      // mainWindow->show ();
+  } else {
 
-      QApplication *guiApp = qobject_cast<QApplication *> ( appInstance.data () );
-      if ( guiApp ) {
+    qDebug () << "La clase AppManager no ha sido inicializa correctamente. Línea 76.";
+    return 0;
+  }
+}
 
-        QString styleSheet = AppUtils::loadStyleSheet ();
-        if ( !styleSheet.isEmpty () ) {
+int AppManager::executeGuiOnly ( QMainWindow *mainWindow ) {
 
-          guiApp->setStyleSheet ( styleSheet );
-        }
+  if ( this->initialized ) {
+
+    QScopedPointer<QCoreApplication> appInstance ( this->application );
+    Logger::getInstance ();
+    Logger::getInstance ()->setGuiApp ( this->isGuiApp () );
+    this->setAppInfo ( appInstance.data () );
+    // start GUI version...
+    appInstance.data ()->addLibraryPath ( AppPaths::getInstance ()->getApplicationPluginsPath () );
+    appInstance.data ()->addLibraryPath ( AppPaths::getInstance ()->getApplicationLibrariesPath () );
+    AppInit::getInstance ()->initialize ( this->appConfig, this->userConfig );
+    AppExit::getInstance ()->initialize ( this->appConfig, this->userConfig );
+    // QString styleSheet = AppUtils::loadStyleSheet ();
+    // if ( !styleSheet.isEmpty () ) {
+
+    //   appInstance.data ()->setStyleSheet ( styleSheet );
+    // }
+    // mainWindow->show ();
+
+    QApplication *guiApp = qobject_cast<QApplication *> ( appInstance.data () );
+    if ( guiApp ) {
+
+      QString styleSheet = AppUtils::loadStyleSheet ();
+      if ( !styleSheet.isEmpty () ) {
+
+        guiApp->setStyleSheet ( styleSheet );
       }
-      mainWindow->show ();
-
-    } else {
-      // start non-GUI version...
-      CommandManager::getInstance ()->setCustomCommands ( this->appConfig );
-      CommandManager::getInstance ()->executeCommand ( appInstance.data () );
-      QTimer::singleShot ( 1000, appInstance.data (), SLOT ( quit () ) );
     }
+    mainWindow->show ();
     return appInstance.data ()->exec ();
 
   } else {
@@ -126,8 +203,11 @@ void AppManager::initialize () {
   AppPaths::getInstance ()->initialize ();
   this->appConfig = new AppConfig ();
   this->userConfig = new UserConfig ( this->appConfig->getSettings ()->value ( "app/userConfigFormat" ).toString () );
-  CommandManager::getInstance ()->initialize ( this->appConfig );
   this->initialized = true;
+  if ( !this->isGuiApp () ) {
+
+    CommandManager::getInstance ()->initialize ( this->appConfig );
+  }
 }
 
 bool AppManager::isGuiApp () {

@@ -4,6 +4,7 @@ SUBDIRS += \
   nexusActions \
   nexusColorbox \
   nexusColorpicker \
+  nexusConsole \
   nexusMainwindow \
   nexusMenu \
   nexusMenubar \
