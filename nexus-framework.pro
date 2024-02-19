@@ -1,47 +1,33 @@
-# Se definen las rutas de construcción del proyecto.
-# The project construction routes are defined.
-include(qmakeBuilders/buildPaths.prf)
-
-# Se define la estructura de directorios del proyecto final compilado.
-# The directory structure of the final compiled project is defined.
-include(qmakeBuilders/createDirectoryStructure.prf)
-
-# Se definen los parámetros de configuración del compilador.
-# Compiler configuration parameters are defined.
-include(qmakeBuilders/buildConfiguration.prf)
 
 TEMPLATE = subdirs
 
 SUBDIRS += \
   binaries \
   shadow \
-  com \
+  vgvgs \
   examples
 
 # Se definen las rutas, archivos pro y dependencias de los subproyectos.
 # The paths, pro files and dependencies of the subprojects are defined.
 shadow.subdir = shadow
 
-com.subdir = com
-com.depends = shadow
+vgvgs.subdir = vgvgs
+vgvgs.depends = shadow
 
 binaries.subdir = binaries
-binaries.depends = shadow com
+binaries.depends = shadow vgvgs
 
 examples.subdir = examples
-examples.depends = shadow com binaries
+examples.depends = shadow vgvgs binaries
 
-# CONFIG += ordered
-
-# Se definen las reglas y rutas de instalación del proyecto para las diferentes plataformas.
-# The rules and installation paths of the project are defined for the different platforms.
-include (qmakeBuilders/deploymentRulesBin.prf)
 
 DISTFILES += \
   Acknowledgment.txt \
   Doxyfile \
   qmakeBuilders/buildConfiguration.prf \
   qmakeBuilders/buildPaths.prf \
+  qmakeBuilders/buildStandaloneApp.prf \
+  qmakeBuilders/buildVersion.prf \
   qmakeBuilders/copyBinaries.prf \
   qmakeBuilders/copyConfigFiles.prf \
   qmakeBuilders/copyDataFiles.prf \
@@ -51,12 +37,12 @@ DISTFILES += \
   qmakeBuilders/copyMediaFiles.prf \
   qmakeBuilders/copyPlugins.prf \
   qmakeBuilders/copyResourcesFiles.prf \
-  qmakeBuilders/copyTranslatioFiles.prf \
+  qmakeBuilders/copyTranslationFiles.prf \
   qmakeBuilders/copyVendorLibFiles.prf \
   qmakeBuilders/createDirectoryStructure.prf \
   qmakeBuilders/deploymentRulesBin.prf \
   qmakeBuilders/deploymentRulesLib.prf \
-  qmakeBuilders/frameworkVersion.prf \
+  qmakeBuilders/getGitCommit.sh \
   qmakeBuilders/normalizeProjectName.prf \
   qmakeBuilders/projectBinConfiguration.prf \
   qmakeBuilders/projectLibConfiguration.prf \

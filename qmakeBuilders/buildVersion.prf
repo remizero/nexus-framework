@@ -1,0 +1,9 @@
+# buildVersion.prf
+
+
+# Se obtiene la ruta de salida del proyecto actual.
+# Get the output path of the current project.
+VERSION = 0.0.1
+VER_MAJ = 0
+VER_MIN = 0
+VER_PAT = 1

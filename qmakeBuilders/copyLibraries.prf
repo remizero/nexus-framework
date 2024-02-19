@@ -21,9 +21,9 @@ win32: {
 # The name of the library is defined dynamically.
 LIB_NAME = $$TEMPLATE$$TARGET$$DOT$$LIB_EXT
 
-# Se copia el ejecutable en la ruta final para el directorio "lib/" según la plataforma.
-# The executable is copied to the final path to the "lib/" directory depending on the platform.
-QMAKE_POST_LINK += $$quote(cp $$DESTDIR/$$LIB_NAME* $$LIB_PATH/)
+# Se copia el archivo binario en la ruta final para el directorio "lib/" según la plataforma.
+# The binary file is copied to the final path to the "lib/" directory depending on the platform.
+QMAKE_POST_LINK += $$quote(cp -R $$OUT_PWD/$$LIB_NAME* $$LIB_PATH/)
 #win32:CONFIG(release, debug|release): {
 #  QMAKE_POST_LINK += $$quote(copy /Y $$OUT_PWD\libapp.dll $$OUT_PWD\lib\libapp.dll)
 #  QMAKE_POST_LINK += $$quote(copy /Y $$OUT_PWD\libapp.lib $$OUT_PWD\lib\libapp.lib)

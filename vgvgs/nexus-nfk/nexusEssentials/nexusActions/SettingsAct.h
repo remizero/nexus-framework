@@ -1,0 +1,48 @@
+#ifndef SETTINGSACT_H
+#define SETTINGSACT_H
+
+// Librerías Internas
+// Internal Libraries
+#include "Actions_global.h"
+#include "ActionAbs.h"
+
+// Librerías Externas
+// External Libraries
+#include "Macros_global.h"
+#include "XsdDialog.h"
+
+// Librerías de terceros
+// third-party Library
+
+// Librerías Qt
+// Qt Libraries
+#include <QMainWindow>
+
+// Librerías C++
+// C++ Libraries
+
+
+  namespace NS_VGVGS {
+
+    namespace NS_NEXUS {
+
+      namespace NS_ESSENTIALS {
+
+        namespace NS_ACTIONS {
+
+          class ACTIONS_EXPORT SettingsAct: public ActionAbs {
+
+              Q_OBJECT
+
+            public :
+              Q_INVOKABLE SettingsAct ( QString title, QWidget *parent );
+
+            public slots :
+              void execAct () override;
+          };
+        }
+      }
+    }
+  }
+
+#endif // SETTINGSACT_H

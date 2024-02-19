@@ -15,13 +15,8 @@ DIRS = \
   $$TRANSLATION_PATH \
   $$VENDORS_PATH
 
-# Se generan las rutas absolutas para los directorios del proyecto.
-# Absolute paths for the project directories are generated.
-# for(DIR, DIRS) ABS_DIRS += $$MAIN_PROJECT_OUTPUT_PATH/$$DIR
-
 # Se definen las reglas para crear los directorios antes de la construcción.
 # The rules for creating the directories are defined before construction.
-# create.commands = $$QMAKE_MKDIR $$ABS_DIRS
 create.commands = $$QMAKE_MKDIR $$DIRS
 
 # Se agregan las reglas a PRE_TARGETDEPS y PRE_TARGET.

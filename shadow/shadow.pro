@@ -39,3 +39,10 @@ include (../qmakeBuilders/copyLibraries.prf)
 # Se definen las reglas y rutas de instalación del proyecto para las diferentes plataformas.
 # The rules and installation paths of the project are defined for the different platforms.
 include (../qmakeBuilders/deploymentRulesLib.prf)
+
+# include (../qmakeBuilders/copyConfigFiles.prf)
+# include (../qmakeBuilders/copyDataFiles.prf)
+# include (../qmakeBuilders/copyIncludeFiles.prf)
+# include (../qmakeBuilders/copyMediaFiles.prf)
+# include (../qmakeBuilders/copyResourcesFiles.prf)
+# include (../qmakeBuilders/copyTranslationFiles.prf)

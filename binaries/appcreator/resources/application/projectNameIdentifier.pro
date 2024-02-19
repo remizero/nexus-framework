@@ -62,14 +62,14 @@ else:unix: LIBS += \
   -L$$LIB_PATH/ -lNexusPatternify
 
 INCLUDEPATH += \
-  $$PWD/../../com/vgvgs/nexusMacros \
-  $$PWD/../../com/vgvgs/nexusCore \
-  $$PWD/../../com/vgvgs/nexusPatternify
+  $$PWD/../../vgvgs/nexus-nfk/nexusMacros \
+  $$PWD/../../vgvgs/nexus-nfk/nexusCore \
+  $$PWD/../../vgvgs/nexus-nfk/nexusPatternify
 
 DEPENDPATH += \
-  $$PWD/../../com/vgvgs/nexusMacros \
-  $$PWD/../../com/vgvgs/nexusCore \
-  $$PWD/../../com/vgvgs/nexusPatternify
+  $$PWD/../../vgvgs/nexus-nfk/nexusMacros \
+  $$PWD/../../vgvgs/nexus-nfk/nexusCore \
+  $$PWD/../../vgvgs/nexus-nfk/nexusPatternify
 
 # Se copia la librería en la ruta destino del proyecto final.
 # The library is copied to the destination path of the final project.

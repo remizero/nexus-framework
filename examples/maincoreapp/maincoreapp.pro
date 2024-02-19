@@ -71,20 +71,20 @@ else:unix: LIBS += \
   -L$$LIB_PATH/ -lNexusBuilder
 
 INCLUDEPATH += \
-  $$PWD/../../com/vgvgs/nexusMacros \
-  $$PWD/../../com/vgvgs/nexusCore \
-  $$PWD/../../com/vgvgs/nexusPatternify \
-  $$PWD/../../com/vgvgs/nexusResources \
-  $$PWD/../../com/vgvgs/nexusBuilder \
-  $$PWD/../../com/vgvgs/nexusUtils
+  $$PWD/../../vgvgs/nexus-nfk/nexusMacros \
+  $$PWD/../../vgvgs/nexus-nfk/nexusCore \
+  $$PWD/../../vgvgs/nexus-nfk/nexusPatternify \
+  $$PWD/../../vgvgs/nexus-nfk/nexusResources \
+  $$PWD/../../vgvgs/nexus-nfk/nexusBuilder \
+  $$PWD/../../vgvgs/nexus-nfk/nexusUtils
 
 DEPENDPATH += \
-  $$PWD/../../com/vgvgs/nexusMacros \
-  $$PWD/../../com/vgvgs/nexusCore \
-  $$PWD/../../com/vgvgs/nexusPatternify \
-  $$PWD/../../com/vgvgs/nexusResources \
-  $$PWD/../../com/vgvgs/nexusBuilder \
-  $$PWD/../../com/vgvgs/nexusUtils
+  $$PWD/../../vgvgs/nexus-nfk/nexusMacros \
+  $$PWD/../../vgvgs/nexus-nfk/nexusCore \
+  $$PWD/../../vgvgs/nexus-nfk/nexusPatternify \
+  $$PWD/../../vgvgs/nexus-nfk/nexusResources \
+  $$PWD/../../vgvgs/nexus-nfk/nexusBuilder \
+  $$PWD/../../vgvgs/nexus-nfk/nexusUtils
 
 # Se copia la librería en la ruta destino del proyecto final.
 # The library is copied to the destination path of the final project.
