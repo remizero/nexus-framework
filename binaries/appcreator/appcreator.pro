@@ -78,23 +78,23 @@ else:unix: LIBS += \
   -L$$LIB_PATH/ -lNexusConsole
 
 INCLUDEPATH += \
-  $$PWD/../../vgvgs/nexus-nfk/nexusCore \
-  $$PWD/../../vgvgs/nexus-nfk/nexusBuilder \
-  $$PWD/../../vgvgs/nexus-nfk/nexusMacros \
-  $$PWD/../../vgvgs/nexus-nfk/nexusPatternify \
-  $$PWD/../../vgvgs/nexus-nfk/nexusResources \
-  $$PWD/../../vgvgs/nexus-nfk/nexusUtils \
-  $$PWD/../../vgvgs/nexus-nfk/nexusEssentials/nexusConsole \
+  $$PWD/../../vgvgs/nexus/nexus-nfk/nexusCore \
+  $$PWD/../../vgvgs/nexus/nexus-nfk/nexusBuilder \
+  $$PWD/../../vgvgs/nexus/nexus-nfk/nexusMacros \
+  $$PWD/../../vgvgs/nexus/nexus-nfk/nexusPatternify \
+  $$PWD/../../vgvgs/nexus/nexus-nfk/nexusResources \
+  $$PWD/../../vgvgs/nexus/nexus-nfk/nexusUtils \
+  $$PWD/../../vgvgs/nexus/nexus-nfk/nexusEssentials/nexusConsole \
   $$UI_DIR
 
 DEPENDPATH += \
-  $$PWD/../../vgvgs/nexus-nfk/nexusCore \
-  $$PWD/../../vgvgs/nexus-nfk/nexusBuilder \
-  $$PWD/../../vgvgs/nexus-nfk/nexusMacros \
-  $$PWD/../../vgvgs/nexus-nfk/nexusPatternify \
-  $$PWD/../../vgvgs/nexus-nfk/nexusResources \
-  $$PWD/../../vgvgs/nexus-nfk/nexusUtils \
-  $$PWD/../../vgvgs/nexus-nfk/nexusEssentials/nexusConsole \
+  $$PWD/../../vgvgs/nexus/nexus-nfk/nexusCore \
+  $$PWD/../../vgvgs/nexus/nexus-nfk/nexusBuilder \
+  $$PWD/../../vgvgs/nexus/nexus-nfk/nexusMacros \
+  $$PWD/../../vgvgs/nexus/nexus-nfk/nexusPatternify \
+  $$PWD/../../vgvgs/nexus/nexus-nfk/nexusResources \
+  $$PWD/../../vgvgs/nexus/nexus-nfk/nexusUtils \
+  $$PWD/../../vgvgs/nexus/nexus-nfk/nexusEssentials/nexusConsole \
   $$UI_DIR
 
 # Se copia la librería en la ruta destino del proyecto final.
