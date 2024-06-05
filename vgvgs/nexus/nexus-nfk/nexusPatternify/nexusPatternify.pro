@@ -25,7 +25,10 @@ SOURCES +=
 
 HEADERS += \
   Patternify_global.h \
-  creational/Singleton.h
+  creational/Singleton.h \
+  creational/SingletonD.h \
+  creational/SingletonP.h \
+  creational/SingletonS.h
 
 win32:CONFIG(release, debug|release): LIBS += \
   -L$$LIB_PATH/ -lNexusMacros

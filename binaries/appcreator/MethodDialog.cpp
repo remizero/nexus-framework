@@ -1,5 +1,5 @@
 #include "MethodDialog.h"
-#include "ui_MethodDialog.h"
+#include "ui/ui_MethodDialog.h"
 
 MethodDialog::MethodDialog(QWidget *parent) :
   QDialog(parent),

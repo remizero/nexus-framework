@@ -24,6 +24,8 @@ include(../../qmakeBuilders/buildConfiguration.prf)
 SOURCES += \
   ACRegisterClasses.cpp \
   AttributeDialog.cpp \
+  ClassDialog.cpp \
+  CreateProjectDialog.cpp \
   MethodDialog.cpp \
   commands/TypeCmd.cpp \
   CommandProcessor.cpp \
@@ -33,6 +35,8 @@ SOURCES += \
 HEADERS += \
   ACRegisterClasses.h \
   AttributeDialog.h \
+  ClassDialog.h \
+  CreateProjectDialog.h \
   MethodDialog.h \
   commands/TypeCmd.h \
   CommandProcessor.h \
@@ -43,8 +47,10 @@ RESOURCES += \
 
 FORMS += \
   AttributeDialog.ui \
-  MethodDialog.ui \
-  MainWindow.ui
+  ClassDialog.ui \
+  CreateProjectDialog.ui \
+  MainWindow.ui \
+  MethodDialog.ui
 
 DEF_FILE += \
   export.def

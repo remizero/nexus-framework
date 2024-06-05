@@ -8,19 +8,20 @@
 #endif
 
 namespace Ui {
-    class AttributeDialog;
-  }
 
-class AttributeDialog : public QDialog
-  {
+  class AttributeDialog;
+}
+
+class AttributeDialog : public QDialog {
+
     Q_OBJECT
 
-  public:
-    explicit AttributeDialog(QWidget *parent = nullptr);
-    ~AttributeDialog();
+  public :
+    explicit AttributeDialog ( QWidget *parent = nullptr );
+    ~AttributeDialog ();
 
-  private:
+  private :
     Ui::AttributeDialog *ui;
-  };
+};
 
 #endif // ATTRIBUTEDIALOG_H

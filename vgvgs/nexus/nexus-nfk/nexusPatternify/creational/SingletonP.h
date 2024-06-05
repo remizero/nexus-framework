@@ -1,5 +1,5 @@
-#ifndef SINGLETON_H
-#define SINGLETON_H
+#ifndef SINGLETONP_H
+#define SINGLETONP_H
 
 // Librerías Internas
 // Internal Libraries
@@ -29,42 +29,37 @@ namespace NS_VGVGS {
     namespace NS_PATTERNIFY {
 
       template <typename T>
-      class PATTERNIFY_EXPORT Singleton {
+      class PATTERNIFY_EXPORT SingletonP {
 
-          Q_DISABLE_COPY ( Singleton )
+          Q_DISABLE_COPY ( SingletonP )
 
         public :
-          virtual ~Singleton () {
+          virtual ~SingletonP () {
 
-            if ( instance != nullptr ) {
-
-              delete instance;
-              instance = nullptr;
-            }
+            assert ( instance );
+            delete instance;
+            instance = nullptr;
           }
-          static T *getInstance () {
 
-            QMutexLocker lock ( mutex );
-            if ( instance == nullptr ) {
+          static T *getSingletonPtr () {
 
-              instance = new T ();
-            }
             return instance;
           }
 
         protected :
+               static T *instance;
           static QMutex *mutex;
-          Singleton () {}
 
         private :
-          static T *instance;
+          SingletonP () {}
+          SingletonP ( const SingletonP<T> & );
       };
       template <typename T>
-      QMutex *Singleton<T>::mutex;
+      QMutex *SingletonP <T>::mutex;
       template <typename T>
-      T *Singleton<T>::instance = nullptr;
+      T *SingletonP <T>::instance = nullptr;
     }
   }
 }
 
-#endif // SINGLETON_H
+#endif // SINGLETONP_H

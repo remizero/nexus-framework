@@ -14,8 +14,47 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuCreateProject">
+    <property name="title">
+     <string>Create</string>
+    </property>
+    <addaction name="actionCreateProject"/>
+    <addaction name="actionCreateClass"/>
+    <addaction name="actionCreateAttribute"/>
+    <addaction name="actionCreateMethod"/>
+   </widget>
+   <addaction name="menuCreateProject"/>
+  </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionCreateProject">
+   <property name="text">
+    <string>Create Project</string>
+   </property>
+  </action>
+  <action name="actionCreateClass">
+   <property name="text">
+    <string>Create Class</string>
+   </property>
+  </action>
+  <action name="actionCreateAttribute">
+   <property name="text">
+    <string>Create Attribute</string>
+   </property>
+  </action>
+  <action name="actionCreateMethod">
+   <property name="text">
+    <string>Create Method</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

@@ -5,12 +5,13 @@
 #if QT_VERSION >= 0x050000
 #include <QtWidgets/QMainWindow>
 #else
-#include <QtGui/QMainWindow>
+#include <QMainWindow>
 #endif
 
 #include "MainWindowInterface.h"
 
 #include "NexusConsoleGui.h"
+#include "CreateProjectDialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -32,6 +33,9 @@ class MainWindow : public QMainWindow, public MainWindowInterface
       }
       return *this;
     }
+
+  public slots :
+    void onCreateProject ();
 
   private:
     Ui::MainWindow *ui;

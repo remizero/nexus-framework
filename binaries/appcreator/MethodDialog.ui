@@ -6,200 +6,71 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>448</width>
-    <height>613</height>
+    <width>661</width>
+    <height>761</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>661</width>
+    <height>761</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>570</y>
-     <width>431</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-  </widget>
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>9</x>
-     <y>9</y>
-     <width>431</width>
-     <height>551</height>
+     <x>19</x>
+     <y>19</y>
+     <width>621</width>
+     <height>721</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QGroupBox" name="groupBox">
-      <property name="title">
-       <string>Definition</string>
+   <layout class="QGridLayout" name="methodDialogLayout">
+    <item row="2" column="0">
+     <widget class="QGroupBox" name="paramsGroup">
+      <property name="minimumSize">
+       <size>
+        <width>619</width>
+        <height>186</height>
+       </size>
       </property>
-      <widget class="QWidget" name="formLayoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>19</y>
-         <width>411</width>
-         <height>241</height>
-        </rect>
-       </property>
-       <layout class="QFormLayout" name="formLayout">
-        <item row="0" column="0">
-         <widget class="QLabel" name="nameLabel">
-          <property name="text">
-           <string>Name</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="nameLineEdit"/>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="accessibilityLabel">
-          <property name="text">
-           <string>Accessibility</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QComboBox" name="accessibilityComboBox"/>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="constructorLabel">
-          <property name="text">
-           <string>Constructor</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QRadioButton" name="constructorRadioButton"/>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="destructorLabel">
-          <property name="text">
-           <string>Destructor</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QRadioButton" name="destructorRadioButton"/>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="modifierLabel">
-          <property name="text">
-           <string>Modifier</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QComboBox" name="modifierComboBox"/>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="voidLabel">
-          <property name="text">
-           <string>Void</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QCheckBox" name="voidCheckBox"/>
-        </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="typeLabel">
-          <property name="text">
-           <string>Type</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="1">
-         <widget class="QLineEdit" name="typeLineEdit"/>
-        </item>
-        <item row="7" column="0">
-         <widget class="QLabel" name="dynamicLabel">
-          <property name="text">
-           <string>Dynamic</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="1">
-         <widget class="QCheckBox" name="dynamicCheckBox"/>
-        </item>
-        <item row="8" column="0">
-         <widget class="QLabel" name="constLabel">
-          <property name="text">
-           <string>Const</string>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="1">
-         <widget class="QRadioButton" name="constRadioButton"/>
-        </item>
-        <item row="9" column="0">
-         <widget class="QLabel" name="constConstLabel">
-          <property name="text">
-           <string>Const Const</string>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="1">
-         <widget class="QRadioButton" name="constConstRadioButton"/>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QGroupBox" name="groupBox_2">
       <property name="title">
        <string>Params</string>
       </property>
-      <widget class="QWidget" name="horizontalLayoutWidget">
+      <widget class="QWidget" name="gridLayoutWidget_3">
        <property name="geometry">
         <rect>
-         <x>9</x>
-         <y>20</y>
-         <width>411</width>
-         <height>141</height>
+         <x>19</x>
+         <y>19</y>
+         <width>581</width>
+         <height>151</height>
         </rect>
        </property>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QTableWidget" name="tableWidget">
-          <column>
-           <property name="text">
-            <string>Name</string>
-           </property>
-          </column>
-         </widget>
+       <layout class="QGridLayout" name="paramsLayout">
+        <item row="0" column="0">
+         <widget class="QTableView" name="paramsTable"/>
         </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout">
+        <item row="0" column="1">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="addBtn">
             <property name="text">
              <string>Add</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="editBtn">
             <property name="text">
              <string>Edit</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_3">
+           <widget class="QPushButton" name="deleteBtn">
             <property name="text">
              <string>Delete</string>
             </property>
@@ -224,42 +95,223 @@
       </widget>
      </widget>
     </item>
+    <item row="4" column="0">
+     <widget class="QGroupBox" name="implementationGroup">
+      <property name="minimumSize">
+       <size>
+        <width>619</width>
+        <height>186</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Implementation</string>
+      </property>
+      <widget class="QWidget" name="gridLayoutWidget_4">
+       <property name="geometry">
+        <rect>
+         <x>19</x>
+         <y>19</y>
+         <width>581</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="implementationLayout">
+        <item row="0" column="0">
+         <widget class="QPlainTextEdit" name="implementationText"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QDialogButtonBox" name="buttonBox">
+      <property name="standardButtons">
+       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="definitionGroup">
+      <property name="minimumSize">
+       <size>
+        <width>619</width>
+        <height>287</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Definition</string>
+      </property>
+      <widget class="QWidget" name="gridLayoutWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>19</x>
+         <y>19</y>
+         <width>581</width>
+         <height>251</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="definitionLayout">
+        <item row="5" column="0">
+         <widget class="QLabel" name="isConstructorLbl">
+          <property name="text">
+           <string>Is Constructor</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="voidLbl">
+          <property name="text">
+           <string>Void</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" colspan="3">
+         <widget class="QLineEdit" name="methodNameInput">
+          <property name="placeholderText">
+           <string>Method Name</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLabel" name="typeLbl">
+          <property name="text">
+           <string>Type</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="constConstLbl">
+          <property name="text">
+           <string>Const Const</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="constLbl">
+          <property name="text">
+           <string>Const</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QLineEdit" name="typeMethodInput">
+          <property name="placeholderText">
+           <string>Method Type</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="methodNameLbl">
+          <property name="text">
+           <string>Name</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="modifierLbl">
+          <property name="text">
+           <string>Modifier</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="dynamicLbl">
+          <property name="text">
+           <string>Dynamic</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="isDestructorLbl">
+          <property name="text">
+           <string>Is Destructor</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QCheckBox" name="voidCheck">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="accessibilityLbl">
+          <property name="text">
+           <string>Accessibility</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1" colspan="3">
+         <widget class="QComboBox" name="modifierCmb">
+          <property name="placeholderText">
+           <string>Select Modifier</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1" colspan="3">
+         <widget class="QComboBox" name="accessibilityCmb">
+          <property name="placeholderText">
+           <string>Select Accessibility</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1" colspan="3">
+         <widget class="QCheckBox" name="constCheck">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1" colspan="3">
+         <widget class="QCheckBox" name="constConstCheck">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1" colspan="3">
+         <widget class="QCheckBox" name="dynamicCheck">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1" colspan="3">
+         <widget class="QCheckBox" name="isConstructorCheck">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1" colspan="3">
+         <widget class="QCheckBox" name="isDestructorCheck">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="Line" name="line_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>MethodDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>MethodDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

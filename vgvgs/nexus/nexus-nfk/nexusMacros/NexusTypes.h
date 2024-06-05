@@ -16,7 +16,9 @@
 
 // Librerías C++
 // C++ Libraries
+#include <exception>
 #include <functional>
+#include <stdexcept>
 
 
 typedef std::function<bool()> CallbackBoolFunction;
@@ -30,8 +32,9 @@ bool checkInitialization ( bool initialized, CallbackVoidFunction callbackFuncti
     callbackFunction ();
     
   } else {
-    
-    // TODO Como manejar esta condición?.
+
+    throw std::runtime_error ( "La clase no se ha inicializado correctamente." );
+    std::terminate ();
   }
 }
 
