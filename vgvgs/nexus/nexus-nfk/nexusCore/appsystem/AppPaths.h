@@ -17,54 +17,54 @@
 #include <QString>
 
 
-  namespace NS_VGVGS {
+namespace NS_VGVGS {
 
-    namespace NS_NEXUS {
+  namespace NS_NEXUS {
 
-      namespace NS_CORE {
+    namespace NS_CORE {
 
-        class CORE_EXPORT AppPaths : public QObject, public NSLIB_PATTERNIFY::Singleton<AppPaths> {
+      class CORE_EXPORT AppPaths : public QObject, public NSLIB_PATTERNIFY::Singleton<AppPaths> {
 
-          public :
-            QString getApplicationConfigPath () const;
-            QString getApplicationDataPath () const;
-            QString getApplicationImagePath () const;
-            QString getApplicationLanguagePath () const;
-            QString getApplicationLibrariesPath () const;
-            QString getApplicationLogPath () const;
-            QString getApplicationPath () const;
-            QString getApplicationPathRoot () const;
-            QString getApplicationPluginsPath () const;
-            QString getApplicationResourcesPath () const;
-            QString getApplicationTempPath () const;
-            QString getApplicationWorkspacePath () const;
-            QString getXsdPath () const;
-            void initialize ();
+        public :
+          QString getApplicationConfigPath () const;
+          QString getApplicationDataPath () const;
+          QString getApplicationImagePath () const;
+          QString getApplicationLanguagePath () const;
+          QString getApplicationLibrariesPath () const;
+          QString getApplicationLogPath () const;
+          QString getApplicationPath () const;
+          QString getApplicationPathRoot () const;
+          QString getApplicationPluginsPath () const;
+          QString getApplicationResourcesPath () const;
+          QString getApplicationTempPath () const;
+          QString getApplicationWorkspacePath () const;
+          QString getXsdPath () const;
+          void initialize ();
 
-          private :
-            QString applicationConfigPath;
-            QString applicationDataPath;
-               QDir *applicationDirPath;
-            QString applicationImagePath;
-            QString applicationLanguagePath;
-            QString applicationLibrariesPath;
-            QString applicationLogPath;
-            QString applicationPath;
-            QString applicationPathRoot;
-            QString applicationPluginsPath;
-            QString applicationResourcesPath;
-            QString applicationTempPath;
-            QString applicationWorkspacePath;
-            QString xsdPath;
-            QString userConfigPath;
-            QString userDataPath;
-            QString userLanguagePath;
-            QString userTempPath;
-            AppPaths ( QObject *parent = nullptr );
-            friend class NSLIB_PATTERNIFY::Singleton<AppPaths>;
-        };
-      }
+        private :
+          QString applicationConfigPath;
+          QString applicationDataPath;
+             QDir *applicationDirPath;
+          QString applicationImagePath;
+          QString applicationLanguagePath;
+          QString applicationLibrariesPath;
+          QString applicationLogPath;
+          QString applicationPath;
+          QString applicationPathRoot;
+          QString applicationPluginsPath;
+          QString applicationResourcesPath;
+          QString applicationTempPath;
+          QString applicationWorkspacePath;
+          QString xsdPath;
+          QString userConfigPath;
+          QString userDataPath;
+          QString userLanguagePath;
+          QString userTempPath;
+          AppPaths ( QObject *parent = nullptr );
+          friend class NSLIB_PATTERNIFY::Singleton<AppPaths>;
+      };
     }
   }
+}
 
 #endif // APPPATHS_H

@@ -25,6 +25,7 @@ SOURCES += \
   Enumeration.cpp \
   Hash.cpp \
   Json.cpp \
+  System.cpp \
   Utils.cpp \
   Strings.cpp \
   Files.cpp \
@@ -34,6 +35,7 @@ SOURCES += \
 HEADERS += \
   Hash.h \
   Json.h \
+  System.h \
   Utils_global.h \
   Enumeration.h \
   Utils.h \
@@ -58,6 +60,11 @@ DEPENDPATH += \
 # Se copia la librería en la ruta destino del proyecto final.
 # The library is copied to the destination path of the final project.
 include (../../../../qmakeBuilders/copyLibraries.prf)
+
+# Se copia los archivos cabecera en la ruta destino del proyecto final.
+# Copy the header files to the destination path of the final project.
+HEADER_FILE_LIST = $$files($$PWD/*.h,true)
+include (../../../../qmakeBuilders/copyIncludeFiles.prf)
 
 # Se definen las reglas y rutas de instalación del proyecto para las diferentes plataformas.
 # The rules and installation paths of the project are defined for the different platforms.

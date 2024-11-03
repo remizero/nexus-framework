@@ -28,32 +28,32 @@
 // C++ Libraries
 
 
-  namespace NS_VGVGS {
+namespace NS_VGVGS {
 
-    namespace NS_NEXUS {
+  namespace NS_NEXUS {
 
-      namespace NS_CORE {
+    namespace NS_CORE {
 
-        class CORE_EXPORT AppInit : public QObject, public NSLIB_PATTERNIFY::Singleton<AppInit> {
+      class CORE_EXPORT AppInit : public QObject, public NSLIB_PATTERNIFY::Singleton<AppInit> {
 
-          public :
-            bool checkVersion ();
-            AppConfig *getAppConfig () const;
-            UserConfig *getUserConfig () const;
-            void initialize ( AppConfig *appConfig, UserConfig *userConfig );
-            bool restoreDockWidget ( QMainWindow *parent, QDockWidget *dockWidget );
-            bool restoreGeometry ( QMainWindow *parent );
-            bool restoreState ( QMainWindow *parent );
+        public :
+          bool checkVersion ();
+          AppConfig *getAppConfig () const;
+          UserConfig *getUserConfig () const;
+          void initialize ( AppConfig *appConfig, UserConfig *userConfig );
+          bool restoreDockWidget ( QMainWindow *parent, QDockWidget *dockWidget );
+          bool restoreGeometry ( QMainWindow *parent );
+          bool restoreState ( QMainWindow *parent );
 
-          private :
-                  bool initialized;
-             AppConfig *appConfig = nullptr;
-            UserConfig *userConfig = nullptr;
-            AppInit ( QObject *parent = nullptr );
-            friend class NSLIB_PATTERNIFY::Singleton<AppInit>;
-        };
-      }
+        private :
+                bool initialized;
+           AppConfig *appConfig = nullptr;
+          UserConfig *userConfig = nullptr;
+          AppInit ( QObject *parent = nullptr );
+          friend class NSLIB_PATTERNIFY::Singleton<AppInit>;
+      };
     }
   }
+}
 
 #endif // APPINIT_H

@@ -22,19 +22,19 @@
 // C++ Libraries
 
 
-  namespace NS_VGVGS {
+namespace NS_VGVGS {
 
-    namespace NS_NEXUS {
+  namespace NS_NEXUS {
 
-      namespace NS_CORE {
+    namespace NS_CORE {
 
-        class CORE_EXPORT UserConfig : public ConfigAbs {
+      class CORE_EXPORT UserConfig : public ConfigAbs {
 
-          public :
-            UserConfig ( const QString userConfigFormat );
-        };
-      }
+        public :
+          UserConfig ( const QString userConfigFormat );
+      };
     }
   }
+}
 
 #endif // USERCONFIG_H

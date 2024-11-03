@@ -23,22 +23,22 @@
 // C++ Libraries
 
 
-  namespace NS_VGVGS {
+namespace NS_VGVGS {
 
-    namespace NS_NEXUS {
+  namespace NS_NEXUS {
 
-      namespace NS_CORE {
+    namespace NS_CORE {
 
-        class CORE_EXPORT AppUtils {
+      class CORE_EXPORT AppUtils {
 
-          public :
-            static QString normalizePath ( QString path );
-            static QString pathTo ( QString path );
-            static QString relativePath ( QString rootPath, QString path );
-            static QString loadStyleSheet ();
-        };
-      }
+        public :
+          static QString normalizePath ( QString path );
+          static QString pathTo ( QString path );
+          static QString relativePath ( QString rootPath, QString path );
+          static QString loadStyleSheet ();
+      };
     }
   }
+}
 
 #endif // APPUTILS_H

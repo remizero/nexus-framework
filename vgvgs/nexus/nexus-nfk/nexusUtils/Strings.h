@@ -21,22 +21,22 @@
 // C++ Libraries
 
 
-  namespace NS_VGVGS {
+namespace NS_VGVGS {
 
-    namespace NS_NEXUS {
+  namespace NS_NEXUS {
 
-      namespace NS_UTILS {
+    namespace NS_UTILS {
 
-        class UTILS_EXPORT Strings {
+      class UTILS_EXPORT Strings {
 
-          public :
-            static QString capitalize ( QString string );
-            static QString load ( QString fileName, bool readOnly = false );
-            static QString normalizeClassName ( QString string );
-            static bool save ( QString fileName, QString text );
-        };
-      }
+        public :
+          static QString capitalize ( QString string );
+          static QString load ( QString fileName, bool readOnly = false );
+          static QString normalizeClassName ( QString string );
+          static bool save ( QString fileName, QString text );
+      };
     }
   }
+}
 
 #endif // STRINGS_H

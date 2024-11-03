@@ -28,28 +28,28 @@
 // C++ Libraries
 
 
-  namespace NS_VGVGS {
+namespace NS_VGVGS {
 
-    namespace NS_NEXUS {
+  namespace NS_NEXUS {
 
-      namespace NS_CORE {
+    namespace NS_CORE {
 
-        class CORE_EXPORT AppExit : public QObject, public NSLIB_PATTERNIFY::Singleton<AppExit> {
+      class CORE_EXPORT AppExit : public QObject, public NSLIB_PATTERNIFY::Singleton<AppExit> {
 
-          public :
-            void initialize ( AppConfig *appConfig, UserConfig *userConfig );
-            void saveSettings ();
-            void saveState ( QMainWindow *parent );
+        public :
+          void initialize ( AppConfig *appConfig, UserConfig *userConfig );
+          void saveSettings ();
+          void saveState ( QMainWindow *parent );
 
-          private :
-                  bool initialized;
-             AppConfig *appConfig = nullptr;
-            UserConfig *userConfig = nullptr;
-            AppExit ( QObject *parent = nullptr );
-            friend class NSLIB_PATTERNIFY::Singleton<AppExit>;
-        };
-      }
+        private :
+                bool initialized;
+           AppConfig *appConfig = nullptr;
+          UserConfig *userConfig = nullptr;
+          AppExit ( QObject *parent = nullptr );
+          friend class NSLIB_PATTERNIFY::Singleton<AppExit>;
+      };
     }
   }
+}
 
 #endif // APPEXIT_H

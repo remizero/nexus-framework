@@ -2,11 +2,11 @@
 # The project construction routes are defined.
 include(../../../../../qmakeBuilders/buildPaths.prf)
 
-QT -= gui
+QT       -= gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets xml
 
-TEMPLATE = nexusColorpicker
+TARGET = nexusDocumentation
 
 # Normalización del nombre de proyecto.
 # Project name normalization.
@@ -22,40 +22,55 @@ include (../../../../../qmakeBuilders/projectLibConfiguration.prf)
 include(../../../../../qmakeBuilders/buildConfiguration.prf)
 
 SOURCES += \
-  ColorPicker.cpp \
-  ColorPickerDialog.cpp \
-  ColorSelector.cpp \
-  ColorWidget.cpp \
-  SVSelector.cpp
+    NexusDocumentation.cpp \
+    Version.cpp
 
 HEADERS += \
-  ColorPickerDialog.h \
-  ColorSelector.h \
-  ColorWidget.h \
-  SVSelector.h \
-  Colorpicker_global.h \
-  ColorPicker.h
+    Documentation_global.h \
+    NexusDocumentation.h \
+    Version.h
 
 win32:CONFIG(release, debug|release): LIBS += \
-  -L$$LIB_PATH/ -lNexusMacros
+  -L$$LIB_PATH/ -lNexusMacros \
+  -L$$LIB_PATH/ -lNexusPatternify \
+  -L$$LIB_PATH/ -lNexusResources \
+  -L$$LIB_PATH/ -lNexusUtils \
+  -L$$LIB_PATH/ -lNexusCore
 else:win32:CONFIG(debug, debug|release): LIBS += \
-  -L$$LIB_PATH/ -lNexusMacros
+  -L$$LIB_PATH/ -lNexusMacros \
+  -L$$LIB_PATH/ -lNexusPatternify \
+  -L$$LIB_PATH/ -lNexusResources \
+  -L$$LIB_PATH/ -lNexusUtils \
+  -L$$LIB_PATH/ -lNexusCore
 else:unix: LIBS += \
-  -L$$LIB_PATH/ -lNexusMacros
+  -L$$LIB_PATH/ -lNexusMacros \
+  -L$$LIB_PATH/ -lNexusPatternify \
+  -L$$LIB_PATH/ -lNexusResources \
+  -L$$LIB_PATH/ -lNexusUtils \
+  -L$$LIB_PATH/ -lNexusCore
 
 INCLUDEPATH += \
   $$PWD/../../nexusMacros \
-  $$UI_DIR
+  $$PWD/../../nexusPatternify \
+  $$PWD/../../nexusResources \
+  $$PWD/../../nexusUtils \
+  $$PWD/../../nexusCore
 
 DEPENDPATH += \
   $$PWD/../../nexusMacros \
-  $$UI_DIR
+  $$PWD/../../nexusPatternify \
+  $$PWD/../../nexusResources \
+  $$PWD/../../nexusUtils \
+  $$PWD/../../nexusCore
 
 DISTFILES += \
-  Agradecimientos.txt
 
-FORMS += \
-  ColorPickerDialog.ui
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../../../../../../opt/xerces-c/lib/release/ -lxerces-c-3.2
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../../../../../../../opt/xerces-c/lib/debug/ -lxerces-c-3.2
+else:unix: LIBS += -L$$PWD/../../../../../../../../../opt/xerces-c/lib/ -lxerces-c-3.2
+
+INCLUDEPATH += $$PWD/../../../../../../../../../opt/xerces-c/lib
+DEPENDPATH += $$PWD/../../../../../../../../../opt/xerces-c/lib
 
 # Se copia la librería en la ruta destino del proyecto final.
 # The library is copied to the destination path of the final project.

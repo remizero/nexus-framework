@@ -57,6 +57,11 @@ DEPENDPATH += \
 # The library is copied to the destination path of the final project.
 include (../../../../../qmakeBuilders/copyLibraries.prf)
 
+# Se copia los archivos cabecera en la ruta destino del proyecto final.
+# Copy the header files to the destination path of the final project.
+HEADER_FILE_LIST = $$files($$PWD/*.h,true)
+include (../../../../../qmakeBuilders/copyIncludeFiles.prf)
+
 # Se definen las reglas y rutas de instalación del proyecto para las diferentes plataformas.
 # The rules and installation paths of the project are defined for the different platforms.
 include (../../../../../qmakeBuilders/deploymentRulesLib.prf)

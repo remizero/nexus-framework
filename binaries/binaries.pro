@@ -1,6 +1,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
+  Commgen \
   appcreator
 
 # Se definen las rutas, archivos pro y dependencias de los subproyectos.

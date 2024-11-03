@@ -1,11 +1,9 @@
-#ifndef APPCONFIG_H
-#define APPCONFIG_H
+#ifndef SYSTEM_H
+#define SYSTEM_H
 
 // Librerías Internas
 // Internal Libraries
-#include "Core_global.h"
-#include "appsystem/AppSettings.h"
-#include "appsystem/ConfigAbs.h"
+#include "Utils_global.h"
 
 // Librerías Externas
 // External Libraries
@@ -15,7 +13,10 @@
 
 // Librerías Qt
 // Qt Libraries
+#include <QDateTime>
 #include <QDebug>
+#include <QProcess>
+#include <QString>
 
 // Librerías C++
 // C++ Libraries
@@ -25,15 +26,16 @@ namespace NS_VGVGS {
 
   namespace NS_NEXUS {
 
-    namespace NS_CORE {
+    namespace NS_UTILS {
 
-      class CORE_EXPORT AppConfig : public ConfigAbs {
+      class UTILS_EXPORT System {
 
         public :
-          AppConfig ();
+          static QString getNameUser ();
+          static QString getUser ();
       };
     }
   }
 }
 
-#endif // APPCONFIG_H
+#endif // SYSTEM_H

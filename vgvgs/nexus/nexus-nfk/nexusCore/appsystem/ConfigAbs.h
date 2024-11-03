@@ -20,25 +20,25 @@
 // C++ Libraries
 
 
-  namespace NS_VGVGS {
+namespace NS_VGVGS {
 
-    namespace NS_NEXUS {
+  namespace NS_NEXUS {
 
-      namespace NS_CORE {
+    namespace NS_CORE {
 
-        class CORE_EXPORT ConfigAbs {
+      class CORE_EXPORT ConfigAbs {
 
-          public :
-            ConfigAbs ();
+        public :
+          ConfigAbs ();
 
-            QSettings *getSettings () const;
+          QSettings *getSettings () const;
 
-          protected :
-            QSettings::Format configFormat;
-                    QSettings *settings;
-        };
-      }
+        protected :
+          QSettings::Format configFormat;
+                  QSettings *settings;
+      };
     }
   }
+}
 
 #endif // CONFIGABS_H

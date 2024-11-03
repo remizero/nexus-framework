@@ -1,6 +1,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
+  nexusDocumentation \
   nexusXsd
 
 # Se definen las rutas, archivos pro y dependencias de los subproyectos.

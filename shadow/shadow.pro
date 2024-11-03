@@ -1,3 +1,8 @@
+# @TODO
+# Estudiar el manejo de rpath desde el archivo .pro para lograr el reenlace
+# corrento tanto de las librerías como de los ejecutables al momento de ejecutar
+# "make install"
+
 # Se definen las rutas de construcción del proyecto.
 # The project construction routes are defined.
 include(../qmakeBuilders/buildPaths.prf)
@@ -35,6 +40,11 @@ HEADERS += \
 # Se copia la librería en la ruta destino del proyecto final.
 # The library is copied to the destination path of the final project.
 include (../qmakeBuilders/copyLibraries.prf)
+
+# Se copia los archivos cabecera en la ruta destino del proyecto final.
+# Copy the header files to the destination path of the final project.
+HEADER_FILE_LIST = $$files($$PWD/*.h,true)
+include (../qmakeBuilders/copyIncludeFiles.prf)
 
 # Se definen las reglas y rutas de instalación del proyecto para las diferentes plataformas.
 # The rules and installation paths of the project are defined for the different platforms.

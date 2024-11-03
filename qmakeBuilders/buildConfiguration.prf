@@ -86,12 +86,12 @@ unix: {
   linux: {
     # Configuración específica para Linux.
     # Linux-specific configuration.
-    QMAKE_CXX = g++-12
+    QMAKE_CXX = g++-13
   }
   macx: {
     # Configuración específica para macOS.
     # macOS-specific settings.
-    QMAKE_CXX = g++-12
+    QMAKE_CXX = g++-13
   }
 }
 

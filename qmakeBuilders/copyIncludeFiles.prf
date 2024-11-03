@@ -3,7 +3,16 @@
 
 # Se copian los archivos del directorio include.
 # Copy the files from the include directory.
-includeFiles.commands = $$quote(cp $$INCLUDE_PATH_ORIGIN/*.h $$INCLUDE_PATH/)
+# includeFiles.commands = $$quote(cp $$INCLUDE_PATH_ORIGIN/*.h $$INCLUDE_PATH/)
+# Se copian los archivos cabecera del directorio fuente include al directorio destino.
+# Copy header files from the source include directory to the destination directory.
+for ( sourceFile, $$list( $$HEADER_FILE_LIST ) ) {
+  DESTINY_FILE_PATH_FRAGMENT = $$replace( sourceFile, $$MAIN_PROJECT_ROOT_PATH, )
+  FRAGMENT_FINAL_DESTINY_PATH = $$dirname( DESTINY_FILE_PATH_FRAGMENT )
+  FINAL_DESTINY_PATH = $$INCLUDE_PATH$$dirname( DESTINY_FILE_PATH_FRAGMENT )
+  FINAL_FILE_DESTINY_PATH = $$INCLUDE_PATH$$DESTINY_FILE_PATH_FRAGMENT
+  includeFiles.commands += $$quote( mkdir -p $$FINAL_DESTINY_PATH/ && $$QMAKE_COPY $$sourceFile $$FINAL_DESTINY_PATH/$$escape_expand(\n\t) )
+}
 
 # Se agregan las reglas a POST_TARGETDEPS para ejecutarlas posterior a la construcción del proyecto.
 # Rules are added to POST_TARGETDEPS to be executed after the project is built.

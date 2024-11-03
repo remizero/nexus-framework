@@ -19,11 +19,10 @@
 // C++ Libraries
 
 
-class RESOURCES_EXPORT Resources
-{
+class RESOURCES_EXPORT Resources {
 
   public :
-    Resources();
+    Resources ();
 };
 
 #endif // RESOURCES_H

@@ -7,14 +7,20 @@ using namespace NSLIB_UTILS;
 QStringList Files::findFiles ( const QString &searchPath, const QString &filters ) {
 
   QStringList filesFound;
-  QDir searchDir ( searchPath );
-  QStringList filterList;
-  filterList << filters;
-  searchDir.setNameFilters ( filterList );
-  QFileInfoList fileInfoList = searchDir.entryInfoList ( QDir::Files );
-  for ( const QFileInfo &fileInfo : fileInfoList ) {
+  // QDir searchDir ( searchPath );
+  // QStringList filterList;
+  // filterList << filters;
+  // searchDir.setNameFilters ( filterList );
+  // QFileInfoList fileInfoList = searchDir.entryInfoList ( QDir::Files );
+  // for ( const QFileInfo &fileInfo : fileInfoList ) {
 
-    filesFound.append ( fileInfo.absoluteFilePath () );
+  //   filesFound.append ( fileInfo.absoluteFilePath () );
+  // }
+
+  QDirIterator it ( searchPath, QStringList () << filters, QDir::NoFilter, QDirIterator::Subdirectories );
+  while ( it.hasNext () ) {
+
+    filesFound.append ( it.nextFileInfo ().absoluteFilePath () );
   }
   return filesFound;
 }
@@ -22,7 +28,7 @@ QStringList Files::findFiles ( const QString &searchPath, const QString &filters
 QFile *Files::load ( const QString fileName, QIODeviceBase::OpenMode openMode ) {
 
     // TODO Ver como aplicar https://doc.qt.io/qt-6/qfiledevice.html#Permission-enum
-  // if ( QFile::exists ( fileName ) ) {
+  if ( QFile::exists ( fileName ) ) {
 
     QFile *ioDeviceFile = new QFile ( fileName );
     if ( ioDeviceFile->open ( openMode ) ) {
@@ -42,10 +48,10 @@ QFile *Files::load ( const QString fileName, QIODeviceBase::OpenMode openMode ) 
       // qDebug () << "Error al abrir el archivo:" << ioDeviceFile->errorString ();
       delete ioDeviceFile;
     }
-  // } else {
+  } else {
 
-  //   qDebug () << "El archivo seleccionado \"" + fileName + "\" no existe o no se encuentra.";
-  // }
+    qDebug () << "El archivo seleccionado \"" + fileName + "\" no existe o no se encuentra.";
+  }
   return nullptr;
 }
 
@@ -62,31 +68,35 @@ bool Files::save ( QFile *ioDeviceFile, const QVariant &contentToSave ) {
     QTextStream stream ( ioDeviceFile );
     if ( contentToSave.canConvert<QString> () ) {
 
-      stream << contentToSave.toString ();
+      stream << contentToSave.toString ().toUtf8 ();
       success = true;
-      qDebug () << "Datos guardados satisfactoriamente. Archivo: " + ioDeviceFile->fileName ();
 
     } else if ( contentToSave.canConvert<QDomDocument *> () ) {
 
-      stream << contentToSave.value<QDomDocument *> ()->toString ();
+      stream << contentToSave.value<QDomDocument *> ()->toString ().toUtf8 ();
       success = true;
-      qDebug () << "Datos guardados satisfactoriamente. Archivo: " + ioDeviceFile->fileName ();
 
     } else if ( contentToSave.canConvert<QJsonDocument> () ) {
 
       stream << contentToSave.value<QJsonDocument> ().toJson ();
       success = true;
-      qDebug () << "Datos guardados satisfactoriamente. Archivo: " + ioDeviceFile->fileName ();
 
     } else {
 
       qDebug () << "Tipo de dato no admitido para guardar en archivo.";
     }
+    if ( success ) {
+
+      qDebug () << "Datos guardados satisfactoriamente. Archivo: " + ioDeviceFile->fileName ();
+    }
   } else {
 
     qDebug () << "El dispositivo de entrada/salida no permite el modo de escritura.";
   }
-  ioDeviceFile->close ();
+  if ( ioDeviceFile->isOpen () ) {
+
+    ioDeviceFile->close ();
+  }
   delete ioDeviceFile;
   return success;
 }

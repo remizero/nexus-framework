@@ -26,27 +26,27 @@
 // C++ Libraries
 
 
-  namespace NS_VGVGS {
+namespace NS_VGVGS {
 
-    namespace NS_NEXUS {
+  namespace NS_NEXUS {
 
-      namespace NS_CORE {
+    namespace NS_CORE {
 
-        class CORE_EXPORT AppSettingManager : public QObject, public NSLIB_PATTERNIFY::Singleton<AppSettingManager> {
+      class CORE_EXPORT AppSettingManager : public QObject, public NSLIB_PATTERNIFY::Singleton<AppSettingManager> {
 
-          public :
-            void initialize ();
-            const QSettings::Format &getUserConfigFormat () const;
-            void setUserConfigFormat ( const QSettings::Format &newUserConfigFormat );
+        public :
+          void initialize ();
+          const QSettings::Format &getUserConfigFormat () const;
+          void setUserConfigFormat ( const QSettings::Format &newUserConfigFormat );
 
-          private :
-            QSettings::Format appConfigFormat;
-            QSettings::Format userConfigFormat;
-            AppSettingManager ( QObject *parent = nullptr );
-            friend class NSLIB_PATTERNIFY::Singleton<AppSettingManager>;
-        };
-      }
+        private :
+          QSettings::Format appConfigFormat;
+          QSettings::Format userConfigFormat;
+          AppSettingManager ( QObject *parent = nullptr );
+          friend class NSLIB_PATTERNIFY::Singleton<AppSettingManager>;
+      };
     }
   }
+}
 
 #endif // APPSETTINGMANAGER_H
